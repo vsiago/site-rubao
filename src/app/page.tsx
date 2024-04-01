@@ -27,7 +27,7 @@ export default function Home() {
               width={170}
               height={20}
               alt="Logo Rubao"
-              className="hidden md:flex absolute top-50% right-0 w-[40%] transform -translate-y-1/2"
+              className="hidden pointer-events-none md:flex absolute top-50% right-0 w-[40%] transform -translate-y-1/2"
             />
           </div>
           <div className="text-center md:text-start ">

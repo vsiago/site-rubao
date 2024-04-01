@@ -89,7 +89,7 @@ export default function Header() {
                 </ul>
                 <ul className="hidden md:flex gap-3">{menuItems.map((item, intex) => (
                     <li key={item.nome}>
-                        <Link className={`${scrolled ? 'text-slate-700' : ''} px-2 py-1 text-slate-400 active:text-sky-400`} href={item.link}>{item.nome}</Link>
+                        <Link className={`${scrolled ? 'text-slate-700' : ''} h-20 px-2 py-1 text-slate-400 active:text-sky-400`} href={item.link}>{item.nome}</Link>
                     </li>
                 ))}</ul>
             </nav>
