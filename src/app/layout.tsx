@@ -9,9 +9,9 @@ import Header from "@/components/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "ProOnco - Oncologia",
-    description: "Transormando cuidado em cura.",
-};
+    title: "Prefeito Rubao",
+    description: "Prefeito do Município de Itaguaí.",
+  };
 
 export default function RootLayout({
     children,

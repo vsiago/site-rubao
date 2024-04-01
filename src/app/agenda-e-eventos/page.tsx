@@ -3,8 +3,8 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: "ProOnco - Oncologia em Números",
-  description: "Transormando cuidado em cura.",
+  title: "Prefeito Rubao",
+  description: "Prefeito do Município de Itaguaí.",
 };
 
 function OncologiaEmNumeros() {

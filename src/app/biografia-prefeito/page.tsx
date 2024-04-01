@@ -4,8 +4,8 @@ import IntroPage from "@/components/IntroPage";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "ProOnco - Quem Somos",
-  description: "Transormando cuidado em cura.",
+  title: "Prefeito Rubao",
+  description: "Prefeito do Município de Itaguaí.",
 };
 
 function QuemSomos() {
