@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
-      <section className="flex-1 bg-accent flex items-start pt-40">
+      <section className="flex-1 bg-accent flex items-center md:items-start md:pt-40">
         <div ref={ref} className={`flex items-center justify-center flex-col gap-6 md:flex-row-reverse md:container ${inView ? 'animate' : ''}`}>
           <div className="w-full mx-auto">
             <Image
@@ -40,7 +40,7 @@ export default function Home() {
             <h1 className="text-5xl font-bold text-center md:text-start">
               Novo site!
             </h1>
-            <p className="text-center text-lg mx-4 text-slate-400 mt-8 mb-16 md:text-start md:text-2xl md:mx-0 md:pr-40">
+            <p className={`text-center text-lg mx-10 text-slate-400 mt-8 mb-16 md:text-start md:text-2xl md:mx-0 md:pr-40 ${inView ? 'animate animate-delay' : ''}`}>
               Estamos trabalhando para trazer um novo site, repleto de
               informações. Fiquem atentos para mais atualizações em breve!
             </p>

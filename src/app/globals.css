@@ -78,17 +78,25 @@
 }
 
 @keyframes fadeIn {
-  from {
+  0% {
     opacity: 0;
     transform: translateY(60px); /* Opcional: Pode adicionar uma animação de translação */
   }
-  to {
+  50% {
+    opacity: 1;
+  }
+  100% {
     opacity: 1;
     transform: translateY(0); /* Opcional: Pode adicionar uma animação de translação */
+    animation-duration: 1s;
   }
 }
 
 .animate {
   opacity: 0;
-  animation: fadeIn 0.5s ease-in-out forwards; /* Aplica a animação de fade in */
+  animation: fadeIn 1s ease-in-out forwards; /* Aplica a animação de fade in */
+}
+
+.animate-delay {
+  animation-delay: 0.3s; /* Defina o atraso desejado aqui */
 }
