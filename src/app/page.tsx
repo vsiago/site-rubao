@@ -1,19 +1,22 @@
-import type { Metadata } from "next";
+"use client"
+import { Metadata } from "next";
 import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "@/components/Footer";
+import { useInView } from 'react-intersection-observer';
 
-export const metadata: Metadata = {
-  title: "Prefeito Rubao",
-  description: "Prefeito do Município de Itaguaí.",
-};
+
 
 export default function Home() {
+  const { ref, inView } = useInView({
+    threshold: 0.5, // Quando 50% do elemento estiver visível
+  });
+
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
       <section className="flex-1 bg-accent flex items-start pt-40">
-        <div className=" flex items-center justify-center flex-col gap-6 md:flex-row-reverse md:container">
+        <div ref={ref} className={`flex items-center justify-center flex-col gap-6 md:flex-row-reverse md:container ${inView ? 'animate' : ''}`}>
           <div className="w-full mx-auto">
             <Image
               src="/intro-manutencao.png"
@@ -37,7 +40,7 @@ export default function Home() {
             <h1 className="text-5xl font-bold text-center md:text-start">
               Novo site!
             </h1>
-            <p className=" text-center text-lg mx-4 text-slate-400 mt-8 mb-16 md:text-start md:text-2xl md:mx-0 md:pr-40">
+            <p className="text-center text-lg mx-4 text-slate-400 mt-8 mb-16 md:text-start md:text-2xl md:mx-0 md:pr-40">
               Estamos trabalhando para trazer um novo site, repleto de
               informações. Fiquem atentos para mais atualizações em breve!
             </p>
