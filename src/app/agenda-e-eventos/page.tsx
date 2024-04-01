@@ -12,7 +12,7 @@ function OncologiaEmNumeros() {
     <main className='min-h-screen flex flex-col'>
       <Header />
       <section className='flex-1 bg-accent flex items-center justify-center'>
-        <h1 className='text-xl'>Oncologia em Números</h1>
+        <h1 className='text-xl'>Agenda e Eventos</h1>
       </section>
       <Footer />
     </main>

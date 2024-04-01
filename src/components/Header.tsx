@@ -11,32 +11,25 @@ export default function Header() {
             link: "/"
         },
         {
-            nome: "Quem Somos",
-            link: "/quem-somos"
+            nome: "Biografia do Prefeito",
+            link: "/biografia-prefeito"
         },
         {
-            nome: "Oncologia em Números",
-            link: "/oncologia-em-numeros"
+            nome: "Agenda e Eventos",
+            link: "/agenda-e-eventos"
         },
-        {
-            nome: "Serviços",
-            link: "/servicos"
-        },
-        {
-            nome: "Contatos",
-            link: "/contatos"
-        }
+
     ];
 
     return (
         <header className="bg-accent">
-            <nav className="min-h-16 px-6 flex justify-between items-center md:container mx-auto">
+            <nav className="h-24 px-6 flex justify-between items-center md:container mx-auto">
                 <a href="/">
                     <Image
-                        src="/logo-proonco-clara.png"
-                        width={150}
+                        src="/rubao-logo-clara.png"
+                        width={155}
                         height={20}
-                        alt="Logo ProOnco"
+                        alt="Logo Rubao"
                     />
                 </a>
                 <ul
@@ -51,13 +44,13 @@ export default function Header() {
                     ></li>
                 </ul>
                 <ul
-                    className={`${open ? "bg-accent flex opacity-100 w-full h-[calc(100%-4rem)] left-0" : "w-full h-0"} absolute top-16 right-0 flex flex-col transition duration-200 ease-out opacity-0 flex-1`}
+                    className={`${open ? "bg-accent flex opacity-100 w-full h-[calc(100%-4rem)] left-0" : "w-full h-0"} absolute top-24 right-0 flex flex-col transition duration-200 ease-out opacity-0 flex-1`}
                 >
                     {menuItems.map((item, index) => (
                         <li
                             key={item.nome}
-                            style={{ transitionDelay: `${open ? index * 100 : 0}ms` }}
-                            className={`px-6 ${open ? 'opacity-100 transform translate-x-0 ' : 'opacity-0 transform -translate-x-10'} transition-all ease-out duration-500`}
+                            style={{ transitionDelay: `${open ? index * 75 : 0}ms` }}
+                            className={`px-6 ${open ? 'opacity-100 transform translate-x-0' : ' opacity-0 transform -translate-x-10'} transition-all ease-out duration-500`}
                         >
                             <a
                                 className={`${open ? 'inline-block ml-0 pointer-events-auto transition ease-in py-6' : 'py-0 opacity-0 ml-6 hidden pointer-events-none'} text-slate-300 border-b-[1px] border-slate-700 w-full focus:text-white focus:font-semibold`}
