@@ -20,46 +20,33 @@ export default function Home() {
             inView ? "animate" : ""
           }`}
         >
-
-
-
-
-
-
-
-
-
-
           <main className="px-8 w-full mt-32 mx-auto">
             <div className="flex items-baseline gap-3">
-              <span className="text-[#0CC6F5] text-4xl font-semibold italic ml-[24px]">
+              <span className="text-[#0CC6F5] text-4xl font-semibold italic ml-[24px] -mr-2">
                 Prefeito
               </span>
-              <div className="border-2 border-[#0CC6F5] w-16 h-16 rounded-md"></div>
+              <div className="">
+                <Image
+                  width={65}
+                  height={65}
+                  alt="logo B Bubão"
+                  src={require("../../public/logo-b.svg")}
+                />
+              </div>
             </div>
             <p className="text-[#ffffff] text-8xl font-black italic">Rubão</p>
             <p className="text-[#98B2C0] text-2xl italic leading-7">
               Fiz e vou fazer <br></br>muito mais!
             </p>
 
-            <a className="p-3 px-9 w-full border-2 border-[#0CC6F5] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center" href="#">
+            <a
+              className="p-3 px-9 w-full border-2 border-[#0CC6F5] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center"
+              href="#"
+            >
               <span className="bg-sky-500 h-6 w-6 rounded-sm block rotate-45"></span>
-              <span>
-              Linha do tempo
-              </span>
+              <span>Linha do tempo</span>
             </a>
-
           </main>
-
-
-
-
-
-
-
-
-
-
         </div>
       </section>
 
