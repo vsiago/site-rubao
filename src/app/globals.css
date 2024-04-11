@@ -100,3 +100,34 @@
 .animate-delay {
   animation-delay: 0.3s; /* Defina o atraso desejado aqui */
 }
+
+/* Divider */
+
+.custom-shape-divider-bottom-1712845043 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1712845043 svg {
+  position: relative;
+  display: block;
+  width: calc(134% + 1.3px);
+  height: 69px;
+}
+
+.custom-shape-divider-bottom-1712845043 .shape-fill {
+  fill: #FFFFFF;
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+  .custom-shape-divider-bottom-1712845043 svg {
+      width: calc(187% + 1.3px);
+      height: 36px;
+  }
+}
