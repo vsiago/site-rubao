@@ -51,10 +51,10 @@ export default function Header() {
       className={`${
         scrolled
           ? "h-16 bg-sky-500 fixed top-0 z-10 flex w-full translate-y-0 duration-300 ease-in-out bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90"
-          : "h-24 top-0 z-10 absolute w-full"
-      }   `}
+          : "h-24 top-0 z-10 absolute "
+      }   w-full`}
     >
-      <nav className="min-h-full px-6 flex w-full justify-between items-center md:container mx-auto ">
+      <nav className="min-h-full px-6 flex  w-full justify-between items-center md:container mx-auto ">
         <a href="/">
           <Image
             src="/rubao-logo-clara.svg"
@@ -63,26 +63,49 @@ export default function Header() {
             alt="Logo Rubao"
           />
         </a>
-        <ul
-          onClick={() => setOpen(!open)}
-          className="md:hidden relative flex h-10 w-10 flex-col items-center justify-center gap-[8px] cursor-pointer hover:bg-slate-950/40 rounded transition duration-150 ease-in hover:transform hover:scale-105"
-        >
-          <li
-            className={`${
-              open ? "transform rotate-45 absolute w-7" : "w-5"
-            }  h-[3px] rounded-[2px] bg-[#0DB2EE] transition duration-150 ease-in-out`}
-          ></li>
-          <li
-            className={`${
-              open ? "transform -rotate-45 absolute" : ""
-            } w-7 h-[3px] rounded-[2px] bg-white transition duration ease-in-out`}
-          ></li>
-          <li
-            className={`${
-              open ? "transform -rotate-45 absolute w-3" : "w-5"
-            }  h-[3px] rounded-[2px] bg-[#0CE7D5] transition duration ease-in-out`}
-          ></li>
-        </ul>
+        {scrolled ? (
+          <ul
+            onClick={() => setOpen(!open)}
+            className="md:hidden  flex h-10 w-10 flex-col items-center justify-center gap-[8px] cursor-pointer hover:bg-slate-950/40 rounded transition duration-150 ease-in hover:transform hover:scale-105"
+          >
+            <li
+              className={`${
+                open ? "transform rotate-45 absolute w-7" : "w-5"
+              }  h-[3px] rounded-[2px] bg-[#0DB2EE] transition duration-150 ease-in-out`}
+            ></li>
+            <li
+              className={`${
+                open ? "transform -rotate-45 absolute" : ""
+              } w-7 h-[3px] rounded-[2px] bg-white transition duration ease-in-out`}
+            ></li>
+            <li
+              className={`${
+                open ? "transform -rotate-45 absolute w-3" : "w-5"
+              }  h-[3px] rounded-[2px] bg-[#0CE7D5] transition duration ease-in-out`}
+            ></li>
+          </ul>
+        ) : (
+          <ul
+            onClick={() => setOpen(!open)}
+            className="md:hidden relative flex h-10 w-10 flex-col items-center justify-center gap-[8px] cursor-pointer hover:bg-slate-950/40 rounded transition duration-150 ease-in hover:transform hover:scale-105"
+          >
+            <li
+              className={`${
+                open ? "transform rotate-45 absolute w-7" : "w-5"
+              }  h-[3px] rounded-[2px] bg-[#0DB2EE] transition duration-150 ease-in-out`}
+            ></li>
+            <li
+              className={`${
+                open ? "transform -rotate-45 absolute" : ""
+              } w-7 h-[3px] rounded-[2px] bg-white transition duration ease-in-out`}
+            ></li>
+            <li
+              className={`${
+                open ? "transform -rotate-45 absolute w-3" : "w-5"
+              }  h-[3px] rounded-[2px] bg-[#0CE7D5] transition duration ease-in-out`}
+            ></li>
+          </ul>
+        )}
         <ul
           className={`${
             open

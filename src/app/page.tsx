@@ -14,13 +14,13 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#D8DBE3] flex flex-col overflow-x-clip">
       <Header />
-      <Image
+      {/* <Image
         width={55}
         height={55}
         className="absolute -right-[150px] top-[100px] w-full opacity-10"
         alt="logo B Bubão"
         src={require("../../public/logo-b.svg")}
-      />
+      /> */}
       <section className=" h-[calc(100vh-100px)] w-full flex bg-gradient-to-br from-[#0E264A] via-[#0E3560] to-[#105F98] items-center md:items-start md:pt-40 ">
         <div
           ref={ref}
@@ -91,7 +91,7 @@ export default function Home() {
 
       <section
         id="linha-do-tempo"
-        className="min-h-screen mt-[90px] bg-[#0E264A] p-7"
+        className="min-h-screen bg-[#0E264A] p-7"
       >
         <p className="text-bold text-xl mt-10 text-[#799EBF]">Linha do tempo</p>
         <ul className="my-10 flex flex-col gap-3">
