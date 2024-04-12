@@ -97,8 +97,11 @@
   animation: fadeIn 1s ease-in-out forwards; /* Aplica a animação de fade in */
 }
 
-.animate-delay {
+.delay1 {
   animation-delay: 0.3s; /* Defina o atraso desejado aqui */
+}
+.delay2 {
+  animation-delay: 0.4s; /* Defina o atraso desejado aqui */
 }
 
 /* Divider */

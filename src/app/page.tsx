@@ -24,12 +24,12 @@ export default function Home() {
         <div
           ref={ref}
           className={`flex items-center w-full justify-center flex-col gap-6 md:flex-row-reverse md:container ${
-            inView ? "animate" : ""
+            inView ? "" : ""
           }`}
         >
-          <main className="px-8 w-full mt-52 mx-auto">
+          <main className="px-8 w-full mt-36 mx-auto">
             <div className="flex items-baseline gap-3">
-              <span className="text-[#0CC6F5] text-3xl font-semibold italic ml-[18px] -mr-2">
+              <span className="animate text-[#0CC6F5] text-4xl font-semibold italic ml-[15px] -mr-2">
                 Prefeito
               </span>
               <div className="">
@@ -38,11 +38,12 @@ export default function Home() {
                   height={55}
                   alt="logo B Bubão"
                   src={require("../../public/logo-b.svg")}
+                  className="animate"
                 />
               </div>
             </div>
-            <p className="text-[#ffffff] text-7xl font-black italic">Rubão</p>
-            <p className="text-[#98B2C0] text-2xl italic leading-7">
+            <p className="animate delay1 text-[#ffffff] text-8xl font-black italic">Rubão</p>
+            <p className="animate delay2 text-[#98B2C0] text-2xl italic leading-7">
               Fiz e vou fazer <br></br>muito mais!
             </p>
 
@@ -165,3 +166,5 @@ export default function Home() {
     </main>
   );
 }
+// Tell Next.js to remount this component on every edit
+// @refresh reset
