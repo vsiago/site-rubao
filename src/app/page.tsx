@@ -1,5 +1,4 @@
 "use client";
-import { Metadata } from "next";
 import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "@/components/Footer";
@@ -52,7 +51,7 @@ export default function Home() {
               onClick={() =>
                 scroller.scrollTo("linha-do-tempo", {
                   smooth: true,
-                  offset: -50, // Ajuste opcional para compensar a altura do cabeçalho
+                  offset: 0, // Ajuste opcional para compensar a altura do cabeçalho
                 })
               }
             >
@@ -91,7 +90,7 @@ export default function Home() {
 
       <section
         id="linha-do-tempo"
-        className="min-h-screen bg-[#0E264A] p-7"
+        className="min-h-screen bg-[#0E264A] p-7 py-14"
       >
         <p className="text-bold text-xl mt-10 text-[#799EBF]">Linha do tempo</p>
         <ul className="my-10 flex flex-col gap-3">
