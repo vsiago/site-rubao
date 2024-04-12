@@ -50,9 +50,9 @@ export default function Header() {
     <header
       className={`${
         scrolled
-          ? "bg-sky-500 fixed top-0 z-10  flex w-full translate-y-0 duration-300 ease-in-out bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90"
-          : ""
-      }absolute h-24 w-full`}
+          ? "h-16 bg-sky-500 fixed top-0 z-10 flex w-full translate-y-0 duration-300 ease-in-out bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90"
+          : "h-24 top-0 z-10 absolute w-full"
+      }   `}
     >
       <nav className="min-h-full px-6 flex w-full justify-between items-center md:container mx-auto ">
         <a href="/">

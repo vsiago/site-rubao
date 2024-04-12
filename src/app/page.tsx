@@ -4,6 +4,7 @@ import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "@/components/Footer";
 import { useInView } from "react-intersection-observer";
+import { scroller } from "react-scroll";
 
 export default function Home() {
   const { ref, inView } = useInView({
@@ -13,13 +14,13 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#D8DBE3] flex flex-col overflow-x-clip">
       <Header />
-      <Image
+      {/* <Image
         width={55}
         height={55}
         className="absolute -right-[150px] top-[100px] w-full opacity-10"
         alt="logo B Bubão"
         src={require("../../public/logo-b.svg")}
-      />
+      /> */}
       <section className=" h-[calc(100vh-100px)] w-full flex bg-gradient-to-br from-[#0E264A] via-[#0E3560] to-[#105F98] items-center md:items-start md:pt-40 ">
         <div
           ref={ref}
@@ -48,7 +49,12 @@ export default function Home() {
 
             <a
               className="p-3 px-9 w-full border-2 border-[#0CC6F5] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center"
-              href="#"
+              onClick={() =>
+                scroller.scrollTo("linha-do-tempo", {
+                  smooth: true,
+                  offset: -50, // Ajuste opcional para compensar a altura do cabeçalho
+                })
+              }
             >
               <div className="mt-2">
                 <Image
@@ -83,6 +89,74 @@ export default function Home() {
         </svg>
       </div>
 
+      <section
+        id="linha-do-tempo"
+        className="min-h-screen mt-[90px] bg-[#0E264A] p-7"
+      >
+        <p className="text-bold text-xl mt-10 text-[#799EBF]">Linha do tempo</p>
+        <ul className="my-10 flex flex-col gap-3">
+          <li className="w-full p-5 border-2 border-[#23B3E0] rounded-xl flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-5 h-5 border-[2px] border-white/50 rounded-full flex items-center justify-center">
+                <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
+              </div>
+              <span className="text-base text-bold">Ano de 2024</span>
+            </div>
+            <Image
+              width={35}
+              height={32}
+              alt="logo B Bubão"
+              src={require("../../public/arrow.svg")}
+              className="translate-y-1"
+            />
+          </li>
+          <li className="w-full p-5 border-2 border-[#23B3E0] rounded-xl flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-5 h-5 border-[2px] border-white/50 rounded-full flex items-center justify-center">
+                <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
+              </div>
+              <span className="text-base text-bold">Ano de 2024</span>
+            </div>
+            <Image
+              width={35}
+              height={32}
+              alt="logo B Bubão"
+              src={require("../../public/arrow.svg")}
+              className="translate-y-1"
+            />
+          </li>
+          <li className="w-full p-5 border-2 border-[#23B3E0] rounded-xl flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-5 h-5 border-[2px] border-white/50 rounded-full flex items-center justify-center">
+                <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
+              </div>
+              <span className="text-base text-bold">Ano de 2024</span>
+            </div>
+            <Image
+              width={35}
+              height={32}
+              alt="logo B Bubão"
+              src={require("../../public/arrow.svg")}
+              className="translate-y-1"
+            />
+          </li>
+          <li className="w-full p-5 border-2 border-[#23B3E0] rounded-xl flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-5 h-5 border-[2px] border-white/50 rounded-full flex items-center justify-center">
+                <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
+              </div>
+              <span className="text-base text-bold">Ano de 2024</span>
+            </div>
+            <Image
+              width={35}
+              height={32}
+              alt="logo B Bubão"
+              src={require("../../public/arrow.svg")}
+              className="translate-y-1"
+            />
+          </li>
+        </ul>
+      </section>
       <Footer />
     </main>
   );
