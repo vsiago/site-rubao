@@ -11,30 +11,37 @@ export default function Home() {
   });
 
   return (
-    <main className="min-h-screen bg-[#D8DBE3] flex flex-col">
+    <main className="min-h-screen bg-[#D8DBE3] flex flex-col overflow-x-clip">
       <Header />
-      <section className=" h-[calc(100vh-150px)] w-full flex bg-gradient-to-br from-[#0E264A] via-[#0E3560] to-[#105F98] items-center md:items-start md:pt-40 ">
+      <Image
+        width={55}
+        height={55}
+        className="absolute -right-[150px] top-[100px] w-full opacity-10"
+        alt="logo B Bubão"
+        src={require("../../public/logo-b.svg")}
+      />
+      <section className=" h-[calc(100vh-100px)] w-full flex bg-gradient-to-br from-[#0E264A] via-[#0E3560] to-[#105F98] items-center md:items-start md:pt-40 ">
         <div
           ref={ref}
           className={`flex items-center w-full justify-center flex-col gap-6 md:flex-row-reverse md:container ${
             inView ? "animate" : ""
           }`}
         >
-          <main className="px-8 w-full mt-32 mx-auto">
+          <main className="px-8 w-full mt-52 mx-auto">
             <div className="flex items-baseline gap-3">
-              <span className="text-[#0CC6F5] text-4xl font-semibold italic ml-[24px] -mr-2">
+              <span className="text-[#0CC6F5] text-3xl font-semibold italic ml-[18px] -mr-2">
                 Prefeito
               </span>
               <div className="">
                 <Image
-                  width={65}
-                  height={65}
+                  width={55}
+                  height={55}
                   alt="logo B Bubão"
                   src={require("../../public/logo-b.svg")}
                 />
               </div>
             </div>
-            <p className="text-[#ffffff] text-8xl font-black italic">Rubão</p>
+            <p className="text-[#ffffff] text-7xl font-black italic">Rubão</p>
             <p className="text-[#98B2C0] text-2xl italic leading-7">
               Fiz e vou fazer <br></br>muito mais!
             </p>
@@ -43,7 +50,14 @@ export default function Home() {
               className="p-3 px-9 w-full border-2 border-[#0CC6F5] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center"
               href="#"
             >
-              <span className="bg-sky-500 h-6 w-6 rounded-sm block rotate-45"></span>
+              <div className="mt-2">
+                <Image
+                  width={35}
+                  height={32}
+                  alt="logo B Bubão"
+                  src={require("../../public/arrow.svg")}
+                />
+              </div>
               <span>Linha do tempo</span>
             </a>
           </main>
@@ -51,7 +65,7 @@ export default function Home() {
       </section>
 
       <div className="custom-shape-divider-bottom-1712845043">
-        <main className="h-[150px] text-center bg-white flex items-center justify-center pb-5">
+        <main className="h-[100px] text-center bg-white flex items-center justify-center ">
           <p className="text-lg text-slate-600 leading-5 rotate-180">
             Nunca foi Sorte, <br></br>sempre foi Deus!
           </p>
