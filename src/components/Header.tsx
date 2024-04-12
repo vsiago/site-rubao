@@ -66,12 +66,12 @@ export default function Header() {
         {scrolled ? (
           <ul
             onClick={() => setOpen(!open)}
-            className="md:hidden  flex h-10 w-10 flex-col items-center justify-center gap-[8px] cursor-pointer hover:bg-slate-950/40 rounded transition duration-150 ease-in hover:transform hover:scale-105"
+            className="md:hidden scale-150 flex h-10 w-10 flex-col items-center justify-center gap-[8px] cursor-pointer hover:bg-slate-950/40 rounded transition duration-150 ease-in hover:transform hover:scale-105"
           >
             <li
               className={`${
                 open ? "transform rotate-45 absolute w-7" : "w-5"
-              }  h-[3px] rounded-[2px] bg-[#0DB2EE] transition duration-150 ease-in-out`}
+              }  h-[3px] rounded-[2px] bg-white/50 transition duration-150 ease-in-out`}
             ></li>
             <li
               className={`${
@@ -81,13 +81,13 @@ export default function Header() {
             <li
               className={`${
                 open ? "transform -rotate-45 absolute w-3" : "w-5"
-              }  h-[3px] rounded-[2px] bg-[#0CE7D5] transition duration ease-in-out`}
+              }  h-[3px] rounded-[2px] bg-white/50 transition duration ease-in-out`}
             ></li>
           </ul>
         ) : (
           <ul
             onClick={() => setOpen(!open)}
-            className="md:hidden relative flex h-10 w-10 flex-col items-center justify-center gap-[8px] cursor-pointer hover:bg-slate-950/40 rounded transition duration-150 ease-in hover:transform hover:scale-105"
+            className="md:hidden scale-125 relative flex h-10 w-10 flex-col items-center justify-center gap-[8px] cursor-pointer hover:bg-slate-950/40 rounded transition duration-150 ease-in hover:transform hover:scale-105"
           >
             <li
               className={`${
