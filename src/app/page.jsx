@@ -1,14 +1,25 @@
 "use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "@/components/Footer";
 import { useInView } from "react-intersection-observer";
 import { scroller } from "react-scroll";
+import timelineData from "../../public/timeline.json"
+
+
 
 export default function Home() {
+  const [timeline, setTimeline] = useState([])
+
   const { ref, inView } = useInView({
     threshold: 0.5, // Quando 50% do elemento estiver visível
   });
+
+  useEffect(() => {
+    setTimeline(timelineData)
+    console.log(timelineData)
+  }, [])
 
   return (
     <main className="min-h-screen bg-[#D8DBE3] flex flex-col overflow-x-clip">
@@ -23,9 +34,8 @@ export default function Home() {
       <section className=" h-[calc(100vh-100px)] w-full flex bg-gradient-to-br from-[#0E264A] via-[#0E3560] to-[#105F98] items-center md:items-start md:pt-40 ">
         <div
           ref={ref}
-          className={`flex items-center w-full justify-center flex-col gap-6 md:flex-row-reverse md:container ${
-            inView ? "" : ""
-          }`}
+          className={`flex items-center w-full justify-center flex-col gap-6 md:flex-row-reverse md:container ${inView ? "" : ""
+            }`}
         >
           <main className="px-8 w-full mt-36 mx-auto">
             <div className="flex items-baseline gap-3">
@@ -94,67 +104,25 @@ export default function Home() {
         className="min-h-screen bg-[#0E264A] p-7 py-14"
       >
         <p className="text-bold text-xl mt-10 text-[#799EBF]">Linha do tempo</p>
+
         <ul className="my-10 flex flex-col gap-3">
-          <li className="w-full p-5 border-2 border-[#23B3E0] rounded-xl flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-5 h-5 border-[2px] border-white/50 rounded-full flex items-center justify-center">
-                <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
+          {timeline.map((year, index) => (
+            <li key={index} className="w-full p-5 border-2 border-[#23B3E0] rounded-xl flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-5 h-5 border-[2px] border-white/50 rounded-full flex items-center justify-center">
+                  <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
+                </div>
+                <span className="text-base text-bold">Ano de {year.year}</span>
               </div>
-              <span className="text-base text-bold">Ano de 2024</span>
-            </div>
-            <Image
-              width={35}
-              height={32}
-              alt="logo B Bubão"
-              src={require("../../public/arrow.svg")}
-              className="translate-y-1"
-            />
-          </li>
-          <li className="w-full p-5 border-2 border-[#23B3E0] rounded-xl flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-5 h-5 border-[2px] border-white/50 rounded-full flex items-center justify-center">
-                <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
-              </div>
-              <span className="text-base text-bold">Ano de 2024</span>
-            </div>
-            <Image
-              width={35}
-              height={32}
-              alt="logo B Bubão"
-              src={require("../../public/arrow.svg")}
-              className="translate-y-1"
-            />
-          </li>
-          <li className="w-full p-5 border-2 border-[#23B3E0] rounded-xl flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-5 h-5 border-[2px] border-white/50 rounded-full flex items-center justify-center">
-                <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
-              </div>
-              <span className="text-base text-bold">Ano de 2024</span>
-            </div>
-            <Image
-              width={35}
-              height={32}
-              alt="logo B Bubão"
-              src={require("../../public/arrow.svg")}
-              className="translate-y-1"
-            />
-          </li>
-          <li className="w-full p-5 border-2 border-[#23B3E0] rounded-xl flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-5 h-5 border-[2px] border-white/50 rounded-full flex items-center justify-center">
-                <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
-              </div>
-              <span className="text-base text-bold">Ano de 2024</span>
-            </div>
-            <Image
-              width={35}
-              height={32}
-              alt="logo B Bubão"
-              src={require("../../public/arrow.svg")}
-              className="translate-y-1"
-            />
-          </li>
+              <Image
+                width={35}
+                height={32}
+                alt="logo B Bubão"
+                src={require("../../public/arrow.svg")}
+                className="translate-y-1"
+              />
+            </li>
+          ))}
         </ul>
         <nav>
           <a>
