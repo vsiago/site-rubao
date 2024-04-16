@@ -22,7 +22,7 @@ export default function Home() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-[#D8DBE3] flex flex-col overflow-x-clip">
+    <main className="min-h-[900px] bg-[#D8DBE3] flex flex-col overflow-x-clip">
       <Header />
       {/* <Image
         width={55}
@@ -31,7 +31,7 @@ export default function Home() {
         alt="logo B Bubão"
         src={require("../../public/logo-b.svg")}
       /> */}
-      <section className=" h-[calc(100vh-100px)] w-full flex bg-gradient-to-br from-[#0E264A] via-[#0E3560] to-[#105F98] items-center md:items-start md:pt-40 ">
+      <section className=" h-screen w-full flex bg-gradient-to-br from-[#0E264A] via-[#0E3560] to-[#105F98] items-center md:items-start md:pt-40 ">
         <div
           ref={ref}
           className={`flex items-center w-full justify-center flex-col gap-6 md:flex-row-reverse md:container ${inView ? "" : ""
