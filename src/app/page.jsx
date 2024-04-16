@@ -123,34 +123,48 @@ export default function Home() {
             <li
               onClick={() => handleModal(index)}
               key={index}
-              className="w-full p-5 border-2 border-[#23B3E0] rounded-xl flex items-center justify-between"
+              className=" w-full"
             >
-              <div className="flex items-center gap-4">
-                <div className="w-5 h-5 border-[2px] border-white/50 rounded-full flex items-center justify-center">
-                  <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
+              <div>
+                <div
+                  className={`${
+                    modalActiveIndex === index
+                      ? "border-x-2 border-t-2 bg-white/10"
+                      : "border-2 rounded-b-xl"
+                  } flex w-full justify-between p-5 items-center gap-4  border-[#23B3E0] rounded-t-xl`}
+                >
+                  <div className="w-5 h-5 border-[2px] border-white/40 rounded-full flex items-center justify-center">
+                    <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
+                  </div>
+                  <span className="text-base font-bold">
+                    Ano de {year.year}
+                  </span>
+                  <Image
+                    width={35}
+                    height={32}
+                    alt="logo B Bubão"
+                    src={require("../../public/arrow.svg")}
+                    className={`${
+                      modalActiveIndex === index
+                        ? "rotate-180 -translate-y-1"
+                        : "rotate-0 translate-y-1"
+                    }  transition-all 1s ease-in-out`}
+                  />
                 </div>
-                <span className="text-base text-bold">Ano de {year.year}</span>
+                {modalActiveIndex === index && (
+                  <ul className="flex flex-col gap-2 border-x-2 p-3 bg-white/10 border-b-2 border-[#23B3E0]  rounded-b-xl">
+                    {year.events.map((event, index) => (
+                      <li key={index} className=" rounded-lg">
+                        <div className="flex items-center gap-3 p-3">
+                          <div className="w-10 h-10 border-2 border-sky-500 rounded-lg"></div>
+                        <p className="text-white font-bold w-[70%]">{event.title}</p>
+                        </div>
+                        <div className="bg-white p-8 h-[300px] rounded-xl"></div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
-              <Image
-                width={35}
-                height={32}
-                alt="logo B Bubão"
-                src={require("../../public/arrow.svg")}
-                className="translate-y-1"
-              />
-
-
-              {modalActiveIndex === index && (
-                <ul className="flex flex-col gap-2">
-                  {year.events.map((event, index) => (
-                    <li key={index} className="bg-red-500 p-10">
-                      <p>{event.title}</p>
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              <ul></ul>
             </li>
           ))}
         </ul>
