@@ -21,6 +21,8 @@ export default function Home() {
     console.log(timelineData)
   }, [])
 
+  // Agora vaaaaaaai
+
   return (
     <main className="min-h-[900px] bg-[#D8DBE3] flex flex-col overflow-x-clip">
       <Header />
