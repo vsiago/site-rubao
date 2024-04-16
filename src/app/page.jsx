@@ -5,23 +5,31 @@ import Header from "../components/Header";
 import Footer from "@/components/Footer";
 import { useInView } from "react-intersection-observer";
 import { scroller } from "react-scroll";
-import timelineData from "../../public/timeline.json"
-
-
+import timelineData from "../../public/timeline.json";
 
 export default function Home() {
-  const [timeline, setTimeline] = useState([])
+  const [timeline, setTimeline] = useState([]);
+  const [modalActiveIndex, setModalActiveIndex] = useState(null);
 
   const { ref, inView } = useInView({
     threshold: 0.5, // Quando 50% do elemento estiver visível
   });
 
   useEffect(() => {
-    setTimeline(timelineData)
-    console.log(timelineData)
-  }, [])
+    setTimeline(timelineData);
+    console.log(timelineData);
+  }, []);
 
-  // Agora vaaaaaaai
+  const handleModal = (index) => {
+    if (modalActiveIndex === index) {
+      // Se o mesmo ano já estiver aberto, fecha-o
+      setModalActiveIndex(null);
+    } else {
+      // Caso contrário, abre o ano clicado
+      setModalActiveIndex(index);
+      console.log("Clicou no ano ", index);
+    }
+  };
 
   return (
     <main className="min-h-[900px] bg-[#D8DBE3] flex flex-col overflow-x-clip">
@@ -36,8 +44,9 @@ export default function Home() {
       <section className=" h-screen w-full flex bg-gradient-to-br from-[#0E264A] via-[#0E3560] to-[#105F98] items-center md:items-start md:pt-40 ">
         <div
           ref={ref}
-          className={`flex items-center w-full justify-center flex-col gap-6 md:flex-row-reverse md:container ${inView ? "" : ""
-            }`}
+          className={`flex items-center w-full justify-center flex-col gap-6 md:flex-row-reverse md:container ${
+            inView ? "" : ""
+          }`}
         >
           <main className="px-8 w-full mt-36 mx-auto">
             <div className="flex items-baseline gap-3">
@@ -54,7 +63,9 @@ export default function Home() {
                 />
               </div>
             </div>
-            <p className="animate delay1 text-[#ffffff] text-8xl font-black italic">Rubão</p>
+            <p className="animate delay1 text-[#ffffff] text-8xl font-black italic">
+              Rubão
+            </p>
             <p className="animate delay2 text-[#98B2C0] text-2xl italic leading-7">
               Fiz e vou fazer <br></br>muito mais!
             </p>
@@ -109,7 +120,11 @@ export default function Home() {
 
         <ul className="my-10 flex flex-col gap-3">
           {timeline.map((year, index) => (
-            <li key={index} className="w-full p-5 border-2 border-[#23B3E0] rounded-xl flex items-center justify-between">
+            <li
+              onClick={() => handleModal(index)}
+              key={index}
+              className="w-full p-5 border-2 border-[#23B3E0] rounded-xl flex items-center justify-between"
+            >
               <div className="flex items-center gap-4">
                 <div className="w-5 h-5 border-[2px] border-white/50 rounded-full flex items-center justify-center">
                   <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
@@ -123,13 +138,24 @@ export default function Home() {
                 src={require("../../public/arrow.svg")}
                 className="translate-y-1"
               />
+
+
+              {modalActiveIndex === index && (
+                <ul className="flex flex-col gap-2">
+                  {year.events.map((event, index) => (
+                    <li key={index} className="bg-red-500 p-10">
+                      <p>{event.title}</p>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <ul></ul>
             </li>
           ))}
         </ul>
         <nav>
-          <a>
-            Plano de campanha
-          </a>
+          <a>Plano de campanha</a>
         </nav>
       </section>
       <Footer />
