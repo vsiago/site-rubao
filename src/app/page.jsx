@@ -43,7 +43,7 @@ export default function Home() {
       /> */}
 
       {/* ********************* SECTION HERO ********************* */}
-      <section className="flex-1 min-h-screen w-full flex flex-col bg-gradient-to-br from-[#0E264A] via-[#0E3560] to-[#105F98] items-start justify-start md:items-start md:pt-40 ">
+      <section className="flex-1 min-h-screen w-full flex flex-col bg-gradient-to-br from-[#005087]/80 via-[#005087] to-[#105F98] items-start justify-start md:items-start md:pt-40 ">
         <div
           ref={ref}
           className={`flex items-center w-full justify-center flex-col md:container flex-1 px-10 ${
@@ -72,32 +72,31 @@ export default function Home() {
               <p className="animate delay2 text-[#98B2C0] text-2xl  leading-7">
                 Fiz e vou fazer muito mais!
               </p>
-
             </div>
-              <a
-                className="p-3 px-9 w-full md:w-[50%] lg:w-[28%] border-2 border-[#0CC6F5] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center cursor-pointer"
-                onClick={() =>
-                  scroller.scrollTo("linha-do-tempo", {
-                    smooth: true,
-                    offset: 0, // Ajuste opcional para compensar a altura do cabeçalho
-                  })
-                }
-              >
-                <div className="mt-2">
-                  <Image
-                    width={35}
-                    height={32}
-                    alt="logo B Bubão"
-                    src={require("../../public/arrow.svg")}
-                  />
-                </div>
-                <span className="text-white text-xl">Linha do tempo</span>
-              </a>
+            <a
+              className="p-3 px-9 w-full md:w-[50%] lg:w-[28%] border-2 border-[#0CC6F5] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center cursor-pointer"
+              onClick={() =>
+                scroller.scrollTo("linha-do-tempo", {
+                  smooth: true,
+                  offset: 0, // Ajuste opcional para compensar a altura do cabeçalho
+                })
+              }
+            >
+              <div className="mt-2">
+                <Image
+                  width={35}
+                  height={32}
+                  alt="logo B Bubão"
+                  src={require("../../public/arrow.svg")}
+                />
+              </div>
+              <span className="text-white text-xl">Linha do tempo</span>
+            </a>
           </main>
         </div>
         <main className="h-[150px] text-center bg-gradient-to-t from-[#E2E6EC] to-[#E2E6EC]/0 flex w-full py-10">
           <div className="container mx-auto flex items-center justify-center md:items-end md:justify-between">
-          <p className="text-2xl text-white text-center md:-text-end hidden md:block">
+            <p className="text-2xl text-white text-center md:-text-end hidden md:block">
               Itaguaí-RJ
             </p>
             {/* <p className="text-2xl text-white text-center md:-text-end">
@@ -118,10 +117,17 @@ export default function Home() {
             className="shape-fill"
           ></path>
         </svg> */}
-      <section id="linha-do-tempo" className="min-h-screen bg-[#E2E6EC] p-7 py-14">
-        <p className="text-bold text-2xl mt-10 text-slate-600">Linha do tempo</p>
+      <section
+        id="linha-do-tempo"
+        className="min-h-screen flex flex-col  bg-[#E2E6EC] p-7 py-14 border"
+      >
+        <div className="container mx-auto flex flex-col border flex-1 pt-20">
+          
+        <p className="text-bold text-2xl mt-10 text-slate-600">
+          Linha do tempo
+        </p>
 
-        <ul className="my-10 flex flex-col gap-3">
+        <ul className="my-10 flex-1 flex flex-col md:flex-row  gap-3 border">
           {timeline.map((year, index) => (
             <li
               onClick={() => handleModal(index)}
@@ -153,16 +159,30 @@ export default function Home() {
                   />
                 </div>
                 {modalActiveIndex === index && (
-                  <ul className="flex flex-col gap-2 p-3 bg-gradient-to-b from-slate-300/30 via-slate-600/20 to-slate-300/30 border border-white  rounded-b-xl">
-                    {year.events.map((event, index) => (
-                      <li key={index} className=" rounded-lg">
+                  <ul
+                    className={`flex flex-col gap-2 p-3 bg-gradient-to-b from-slate-300/30 via-slate-600/20 to-slate-300/30 border border-white rounded-b-xl overflow-hidden transition-[max-height] duration-500 ease-in-out ${
+                      modalActiveIndex === index ? "max-h-96" : "max-h-0"
+                    }`}
+                    style={{
+                      maxHeight: modalActiveIndex === index ? "1000px" : "0px",
+                    }}
+                  >
+                    {year.events.map((event, eventIndex) => (
+                      <li key={eventIndex} className="rounded-lg">
                         <div className="flex items-center gap-3 p-3">
-                          <div className="w-10 h-10 border-2 border-sky-500 rounded-lg"></div>
                           <p className="text-slate-600 font-bold w-[70%]">
                             {event.title}
                           </p>
                         </div>
-                        <div className="bg-white p-8 h-[300px] rounded-xl"></div>
+                        <div className="bg-white  rounded-xl">
+                          <Image src={event.fotoAntes} width={100} height={100} alt={event.title} className="h-[300px] w-full rounded-xl"/>
+                          <div className="flex py-3">
+                          <p className="text-slate-500 p-3 w-[60%]">Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier</p>
+                          <div className="border w-[40%] p-3 flex ites-center justify-end">
+                            <div className="w-10 h-10 border rounded-full"></div>
+                          </div>
+                          </div>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -172,8 +192,9 @@ export default function Home() {
           ))}
         </ul>
         <nav>
-          <a>Plano de campanha</a>
+          <a className="text-slate-700">Plano de campanha</a>
         </nav>
+        </div>
       </section>
       <Footer />
     </>
