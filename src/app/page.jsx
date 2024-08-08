@@ -121,12 +121,12 @@ export default function Home() {
         id="linha-do-tempo"
         className="min-h-screen flex flex-col  bg-[#E2E6EC] p-7 py-14"
       >
-        <div className="container mx-auto flex flex-col flex-1 pt-20">
+        <div className="md:container mx-auto flex flex-col flex-1 pt-20  w-full">
           <p className="text-bold text-2xl mt-10 text-slate-600">
             Linha do tempo
           </p>
 
-          <ul className="my-10 flex-1 flex flex-col md:flex-row  gap-3">
+          <ul className="my-10 flex-1 flex flex-col md:flex-row  gap-3 w-full ">
             {timeline.map((year, index) => (
               <li
                 onClick={() => handleModal(index)}
