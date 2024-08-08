@@ -122,78 +122,106 @@ export default function Home() {
         className="min-h-screen flex flex-col  bg-[#E2E6EC] p-7 py-14 border"
       >
         <div className="container mx-auto flex flex-col border flex-1 pt-20">
-          
-        <p className="text-bold text-2xl mt-10 text-slate-600">
-          Linha do tempo
-        </p>
+          <p className="text-bold text-2xl mt-10 text-slate-600">
+            Linha do tempo
+          </p>
 
-        <ul className="my-10 flex-1 flex flex-col md:flex-row  gap-3 border">
-          {timeline.map((year, index) => (
-            <li
-              onClick={() => handleModal(index)}
-              key={index}
-              className=" w-full"
-            >
-              <div>
-                <div
-                  className={`${
-                    modalActiveIndex === index
-                      ? "border-x-2 border-t-2 bg-white/10"
-                      : "border-2 rounded-b-xl"
-                  } flex w-full justify-between p-5 items-center gap-4 bg-white/50 border-4 border-white rounded-t-xl`}
-                >
-                  <div className="w-5 h-5 border-[2px] border-slate-500/20 rounded-full flex items-center justify-center">
-                    <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
-                  </div>
-                  <span className="text-base font-bold text-slate-800">
-                    Ano de {year.year}
-                  </span>
-                  <Image
-                    width={35}
-                    height={32}
-                    alt="logo B Bubão"
-                    src={require("../../public/arrow.svg")}
+          <ul className="my-10 flex-1 flex flex-col md:flex-row  gap-3 border">
+            {timeline.map((year, index) => (
+              <li
+                onClick={() => handleModal(index)}
+                key={index}
+                className=" w-full"
+              >
+                <div>
+                  <div
                     className={`${
-                      modalActiveIndex === index ? " rotate-180 " : ""
-                    }  transition-all 1s ease-in-out`}
-                  />
-                </div>
-                {modalActiveIndex === index && (
-                  <ul
-                    className={`flex flex-col gap-2 p-3 bg-gradient-to-b from-slate-300/30 via-slate-600/20 to-slate-300/30 border border-white rounded-b-xl overflow-hidden transition-[max-height] duration-500 ease-in-out ${
-                      modalActiveIndex === index ? "max-h-96" : "max-h-0"
-                    }`}
-                    style={{
-                      maxHeight: modalActiveIndex === index ? "1000px" : "0px",
-                    }}
+                      modalActiveIndex === index
+                        ? "border-x-2 border-t-2 bg-white/10"
+                        : "border-2 rounded-b-xl"
+                    } flex w-full justify-between p-5 items-center gap-4 bg-white/50 border-4 border-white rounded-t-xl`}
                   >
-                    {year.events.map((event, eventIndex) => (
-                      <li key={eventIndex} className="rounded-lg">
-                        <div className="flex items-center gap-3 p-3">
-                          <p className="text-slate-600 font-bold w-[70%]">
-                            {event.title}
-                          </p>
-                        </div>
-                        <div className="bg-white  rounded-xl">
-                          <Image src={event.fotoAntes} width={100} height={100} alt={event.title} className="h-[300px] w-full rounded-xl"/>
-                          <div className="flex py-3">
-                          <p className="text-slate-500 p-3 w-[60%]">Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier</p>
-                          <div className="border w-[40%] p-3 flex ites-center justify-end">
-                            <div className="w-10 h-10 border rounded-full"></div>
+                    <div className="w-5 h-5 border-[2px] border-slate-500/20 rounded-full flex items-center justify-center">
+                      <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
+                    </div>
+                    <span className="text-base font-bold text-slate-800">
+                      Ano de {year.year}
+                    </span>
+                    <Image
+                      width={35}
+                      height={32}
+                      alt="logo B Bubão"
+                      src={require("../../public/arrow.svg")}
+                      className={`${
+                        modalActiveIndex === index ? " rotate-180 " : ""
+                      }  transition-all 1s ease-in-out`}
+                    />
+                  </div>
+                  {modalActiveIndex === index && (
+                    <ul
+                      className={`flex flex-col gap-2 p-3 bg-gradient-to-b from-slate-300/30 via-slate-600/20 to-slate-300/30 border border-white rounded-b-xl overflow-hidden transition-[max-height] duration-500 ease-in-out ${
+                        modalActiveIndex === index ? "max-h-96" : "max-h-0"
+                      }`}
+                      style={{
+                        maxHeight:
+                          modalActiveIndex === index ? "1000px" : "0px",
+                      }}
+                    >
+                      {year.events.map((event, eventIndex) => (
+                        <li key={eventIndex} className="rounded-lg">
+                          <div className="flex items-center gap-3 p-3">
+                            <p className="text-slate-600 font-bold w-[70%]">
+                              {event.title}
+                            </p>
                           </div>
+                          <div className="bg-white  rounded-3xl">
+                            <div className="diff aspect-[16/9] rounded-t-3xl">
+                              <div className="diff-item-1 h-full">
+                                <div className="bg-primary flex  h-full text-9xl font-black">
+                                  <Image
+                                    src={event.fotoDepois}
+                                    width={100}
+                                    height={100}
+                                    alt={event.title}
+                                    className="h-full w-full "
+                                  />
+                                </div>
+                              </div>
+                              <div className="diff-item-2">
+                                <div className=" grid  text-9xl font-black">
+                                  <Image
+                                    src={event.fotoAntes}
+                                    width={100}
+                                    height={100}
+                                    alt={event.title}
+                                    className="h-full w-full "
+                                  />
+                                </div>
+                              </div>
+                              <div className="diff-resizer"></div>
+                            </div>
+
+                            <div className="flex py-3">
+                              <p className="text-slate-500 p-3 w-[70%]">
+                                Um breve texto Falando sobre a Reforma do
+                                Hospital São Francisco Xavier
+                              </p>
+                              <div className=" w-[30%] p-3 flex ites-center justify-end">
+                                <div className="w-12 h-12 bg-slate-300/50 rounded-full"></div>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </li>
-          ))}
-        </ul>
-        <nav>
-          <a className="text-slate-700">Plano de campanha</a>
-        </nav>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+          <nav>
+            <a className="text-slate-700">Plano de campanha</a>
+          </nav>
         </div>
       </section>
       <Footer />
