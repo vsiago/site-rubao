@@ -54,7 +54,7 @@ export default function Header() {
           : "h-24 top-0 z-10 absolute "
       }   w-full`}
     >
-      <nav className="min-h-full px-6 flex  w-full justify-between items-center md:container mx-auto ">
+      <nav className="min-h-full px-10 flex  w-full justify-between items-center md:container mx-auto ">
         <a href="/">
           <Image
             src="/rubao-logo-clara.svg"

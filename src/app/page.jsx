@@ -34,78 +34,80 @@ export default function Home() {
   return (
     <>
       <Header />
-      <Image
+      {/* <Image
         width={55}
         height={55}
         className="absolute w-[50%] -right-[150px] top-[100px] opacity-5"
         alt="logo B Bubão"
         src={require("../../public/logo-b.svg")}
-      />
-
+      /> */}
 
       {/* ********************* SECTION HERO ********************* */}
-      <section className="flex-1 min-h-screen w-full flex flex-col bg-gradient-to-br from-[#0E264A] via-[#0E3560] to-[#105F98] items-start justify-start md:items-start md:pt-40">
+      <section className="flex-1 min-h-screen w-full flex flex-col bg-gradient-to-br from-[#0E264A] via-[#0E3560] to-[#105F98] items-start justify-start md:items-start md:pt-40 ">
         <div
           ref={ref}
-          className={`flex items-center w-full justify-center flex-col md:container flex-1 ${
+          className={`flex items-center w-full justify-center flex-col md:container flex-1 px-10 ${
             inView ? "" : ""
           }`}
         >
-          <main className="w-full">
-            <div className="flex items-baseline gap-3">
-              <span className="animate text-[#0CC6F5] text-4xl font-semibold italic ">
-                Prefeito
-              </span>
-              <div className="">
-                <Image
-                  width={55}
-                  height={55}
-                  alt="logo B Bubão"
-                  src={require("../../public/logo-b.svg")}
-                  className="animate"
-                />
+          <main className="w-full flex-1 flex flex-col justify-end md:justify-center">
+            <div>
+              <div className="flex items-baseline gap-3">
+                <span className="animate text-[#0CC6F5] text-4xl font-semibold italic ">
+                  Prefeito
+                </span>
+                <div className="">
+                  <Image
+                    width={55}
+                    height={55}
+                    alt="logo B Bubão"
+                    src={require("../../public/logo-b.svg")}
+                    className="animate"
+                  />
+                </div>
               </div>
-            </div>
-            <p className="animate delay1 text-[#ffffff] text-8xl font-black ">
-              Rubão
-            </p>
-            <p className="animate delay2 text-[#98B2C0] text-2xl  leading-7">
-              Fiz e vou fazer muito mais!
-            </p>
+              <p className="animate delay1 text-[#ffffff] text-8xl font-black ">
+                Rubão
+              </p>
+              <p className="animate delay2 text-[#98B2C0] text-2xl  leading-7">
+                Fiz e vou fazer muito mais!
+              </p>
 
-            <a
-              className="p-3 px-9 w-full md:w-[30%] border-2 border-[#0CC6F5] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center cursor-pointer"
-              onClick={() =>
-                scroller.scrollTo("linha-do-tempo", {
-                  smooth: true,
-                  offset: 0, // Ajuste opcional para compensar a altura do cabeçalho
-                })
-              }
-            >
-              <div className="mt-2">
-                <Image
-                  width={35}
-                  height={32}
-                  alt="logo B Bubão"
-                  src={require("../../public/arrow.svg")}
-                />
-              </div>
-              <span className="text-white text-xl">Linha do tempo</span>
-            </a>
+            </div>
+              <a
+                className="p-3 px-9 w-full md:w-[50%] lg:w-[28%] border-2 border-[#0CC6F5] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center cursor-pointer"
+                onClick={() =>
+                  scroller.scrollTo("linha-do-tempo", {
+                    smooth: true,
+                    offset: 0, // Ajuste opcional para compensar a altura do cabeçalho
+                  })
+                }
+              >
+                <div className="mt-2">
+                  <Image
+                    width={35}
+                    height={32}
+                    alt="logo B Bubão"
+                    src={require("../../public/arrow.svg")}
+                  />
+                </div>
+                <span className="text-white text-xl">Linha do tempo</span>
+              </a>
           </main>
         </div>
-        <main className="h-[250px] text-center bg-gradient-to-t from-white to-white/0 flex w-full py-10">
-              <div className="container mx-auto flex items-end justify-end">
-              <p className="text-2xl text-slate-600 text-end">
-            Nunca foi Sorte, <br></br>sempre foi Deus!
-          </p>
-              </div>
+        <main className="h-[150px] text-center bg-gradient-to-t from-[#E2E6EC] to-[#E2E6EC]/0 flex w-full py-10">
+          <div className="container mx-auto flex items-center justify-center md:items-end md:justify-between">
+          <p className="text-2xl text-white text-center md:-text-end hidden md:block">
+              Itaguaí-RJ
+            </p>
+            {/* <p className="text-2xl text-white text-center md:-text-end">
+              Nunca foi Sorte, <br></br>sempre foi Deus!
+            </p> */}
+          </div>
         </main>
       </section>
 
-
-
-        {/* <svg
+      {/* <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 120"
@@ -116,11 +118,8 @@ export default function Home() {
             className="shape-fill"
           ></path>
         </svg> */}
-      <section
-        id="linha-do-tempo"
-        className="min-h-screen bg-white p-7 py-14"
-      >
-        <p className="text-bold text-xl mt-10 text-[#799EBF]">Linha do tempo</p>
+      <section id="linha-do-tempo" className="min-h-screen bg-[#E2E6EC] p-7 py-14">
+        <p className="text-bold text-2xl mt-10 text-slate-600">Linha do tempo</p>
 
         <ul className="my-10 flex flex-col gap-3">
           {timeline.map((year, index) => (
@@ -135,12 +134,12 @@ export default function Home() {
                     modalActiveIndex === index
                       ? "border-x-2 border-t-2 bg-white/10"
                       : "border-2 rounded-b-xl"
-                  } flex w-full justify-between p-5 items-center gap-4  border-[#23B3E0] rounded-t-xl`}
+                  } flex w-full justify-between p-5 items-center gap-4 bg-white/50 border-4 border-white rounded-t-xl`}
                 >
-                  <div className="w-5 h-5 border-[2px] border-white/40 rounded-full flex items-center justify-center">
+                  <div className="w-5 h-5 border-[2px] border-slate-500/20 rounded-full flex items-center justify-center">
                     <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
                   </div>
-                  <span className="text-base font-bold">
+                  <span className="text-base font-bold text-slate-800">
                     Ano de {year.year}
                   </span>
                   <Image
@@ -149,19 +148,19 @@ export default function Home() {
                     alt="logo B Bubão"
                     src={require("../../public/arrow.svg")}
                     className={`${
-                      modalActiveIndex === index
-                        ? " "
-                        : ""
+                      modalActiveIndex === index ? " rotate-180 " : ""
                     }  transition-all 1s ease-in-out`}
                   />
                 </div>
                 {modalActiveIndex === index && (
-                  <ul className="flex flex-col gap-2 border-x-2 p-3 bg-white/10 border-b-2 border-[#23B3E0]  rounded-b-xl">
+                  <ul className="flex flex-col gap-2 p-3 bg-gradient-to-b from-slate-300/30 via-slate-600/20 to-slate-300/30 border border-white  rounded-b-xl">
                     {year.events.map((event, index) => (
                       <li key={index} className=" rounded-lg">
                         <div className="flex items-center gap-3 p-3">
                           <div className="w-10 h-10 border-2 border-sky-500 rounded-lg"></div>
-                        <p className="text-white font-bold w-[70%]">{event.title}</p>
+                          <p className="text-slate-600 font-bold w-[70%]">
+                            {event.title}
+                          </p>
                         </div>
                         <div className="bg-white p-8 h-[300px] rounded-xl"></div>
                       </li>
