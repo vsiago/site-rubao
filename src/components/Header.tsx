@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [hideHeader, setHideHeader] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
 
   const menuItems = [
@@ -26,18 +26,16 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
-      const isScrolled = currentScrollPos > 0;
-
-      setScrolled(isScrolled);
 
       if (currentScrollPos > prevScrollPos) {
         // Scrolling down
-        setPrevScrollPos(currentScrollPos);
-        setOpen(false);
+        setHideHeader(true);
       } else {
         // Scrolling up
-        setPrevScrollPos(currentScrollPos);
+        setHideHeader(false);
       }
+
+      setPrevScrollPos(currentScrollPos);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -49,12 +47,10 @@ export default function Header() {
   return (
     <header
       className={`${
-        scrolled
-          ? "h-16 bg-sky-500 fixed top-0 z-10 flex w-full translate-y-0 duration-300 ease-in-out bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90"
-          : "h-24 top-0 z-10 absolute "
-      }   w-full`}
+        hideHeader ? "-translate-y-full" : "translate-y-0"
+      } fixed top-0 w-full z-10 transition-transform duration-300 ease-in-out bg-sky-500 backdrop-filter backdrop-blur-lg bg-opacity-90 h-16`}
     >
-      <nav className="min-h-full px-10 flex  w-full justify-between items-center md:container mx-auto ">
+      <nav className="min-h-full px-10 flex w-full justify-between items-center md:container mx-auto ">
         <a href="/">
           <Image
             src="/rubao-logo-clara.svg"
@@ -63,57 +59,32 @@ export default function Header() {
             alt="Logo Rubao"
           />
         </a>
-        {scrolled ? (
-          <ul
-            onClick={() => setOpen(!open)}
-            className="md:hidden scale-150 flex h-10 w-10 flex-col items-center justify-center gap-[8px] cursor-pointer hover:bg-slate-950/40 rounded transition duration-150 ease-in hover:transform hover:scale-105"
-          >
-            <li
-              className={`${
-                open ? "transform rotate-45 absolute w-7" : "w-5"
-              }  h-[3px] rounded-[2px] bg-white/50 transition duration-150 ease-in-out`}
-            ></li>
-            <li
-              className={`${
-                open ? "transform -rotate-45 absolute" : ""
-              } w-7 h-[3px] rounded-[2px] bg-white transition duration ease-in-out`}
-            ></li>
-            <li
-              className={`${
-                open ? "transform -rotate-45 absolute w-3" : "w-5"
-              }  h-[3px] rounded-[2px] bg-white/50 transition duration ease-in-out`}
-            ></li>
-          </ul>
-        ) : (
-          <ul
-            onClick={() => setOpen(!open)}
-            className="md:hidden scale-125 relative flex h-10 w-10 flex-col items-center justify-center gap-[8px] cursor-pointer hover:bg-slate-950/40 rounded transition duration-150 ease-in hover:transform hover:scale-105"
-          >
-            <li
-              className={`${
-                open ? "transform rotate-45 absolute w-7" : "w-5"
-              }  h-[3px] rounded-[2px] bg-[#0DB2EE] transition duration-150 ease-in-out`}
-            ></li>
-            <li
-              className={`${
-                open ? "transform -rotate-45 absolute" : ""
-              } w-7 h-[3px] rounded-[2px] bg-white transition duration ease-in-out`}
-            ></li>
-            <li
-              className={`${
-                open ? "transform -rotate-45 absolute w-3" : "w-5"
-              }  h-[3px] rounded-[2px] bg-[#0CE7D5] transition duration ease-in-out`}
-            ></li>
-          </ul>
-        )}
+        <ul
+          onClick={() => setOpen(!open)}
+          className="md:hidden scale-150 flex h-10 w-10 flex-col items-center justify-center gap-[8px] cursor-pointer hover:bg-slate-950/40 rounded transition duration-150 ease-in hover:transform hover:scale-105"
+        >
+          <li
+            className={`${
+              open ? "transform rotate-45 absolute w-7" : "w-5"
+            }  h-[3px] rounded-[2px] bg-white/50 transition duration-150 ease-in-out`}
+          ></li>
+          <li
+            className={`${
+              open ? "transform -rotate-45 absolute" : ""
+            } w-7 h-[3px] rounded-[2px] bg-white transition duration ease-in-out`}
+          ></li>
+          <li
+            className={`${
+              open ? "transform -rotate-45 absolute w-3" : "w-5"
+            }  h-[3px] rounded-[2px] bg-white/50 transition duration ease-in-out`}
+          ></li>
+        </ul>
         <ul
           className={`${
             open
               ? "bg-gradient-to-br from-[#0E264A] via-[#0E3560] to-[#105F98] flex opacity-100 w-full h-screen left-0 absolute z-[1000]"
               : "w-full h-0"
-          } fixed ${
-            scrolled ? "top-16" : "top-20"
-          } right-0 flex flex-col transition duration-200 ease-out opacity-0 flex-1`}
+          } fixed top-16 right-0 flex flex-col transition duration-200 ease-out opacity-0 flex-1`}
         >
           {menuItems.map((item, index) => (
             <li
@@ -143,7 +114,7 @@ export default function Header() {
             <li key={item.nome}>
               <Link
                 className={`${
-                  scrolled ? "text-slate-700" : ""
+                  hideHeader ? "text-slate-700" : ""
                 } h-20 px-2 py-1 text-slate-400 active:text-sky-400`}
                 href={item.link}
               >
