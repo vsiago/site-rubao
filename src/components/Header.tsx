@@ -48,7 +48,7 @@ export default function Header() {
     <header
       className={`${
         hideHeader ? "-translate-y-full" : "translate-y-0"
-      } fixed top-0 w-full z-10 transition-transform duration-300 ease-in-out bg-sky-500 backdrop-filter backdrop-blur-lg bg-opacity-90 h-16`}
+      } fixed top-0 w-full z-10 transition-transform duration-300 ease-in-out  bg-opacity-90 h-16 ${prevScrollPos === 0 ? "h-40" : "bg-sky-500 backdrop-filter backdrop-blur-lg"}`}
     >
       <nav className="min-h-full px-10 flex w-full justify-between items-center md:container mx-auto ">
         <a href="/">
@@ -66,7 +66,7 @@ export default function Header() {
           <li
             className={`${
               open ? "transform rotate-45 absolute w-7" : "w-5"
-            }  h-[3px] rounded-[2px] bg-white/50 transition duration-150 ease-in-out`}
+            }  h-[3px] rounded-[2px] bg-white transition duration-150 ease-in-out`}
           ></li>
           <li
             className={`${
@@ -76,7 +76,7 @@ export default function Header() {
           <li
             className={`${
               open ? "transform -rotate-45 absolute w-3" : "w-5"
-            }  h-[3px] rounded-[2px] bg-white/50 transition duration ease-in-out`}
+            }  h-[3px] rounded-[2px] bg-white transition duration ease-in-out`}
           ></li>
         </ul>
         <ul
@@ -115,7 +115,7 @@ export default function Header() {
               <Link
                 className={`${
                   hideHeader ? "text-slate-700" : ""
-                } h-20 px-2 py-1 text-slate-400 active:text-sky-400`}
+                } h-20 px-2 py-1 text-white/80 hover:text-white transition-all ease-linear duration-200`}
                 href={item.link}
               >
                 {item.nome}

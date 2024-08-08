@@ -131,9 +131,9 @@ export default function Home() {
               <li
                 onClick={() => handleModal(index)}
                 key={index}
-                className=" w-full"
+                className=" w-full border h-full "
               >
-                <div>
+                <div className="pointer-events-none">
                   <div
                     className={`${
                       modalActiveIndex === index
@@ -159,7 +159,7 @@ export default function Home() {
                   </div>
                   {modalActiveIndex === index && (
                     <ul
-                      className={`flex flex-col gap-2 p-3 bg-gradient-to-b from-slate-300/30 via-slate-600/20 to-slate-300/30 border border-white rounded-b-xl overflow-hidden transition-[max-height] duration-500 ease-in-out ${
+                      className={`pointer-events-auto flex flex-col gap-2 p-3 bg-gradient-to-b from-slate-300/30 via-slate-600/20 to-slate-300/30 border border-white rounded-b-xl overflow-hidden transition-[max-height] duration-500 ease-in-out ${
                         modalActiveIndex === index ? "max-h-96" : "max-h-0"
                       }`}
                       style={{
@@ -198,7 +198,9 @@ export default function Home() {
                                   />
                                 </div>
                               </div>
-                              <div className="diff-resizer"></div>
+                              <div className="diff-resizer">
+                                <div className="bg-red-600 absolute top-20 left-0">OO</div>
+                              </div>
                             </div>
 
                             <div className="flex py-3">
