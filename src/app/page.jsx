@@ -58,8 +58,8 @@ export default function Home() {
               <p className="animate delay1 text-[#ffffff] text-8xl font-black ">
                 Rubão
               </p>
-              <p className="animate delay2 text-[#98B2C0] text-2xl  leading-7">
-                Fiz e vou fazer muito mais!
+              <p className="animate delay1 text-[#ffffff] text-2xl font-black italic mt-3 tracking-wide">
+                O salto de 2021 a 2024 é impressionante
               </p>
             </div>
             <a
@@ -79,7 +79,7 @@ export default function Home() {
                   src={require("../../public/arrow.svg")}
                 />
               </div>
-              <span className="text-white text-xl">Linha do tempo</span>
+              <span className="text-white text-xl">Confira</span>
             </a>
           </main>
         </div>
