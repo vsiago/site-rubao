@@ -36,9 +36,9 @@ export default function Home() {
         autoPlay
         loop
         muted
-        className="absolute top-0 left-0 bottom-0 w-full h-full object-cover opacity-20 brightness-50 "
+        className="absolute top-0 bottom-0 left-0 w-full h-screen object-cover opacity-20 z-10"
       >
-        <source src="/video/seq-rubao.mp4" type="video/mp4" />
+        <source src='/video/seq-rubao.mp4' type="video/mp4" />
         Seu navegador não suporta a tag de vídeo.
       </video>
       <section className="relative flex-1 min-h-screen w-full flex flex-col bg-gradient-to-br from-[#005087]/80 via-[#005087] to-[#105F98] items-start justify-start md:items-start md:pt-40 ">
@@ -125,7 +125,7 @@ export default function Home() {
 
       <section
         id="linha-do-tempo"
-        className="min-h-screen flex flex-col  bg-[#E2E6EC] p-7 py-14"
+        className="min-h-screen flex flex-col  bg-[#E2E6EC] p-6 py-14"
       >
         <div className="md:container mx-auto flex flex-col flex-1 py-16  w-full">
           <p className="text-bold text-2xl mt-10 text-slate-600">
@@ -172,8 +172,10 @@ export default function Home() {
                     />
                   </div>
                   {modalActiveIndex === index && (
+                    <>
+                    {/* <div className=" h-32 bg-gradient-to-b from-slate-100 to-slate-100/0 absolute top-0 left-0 right-0 z-20"></div> */}
                     <ul
-                      className={`flex flex-col gap-2 p-3 pb-6 bg-gradient-to-b from-slate-300/5 via-slate-600/10 to-slate-300/0  overflow-x-auto rounded-b-xl transition-[max-height] duration-500 ease-in-out ${
+                      className={`flex relative flex-col gap-2 p-3 pb-6 bg-gradient-to-b from-slate-300/5 via-slate-600/10 to-slate-300/0  overflow-x-auto rounded-b-xl transition-[max-height] duration-500 ease-in-out ${
                         modalActiveIndex === index ? "max-h-96" : "max-h-0"
                       }`}
                       style={{
@@ -181,6 +183,7 @@ export default function Home() {
                           modalActiveIndex === index ? "1000px" : "0px",
                       }}
                     >
+                      
                       {year.events.map((event, eventIndex) => (
                         <li
                           key={eventIndex}
@@ -193,7 +196,7 @@ export default function Home() {
                             </p>
                           </div>
                           <div className="bg-white/80 border-2 border-white -mt-4 rounded-3xl p-2 shadow-lg shadow-slate-900/10">
-                            <div className="diff aspect-[16/9] rounded-t-2xl">
+                            <div className="diff aspect-[16/10] rounded-t-2xl">
                               <div className="diff-item-1 h-full">
                                 <div className="bg-primary flex  h-full text-9xl font-black">
                                   <Image
@@ -242,6 +245,7 @@ export default function Home() {
                         </li>
                       ))}
                     </ul>
+                    </>
                   )}
                 </div>
               </li>

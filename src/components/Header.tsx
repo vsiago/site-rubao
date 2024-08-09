@@ -46,9 +46,9 @@ export default function Header() {
     <header
       className={`${
         scrolled
-          ? "h-16 bg-sky-500 fixed top-0 z-50 flex w-full translate-y-0 duration-300 ease-in-out bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90"
-          : "h-24 top-0 z-10 absolute "
-      }   w-full`}
+          ? "h-16 bg-sky-500 fixed top-0 flex w-full translate-y-0 duration-300 ease-in-out bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-90"
+          : "h-24 top-0  absolute"
+      }   w-full z-[1000]`}
     >
       <nav className="min-h-full px-6 flex  w-full justify-between items-center md:container mx-auto ">
         <a href="/">
@@ -139,8 +139,8 @@ export default function Header() {
             <li key={item.nome}>
               <Link
                 className={`${
-                  scrolled ? "text-slate-700" : ""
-                } h-20 px-2 py-1 text-slate-400 active:text-sky-400`}
+                  scrolled ? "text-white" : ""
+                } h-20 px-2 py-1 text-slate-400 active:text-sky-400 transition-all ease-linear duration-150`}
                 href={item.link}
               >
                 {item.nome}
