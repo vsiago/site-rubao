@@ -94,9 +94,9 @@ export default function Home() {
 
       <section
         id="linha-do-tempo"
-        className="min-h-screen flex flex-col  bg-[#E2E6EC] p-7 py-14"
+        className="min-h-screen flex flex-col  bg-[#E2E6EC] p-7 py-14 border-4"
       >
-        <div className="md:container mx-auto flex flex-col flex-1 pt-20  w-full">
+        <div className="md:container mx-auto flex flex-col flex-1 py-16  w-full">
           <p className="text-bold text-2xl mt-10 text-slate-600">
             Linha do tempo
           </p>
