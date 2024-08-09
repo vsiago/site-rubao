@@ -6,8 +6,8 @@ interface IntroPageProps {
 
 const IntroPage: NextPage<IntroPageProps> = ({ Title }) => {
   return (
-    <section className='flex-1 bg-accent flex items-center justify-center'>
-      <h1 className='text-xl'>{Title}</h1>
+    <section className='flex-1 bg-accent flex items-center justify-center px-10'>
+      <h1 className='text-lg text-slate-400'>{Title}</h1>
     </section>
   )
 }
