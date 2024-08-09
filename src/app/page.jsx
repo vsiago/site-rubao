@@ -203,7 +203,9 @@ export default function Home() {
             ))}
           </ul>
           <nav>
-            <a className="text-slate-700">Plano de campanha</a>
+            <a href="/biografia-prefeito" className="text-slate-700 h-16 w-full border-2 border-white flex items-center justify-center rounded-full bg-[#005087]/90">
+              <p className="text-white">Biografia</p>
+            </a>
           </nav>
         </div>
       </section>
