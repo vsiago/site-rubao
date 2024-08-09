@@ -36,14 +36,12 @@ export default function Home() {
         autoPlay
         loop
         muted
-        className="absolute top-0 left-0 w-full h-full object-cover opacity-20 brightness-50
-
-"
+        className="absolute top-0 left-0 bottom-0 w-full h-full object-cover opacity-20 brightness-50 "
       >
         <source src="/video/seq-rubao.mp4" type="video/mp4" />
         Seu navegador não suporta a tag de vídeo.
       </video>
-      <section className="flex-1 min-h-screen w-full flex flex-col bg-gradient-to-br from-[#005087]/80 via-[#005087] to-[#105F98] items-start justify-start md:items-start md:pt-40 ">
+      <section className="relative flex-1 min-h-screen w-full flex flex-col bg-gradient-to-br from-[#005087]/80 via-[#005087] to-[#105F98] items-start justify-start md:items-start md:pt-40 ">
         <div
           ref={ref}
           className={`flex items-center w-full justify-center flex-col md:container flex-1 px-10 z-10${
@@ -97,7 +95,7 @@ export default function Home() {
         </div>
         <div className="h-32 w-full">
         </div>
-        <div class="custom-shape-divider-bottom-1723226387">
+        <div class="custom-shape-divider-bottom-1723226387" className="">
           <svg
             data-name="Layer 1"
             xmlns="http://www.w3.org/2000/svg"
@@ -145,15 +143,19 @@ export default function Home() {
                   <div
                     className={`${
                       modalActiveIndex === index
-                        ? "border-x-2 border-t-2 bg-white/10"
-                        : "border-2 rounded-b-xl"
-                    } flex w-full justify-between p-5 items-center gap-4 bg-white/50 border-4 border-white rounded-t-xl`}
+                        ? " bg-gradient-to-r from-[#0DB4EE] to-[#005087] text-white"
+                        : " rounded-b-xl border-2 border-white"
+                    } flex w-full justify-between p-5 items-center gap-4 bg-white/50  rounded-t-xl`}
                   >
                     <div className="w-5 h-5 border-[2px] border-slate-500/20 rounded-full flex items-center justify-center">
                       <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
                     </div>
                     <span
-                      className="text-base font-bold text-slate-800"
+                       className={`${
+                        modalActiveIndex === index
+                          ? " text-white"
+                          : " text-slate-800"
+                      } text-base font-bold `}
                       onClick={(event) => event.stopPropagation()}
                     >
                       Ano de {year.year}
@@ -171,7 +173,7 @@ export default function Home() {
                   </div>
                   {modalActiveIndex === index && (
                     <ul
-                      className={`flex flex-col gap-2 p-3 pb-6 bg-gradient-to-b from-slate-300/0 via-slate-600/10 to-slate-300/0  overflow-x-auto rounded-b-xl transition-[max-height] duration-500 ease-in-out ${
+                      className={`flex flex-col gap-2 p-3 pb-6 bg-gradient-to-b from-slate-300/5 via-slate-600/10 to-slate-300/0  overflow-x-auto rounded-b-xl transition-[max-height] duration-500 ease-in-out ${
                         modalActiveIndex === index ? "max-h-96" : "max-h-0"
                       }`}
                       style={{
