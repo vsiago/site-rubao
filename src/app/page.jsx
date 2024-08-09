@@ -32,10 +32,21 @@ export default function Home() {
   return (
     <>
       <Header />
+      <video
+        autoPlay
+        loop
+        muted
+        className="absolute top-0 left-0 w-full h-full object-cover opacity-20 brightness-50
+
+"
+      >
+        <source src='/video/seq-rubao.mp4' type="video/mp4" />
+        Seu navegador não suporta a tag de vídeo.
+      </video>
       <section className="flex-1 min-h-screen w-full flex flex-col bg-gradient-to-br from-[#005087]/80 via-[#005087] to-[#105F98] items-start justify-start md:items-start md:pt-40 ">
         <div
           ref={ref}
-          className={`flex items-center w-full justify-center flex-col md:container flex-1 px-10 ${
+          className={`flex items-center w-full justify-center flex-col md:container flex-1 px-10 z-10${
             inView ? "" : ""
           }`}
         >
@@ -58,8 +69,9 @@ export default function Home() {
               <p className="animate delay1 text-[#ffffff] text-8xl font-black ">
                 Rubão
               </p>
-              <p className="animate delay1 text-[#ffffff] text-2xl font-black italic mt-3 tracking-wide">
-                O salto de 2021 a 2024 é impressionante
+              <p className="animate delay1 text-[#ffffff] text-2xl  italic mt-3 tracking-wide">
+                Por uma Itaguaí <br />
+                ainda melhor.
               </p>
             </div>
             <a
@@ -83,7 +95,8 @@ export default function Home() {
             </a>
           </main>
         </div>
-        <main className="h-[150px] text-center bg-gradient-to-t from-[#E2E6EC] to-[#E2E6EC]/0 flex w-full py-10">
+        <div className="bg-red-500 h-32"></div>
+        <main className="h-[150px] text-center bg-gradient-to-t from-[#E2E6EC] to-[#E2E6EC]/0 flex w-full py-10 absolute bottom-0 left-0">
           <div className="container mx-auto flex items-center justify-center md:items-end md:justify-between">
             <p className="text-2xl text-white text-center md:-text-end hidden md:block">
               Itaguaí-RJ
@@ -92,9 +105,11 @@ export default function Home() {
         </main>
       </section>
 
+{/* SECTION TIMELINE */}
+
       <section
         id="linha-do-tempo"
-        className="min-h-screen flex flex-col  bg-[#E2E6EC] p-7 py-14 border-4"
+        className="min-h-screen flex flex-col  bg-[#E2E6EC] p-7 py-14"
       >
         <div className="md:container mx-auto flex flex-col flex-1 py-16  w-full">
           <p className="text-bold text-2xl mt-10 text-slate-600">

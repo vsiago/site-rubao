@@ -11,6 +11,16 @@
         "dataInicio": "Jan.2023",
         "dataFim": "Mar. 2024",
         "likes": 49
+      },
+      {
+        "title": "Reforma Hospital São Francisco Xavier",
+        "description": "Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier",
+        "icon": "/icon",
+        "fotoAntes": "/images/hsfx-antes.jpg",
+        "fotoDepois": "/images/hsfx-depois.png",
+        "dataInicio": "Jan.2023",
+        "dataFim": "Mar. 2024",
+        "likes": 49
       }
     ]
   },
@@ -20,7 +30,7 @@
     ]
   },
   {
-    "year": 2021,
+    "year": 2022,
     "events": [
     ]
   },
