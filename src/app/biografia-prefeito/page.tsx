@@ -28,7 +28,6 @@ function QuemSomos() {
     <main className='min-h-screen flex flex-col'>
       <Header />
       <IntroPage Title="Quem Somos" />
-      <Component name="Iago" variant="primary" data={data} />
       <Footer />
     </main>
   )

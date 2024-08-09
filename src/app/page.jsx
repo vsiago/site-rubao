@@ -22,10 +22,8 @@ export default function Home() {
 
   const handleModal = (index) => {
     if (modalActiveIndex === index) {
-      // Se o mesmo ano já estiver aberto, fecha-o
       setModalActiveIndex(null);
     } else {
-      // Caso contrário, abre o ano clicado
       setModalActiveIndex(index);
       console.log("Clicou no ano ", index);
     }
@@ -34,15 +32,6 @@ export default function Home() {
   return (
     <>
       <Header />
-      {/* <Image
-        width={55}
-        height={55}
-        className="absolute w-[50%] -right-[150px] top-[100px] opacity-5"
-        alt="logo B Bubão"
-        src={require("../../public/logo-b.svg")}
-      /> */}
-
-      {/* ********************* SECTION HERO ********************* */}
       <section className="flex-1 min-h-screen w-full flex flex-col bg-gradient-to-br from-[#005087]/80 via-[#005087] to-[#105F98] items-start justify-start md:items-start md:pt-40 ">
         <div
           ref={ref}
@@ -74,7 +63,7 @@ export default function Home() {
               </p>
             </div>
             <a
-              className="p-3 px-9 w-full md:w-[50%] lg:w-[28%] border-2 border-[#0CC6F5] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center cursor-pointer"
+              className="p-3 px-9 w-full md:w-[50%] lg:w-[28%] border-2 border-[#0CC6F5] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center"
               onClick={() =>
                 scroller.scrollTo("linha-do-tempo", {
                   smooth: true,
@@ -99,24 +88,10 @@ export default function Home() {
             <p className="text-2xl text-white text-center md:-text-end hidden md:block">
               Itaguaí-RJ
             </p>
-            {/* <p className="text-2xl text-white text-center md:-text-end">
-              Nunca foi Sorte, <br></br>sempre foi Deus!
-            </p> */}
           </div>
         </main>
       </section>
 
-      {/* <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            className="shape-fill"
-          ></path>
-        </svg> */}
       <section
         id="linha-do-tempo"
         className="min-h-screen flex flex-col  bg-[#E2E6EC] p-7 py-14"
@@ -129,11 +104,11 @@ export default function Home() {
           <ul className="my-10 flex-1 flex flex-col md:flex-row  gap-3 w-full ">
             {timeline.map((year, index) => (
               <li
-                onClick={() => handleModal(index)}
                 key={index}
-                className=" w-full border h-full "
+                className="w-full  h-full cursor-pointer pointer-events-auto"
+                onClick={() => handleModal(index)}
               >
-                <div className="pointer-events-none">
+                <div className=" pointer-events-auto"  >
                   <div
                     className={`${
                       modalActiveIndex === index
@@ -141,10 +116,15 @@ export default function Home() {
                         : "border-2 rounded-b-xl"
                     } flex w-full justify-between p-5 items-center gap-4 bg-white/50 border-4 border-white rounded-t-xl`}
                   >
-                    <div className="w-5 h-5 border-[2px] border-slate-500/20 rounded-full flex items-center justify-center">
+                    <div
+                      className="w-5 h-5 border-[2px] border-slate-500/20 rounded-full flex items-center justify-center"
+                    >
                       <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
                     </div>
-                    <span className="text-base font-bold text-slate-800">
+                    <span
+                      className="text-base font-bold text-slate-800"
+                      onClick={(event) => event.stopPropagation()}
+                    >
                       Ano de {year.year}
                     </span>
                     <Image
@@ -154,12 +134,13 @@ export default function Home() {
                       src={require("../../public/arrow.svg")}
                       className={`${
                         modalActiveIndex === index ? " rotate-180 " : ""
-                      }  transition-all 1s ease-in-out`}
+                      } transition-all 1s ease-in-out`}
+                      onClick={(event) => event.stopPropagation()}
                     />
                   </div>
                   {modalActiveIndex === index && (
                     <ul
-                      className={`pointer-events-auto flex flex-col gap-2 p-3 bg-gradient-to-b from-slate-300/30 via-slate-600/20 to-slate-300/30 border border-white rounded-b-xl overflow-hidden transition-[max-height] duration-500 ease-in-out ${
+                      className={`flex flex-col gap-2 p-3 bg-gradient-to-b from-slate-300/30 via-slate-600/20 to-slate-300/30 border border-white rounded-b-xl overflow-hidden transition-[max-height] duration-500 ease-in-out ${
                         modalActiveIndex === index ? "max-h-96" : "max-h-0"
                       }`}
                       style={{
@@ -168,7 +149,7 @@ export default function Home() {
                       }}
                     >
                       {year.events.map((event, eventIndex) => (
-                        <li key={eventIndex} className="rounded-lg">
+                        <li key={eventIndex} className="rounded-lg" onClick={(event) => event.stopPropagation()}>
                           <div className="flex items-center gap-3 p-3">
                             <p className="text-slate-600 font-bold w-[70%]">
                               {event.title}
