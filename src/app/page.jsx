@@ -108,7 +108,7 @@ export default function Home() {
                 className="w-full  h-full cursor-pointer pointer-events-auto"
                 onClick={() => handleModal(index)}
               >
-                <div className=" pointer-events-auto"  >
+                <div className=" pointer-events-auto">
                   <div
                     className={`${
                       modalActiveIndex === index
@@ -116,9 +116,7 @@ export default function Home() {
                         : "border-2 rounded-b-xl"
                     } flex w-full justify-between p-5 items-center gap-4 bg-white/50 border-4 border-white rounded-t-xl`}
                   >
-                    <div
-                      className="w-5 h-5 border-[2px] border-slate-500/20 rounded-full flex items-center justify-center"
-                    >
+                    <div className="w-5 h-5 border-[2px] border-slate-500/20 rounded-full flex items-center justify-center">
                       <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
                     </div>
                     <span
@@ -140,7 +138,7 @@ export default function Home() {
                   </div>
                   {modalActiveIndex === index && (
                     <ul
-                      className={`flex flex-col gap-2 p-3 bg-gradient-to-b from-slate-300/30 via-slate-600/20 to-slate-300/30 border border-white rounded-b-xl overflow-hidden transition-[max-height] duration-500 ease-in-out ${
+                      className={`flex flex-col gap-2 p-3 pb-6 bg-gradient-to-b from-slate-300/30 via-slate-600/20 to-slate-300/30 border border-white rounded-b-xl overflow-hidden transition-[max-height] duration-500 ease-in-out ${
                         modalActiveIndex === index ? "max-h-96" : "max-h-0"
                       }`}
                       style={{
@@ -149,22 +147,26 @@ export default function Home() {
                       }}
                     >
                       {year.events.map((event, eventIndex) => (
-                        <li key={eventIndex} className="rounded-lg" onClick={(event) => event.stopPropagation()}>
-                          <div className="flex items-center gap-3 p-3">
-                            <p className="text-slate-600 font-bold w-[70%]">
+                        <li
+                          key={eventIndex}
+                          className="rounded-lg"
+                          onClick={(event) => event.stopPropagation()}
+                        >
+                          <div className="flex items-center gap-3 p-6">
+                            <p className="text-slate-600 text-xl font-bold w-[70%]">
                               {event.title}
                             </p>
                           </div>
-                          <div className="bg-white  rounded-3xl">
-                            <div className="diff aspect-[16/9] rounded-t-3xl">
+                          <div className="bg-white/80 border-2 border-white  rounded-3xl p-2 shadow-lg shadow-slate-900/10">
+                            <div className="diff aspect-[16/9] rounded-t-2xl">
                               <div className="diff-item-1 h-full">
                                 <div className="bg-primary flex  h-full text-9xl font-black">
                                   <Image
                                     src={event.fotoDepois}
-                                    width={100}
-                                    height={100}
+                                    width={400}
+                                    height={300}
                                     alt={event.title}
-                                    className="h-full w-full "
+                                    className="h-full w-full brightness-125"
                                   />
                                 </div>
                               </div>
@@ -172,15 +174,24 @@ export default function Home() {
                                 <div className=" grid  text-9xl font-black">
                                   <Image
                                     src={event.fotoAntes}
-                                    width={100}
-                                    height={100}
+                                    width={400}
+                                    height={300}
                                     alt={event.title}
-                                    className="h-full w-full "
+                                    className="h-full w-full grayscale absolute top-0 left-0"
+                                  />
+                                  <Image
+                                    src={event.fotoAntes}
+                                    width={400}
+                                    height={300}
+                                    alt={event.title}
+                                    className="h-full w-full absolute top-0 left-0 opacity-40"
                                   />
                                 </div>
                               </div>
                               <div className="diff-resizer">
-                                <div className="bg-red-600 absolute top-20 left-0">OO</div>
+                                <div className="bg-red-600 absolute top-20 left-0">
+                                  OO
+                                </div>
                               </div>
                             </div>
 
@@ -203,7 +214,10 @@ export default function Home() {
             ))}
           </ul>
           <nav>
-            <a href="/biografia-prefeito" className="text-slate-700 h-16 w-full border-2 border-white flex items-center justify-center rounded-full bg-[#005087]/90">
+            <a
+              href="/biografia-prefeito"
+              className="text-slate-700 h-16 w-full border-2 border-white flex items-center justify-center rounded-full bg-[#005087]/90"
+            >
               <p className="text-white">Biografia</p>
             </a>
           </nav>
