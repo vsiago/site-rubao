@@ -104,3 +104,38 @@
   animation-delay: 0.4s; /* Defina o atraso desejado aqui */
 }
 
+.custom-shape-divider-bottom-1723226387 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1723226387 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 110px;
+  transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1723226387 .shape-fill {
+  fill: #E2E6EC;
+}
+
+/* Media Query para telas pequenas */
+@media (max-width: 768px) {
+  .custom-shape-divider-bottom-1723226387 svg {
+    height: 80px; /* Ajuste a altura para dispositivos móveis */
+  }
+}
+
+/* Media Query para telas muito pequenas, como smartphones em modo retrato */
+@media (max-width: 480px) {
+  .custom-shape-divider-bottom-1723226387 svg {
+    height: 60px; /* Ajuste ainda mais para telas muito pequenas */
+  }
+}
