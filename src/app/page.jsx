@@ -75,7 +75,7 @@ export default function Home() {
               </p>
             </div>
             <a
-              className="p-3 px-9 w-full md:w-[50%] lg:w-[28%] border-2 border-[#0CC6F5] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center"
+              className="p-3 px-9 cursor-pointer w-full md:w-[50%] lg:w-[28%] border-2 border-[#0CC6F5] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center"
               onClick={() =>
                 scroller.scrollTo("linha-do-tempo", {
                   smooth: true,
@@ -120,7 +120,7 @@ export default function Home() {
             {timeline.map((year, index) => (
               <li
                 key={index}
-                className="w-full  h-full cursor-pointer pointer-events-auto"
+                className="w-full  h-full  pointer-events-auto cursor-pointer"
                 onClick={() => handleModal(index)}
               >
                 <div className=" pointer-events-auto">
@@ -153,11 +153,11 @@ export default function Home() {
                   </div>
                   {modalActiveIndex === index && (
                     <ul
-                      className={`flex flex-col gap-2 p-3 pb-6 bg-gradient-to-b from-slate-300/30 via-slate-600/20 to-slate-300/30 border border-white rounded-b-xl overflow-hidden transition-[max-height] duration-500 ease-in-out ${
+                      className={`flex flex-col gap-2 p-3 pb-6 bg-gradient-to-b from-slate-300/0 via-slate-600/10 to-slate-300/0  overflow-x-auto rounded-b-xl transition-[max-height] duration-500 ease-in-out ${
                         modalActiveIndex === index ? "max-h-96" : "max-h-0"
                       }`}
                       style={{
-                        maxHeight:
+                        minHeight:
                           modalActiveIndex === index ? "1000px" : "0px",
                       }}
                     >
@@ -168,11 +168,11 @@ export default function Home() {
                           onClick={(event) => event.stopPropagation()}
                         >
                           <div className="flex items-center gap-3 p-6">
-                            <p className="text-slate-600 text-xl font-bold w-[70%]">
+                            <p className="text-slate-600 text-lg font-bold ">
                               {event.title}
                             </p>
                           </div>
-                          <div className="bg-white/80 border-2 border-white  rounded-3xl p-2 shadow-lg shadow-slate-900/10">
+                          <div className="bg-white/80 border-2 border-white -mt-4 rounded-3xl p-2 shadow-lg shadow-slate-900/10">
                             <div className="diff aspect-[16/9] rounded-t-2xl">
                               <div className="diff-item-1 h-full">
                                 <div className="bg-primary flex  h-full text-9xl font-black">
@@ -212,8 +212,7 @@ export default function Home() {
 
                             <div className="flex py-3">
                               <p className="text-slate-500 p-3 w-[70%]">
-                                Um breve texto Falando sobre a Reforma do
-                                Hospital São Francisco Xavier
+                                {event.description}
                               </p>
                               <div className=" w-[30%] p-3 flex ites-center justify-end">
                                 <div className="w-12 h-12 bg-slate-300/50 rounded-full"></div>
