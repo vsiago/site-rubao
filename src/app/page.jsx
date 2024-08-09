@@ -95,7 +95,7 @@ export default function Home() {
             </a>
           </main>
         </div>
-        <div className="bg-red-500 h-32"></div>
+        <div className="h-32 w-full"></div>
         <main className="h-[150px] text-center bg-gradient-to-t from-[#E2E6EC] to-[#E2E6EC]/0 flex w-full py-10 absolute bottom-0 left-0">
           <div className="container mx-auto flex items-center justify-center md:items-end md:justify-between">
             <p className="text-2xl text-white text-center md:-text-end hidden md:block">
@@ -157,7 +157,7 @@ export default function Home() {
                         modalActiveIndex === index ? "max-h-96" : "max-h-0"
                       }`}
                       style={{
-                        minHeight:
+                        maxHeight:
                           modalActiveIndex === index ? "1000px" : "0px",
                       }}
                     >
