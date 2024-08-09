@@ -38,7 +38,7 @@ export default function Home() {
         muted
         className="absolute top-0 bottom-0 left-0 w-full h-screen object-cover opacity-20 z-10"
       >
-        <source src='/video/seq-rubao.mp4' type="video/mp4" />
+        <source src="/video/seq-rubao.mp4" type="video/mp4" />
         Seu navegador não suporta a tag de vídeo.
       </video>
       <section className="relative flex-1 min-h-screen w-full flex flex-col bg-gradient-to-br from-[#005087]/80 via-[#005087] to-[#105F98] items-start justify-start md:items-start md:pt-40 ">
@@ -93,8 +93,7 @@ export default function Home() {
             </a>
           </main>
         </div>
-        <div className="h-32 w-full">
-        </div>
+        <div className="h-32 w-full"></div>
         <div class="custom-shape-divider-bottom-1723226387" className="">
           <svg
             data-name="Layer 1"
@@ -118,7 +117,6 @@ export default function Home() {
             ></path>
           </svg>
         </div>
-        
       </section>
 
       {/* SECTION TIMELINE */}
@@ -136,7 +134,7 @@ export default function Home() {
             {timeline.map((year, index) => (
               <li
                 key={index}
-                className="w-full  h-full  pointer-events-auto cursor-pointer"
+                className="w-full  h-full  pointer-events-auto "
                 onClick={() => handleModal(index)}
               >
                 <div className=" pointer-events-auto">
@@ -151,7 +149,7 @@ export default function Home() {
                       <div className="w-[8px] h-[8px] bg-[#34CCFC] rounded-full"></div>
                     </div>
                     <span
-                       className={`${
+                      className={`${
                         modalActiveIndex === index
                           ? " text-white"
                           : " text-slate-800"
@@ -173,78 +171,87 @@ export default function Home() {
                   </div>
                   {modalActiveIndex === index && (
                     <>
-                    {/* <div className=" h-32 bg-gradient-to-b from-slate-100 to-slate-100/0 absolute top-0 left-0 right-0 z-20"></div> */}
-                    <ul
-                      className={`flex relative flex-col gap-2 p-3 pb-6 bg-gradient-to-b from-slate-300/5 via-slate-600/10 to-slate-300/0  overflow-x-auto rounded-b-xl transition-[max-height] duration-500 ease-in-out ${
-                        modalActiveIndex === index ? "max-h-96" : "max-h-0"
-                      }`}
-                      style={{
-                        maxHeight:
-                          modalActiveIndex === index ? "1000px" : "0px",
-                      }}
-                    >
-                      
-                      {year.events.map((event, eventIndex) => (
-                        <li
-                          key={eventIndex}
-                          className="rounded-lg"
-                          onClick={(event) => event.stopPropagation()}
-                        >
-                          <div className="flex items-center gap-3 p-6">
-                            <p className="text-slate-600 text-lg font-bold ">
-                              {event.title}
-                            </p>
-                          </div>
-                          <div className="bg-white/80 border-2 border-white -mt-4 rounded-3xl p-2 shadow-lg shadow-slate-900/10">
-                            <div className="diff aspect-[16/10] rounded-t-2xl">
-                              <div className="diff-item-1 h-full">
-                                <div className="bg-primary flex  h-full text-9xl font-black">
-                                  <Image
-                                    src={event.fotoDepois}
-                                    width={400}
-                                    height={300}
-                                    alt={event.title}
-                                    className="h-full w-full brightness-125"
-                                  />
-                                </div>
-                              </div>
-                              <div className="diff-item-2">
-                                <div className=" grid  text-9xl font-black">
-                                  <Image
-                                    src={event.fotoAntes}
-                                    width={400}
-                                    height={300}
-                                    alt={event.title}
-                                    className="h-full w-full grayscale absolute top-0 left-0"
-                                  />
-                                  <Image
-                                    src={event.fotoAntes}
-                                    width={400}
-                                    height={300}
-                                    alt={event.title}
-                                    className="h-full w-full absolute top-0 left-0 opacity-40"
-                                  />
-                                </div>
-                              </div>
-                              <div className="diff-resizer">
-                                <div className="bg-red-600 absolute top-20 left-0">
-                                  OO
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="flex py-3">
-                              <p className="text-slate-500 p-3 w-[70%]">
-                                {event.description}
+                      {/* <div className=" h-32 bg-gradient-to-b from-slate-100 to-slate-100/0 absolute top-0 left-0 right-0 z-20"></div> */}
+                      <ul
+                        className={`flex relative flex-col gap-2 p-3 pb-6 bg-gradient-to-b from-slate-300/5 via-slate-600/10 to-slate-300/0  overflow-x-auto rounded-b-xl transition-[max-height] duration-500 ease-in-out ${
+                          modalActiveIndex === index ? "max-h-96" : "max-h-0"
+                        }`}
+                        style={{
+                          maxHeight:
+                            modalActiveIndex === index ? "1000px" : "0px",
+                        }}
+                      >
+                        {year.events.map((event, eventIndex) => (
+                          <li
+                            key={eventIndex}
+                            className="rounded-lg"
+                            onClick={(event) => event.stopPropagation()}
+                          >
+                            <div className="flex items-center gap-3 p-6">
+                              <p className="text-slate-600 text-lg font-bold ">
+                                {event.title}
                               </p>
-                              <div className=" w-[30%] p-3 flex ites-center justify-end">
-                                <div className="w-12 h-12 bg-slate-300/50 rounded-full"></div>
+                            </div>
+                            <div className="bg-white/80 border-2 border-white -mt-4 rounded-3xl p-2 shadow-lg shadow-slate-900/10">
+                              <div className="diff aspect-[16/10] rounded-t-2xl">
+                                <div className="diff-item-1 h-full">
+                                  <div className="bg-primary flex  h-full text-9xl font-black">
+                                    <Image
+                                      src={event.fotoDepois}
+                                      width={400}
+                                      height={300}
+                                      alt={event.title}
+                                      className="h-full w-full brightness-125"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="diff-item-2">
+                                  <div className=" grid  text-9xl font-black">
+                                    <Image
+                                      src={event.fotoAntes}
+                                      width={400}
+                                      height={300}
+                                      alt={event.title}
+                                      className="h-full w-full grayscale absolute top-0 left-0 "
+                                    />
+                                    <Image
+                                      src={event.fotoAntes}
+                                      width={400}
+                                      height={300}
+                                      alt={event.title}
+                                      className="h-full w-full absolute top-0 left-0 opacity-20"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="diff-resizer">
+                                  <div className="bg-red-600 absolute top-20 left-0">
+                                    OO
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="flex py-3">
+                                <p className="text-slate-500 p-3 w-[70%]">
+                                  {event.description}
+                                </p>
+                                <div className=" w-[30%] flex items-end justify-start  flex-col  relative">
+                                  <div className=" flex flex-col items-center">
+                                  <div className="w-11 h-11 bg-slate-300/50 rounded-full cursor-pointer flex items-center justify-center ">
+                                      <Image
+                                        src="/images/icon-coracao.png"
+                                        width={28}
+                                        height={28}
+                                        alt="Ícone curtir"
+                                      />
+                                  </div>
+                                    <p className="text-slate-500  mt-1">Curtir</p>
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
+                          </li>
+                        ))}
+                      </ul>
                     </>
                   )}
                 </div>
