@@ -125,7 +125,7 @@ export default function Home() {
         id="linha-do-tempo"
         className="min-h-screen flex flex-col  bg-[#E2E6EC] p-6 py-14"
       >
-        <div className="md:container mx-auto flex flex-col flex-1 py-16  w-full">
+        <div className="md:container mx-auto flex flex-col flex-1   w-full">
           <p className="text-bold text-2xl mt-10 text-slate-600">
             Linha do tempo
           </p>
@@ -135,7 +135,11 @@ export default function Home() {
               <li
                 key={index}
                 className="w-full  h-full  pointer-events-auto "
-                onClick={() => handleModal(index)}
+                onClick={() => (handleModal(index), scroller.scrollTo("", {
+                  smooth: true,
+                  offset: 0, // Ajuste opcional para compensar a altura do cabeçalho
+                }))}
+                
               >
                 <div className=" pointer-events-auto">
                   <div
@@ -186,6 +190,7 @@ export default function Home() {
                             key={eventIndex}
                             className="rounded-lg"
                             onClick={(event) => event.stopPropagation()}
+                            id={event.title}
                           >
                             <div className="flex items-center gap-3 p-6">
                               <p className="text-slate-600 text-lg font-bold ">
