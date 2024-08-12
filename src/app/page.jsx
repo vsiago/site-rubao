@@ -135,7 +135,7 @@ export default function Home() {
               <li
                 key={index}
                 className="w-full  h-full  pointer-events-auto "
-                onClick={() => (handleModal(index), scroller.scrollTo("", {
+                onClick={() => (handleModal(index), scroller.scrollTo("linha-do-tempo", {
                   smooth: true,
                   offset: 0, // Ajuste opcional para compensar a altura do cabeçalho
                 }))}
