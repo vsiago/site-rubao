@@ -156,8 +156,27 @@
 .diff-resizer {
   width: 150px; /* Largura inicial */
   animation: slide 2s ease-in-out ; /* Ajuste a duração e a função de animação conforme necessário */
+  position: relative; /* Necessário para o posicionamento absoluto do pseudo-elemento */
 }
 
-.diff-resizer.stopped {
-  animation: none; /* Remove a animação quando a classe 'stopped' é adicionada */
+.diff-item-2 {
+  position: relative; /* Necessário para o posicionamento absoluto do pseudo-elemento */
+  border-right-width: 2px;
+  border-color: #00c3ff;
+  padding-right: 30px; /* Espaço extra para o conteúdo do pseudo-elemento */
 }
+
+.diff-item::before {
+  content: '<>'; /* O conteúdo que você quer exibir */
+  position: absolute; /* Posiciona o pseudo-elemento relativo ao elemento pai */
+  right: 0; /* Alinha o pseudo-elemento à borda direita */
+  top: 50%; /* Posiciona verticalmente no meio */
+  transform: translateY(-50%) translateX(50%); /* Centraliza verticalmente o conteúdo */
+  font-size: 12px; /* Ajuste o tamanho da fonte conforme necessário */
+  color: white; /* Cor do texto */
+  padding: 0 10px; /* Espaço ao redor do conteúdo */
+  z-index: 9999;
+  margin-left: 50px;
+  
+}
+
