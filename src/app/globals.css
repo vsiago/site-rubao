@@ -140,3 +140,24 @@
     height: 60px; /* Ajuste ainda mais para telas muito pequenas */
   }
 }
+
+@keyframes slide {
+  0% {
+    width: 80px;
+  }
+  50% {
+    width: 240px;
+  }
+  100% {
+    width: 150px;
+  }
+}
+
+.diff-resizer {
+  width: 150px; /* Largura inicial */
+  animation: slide 2s ease-in-out ; /* Ajuste a duração e a função de animação conforme necessário */
+}
+
+.diff-resizer.stopped {
+  animation: none; /* Remove a animação quando a classe 'stopped' é adicionada */
+}

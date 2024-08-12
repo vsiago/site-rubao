@@ -198,7 +198,7 @@ export default function Home() {
                               </p>
                             </div>
                             <div className="bg-white/80 border-2 border-white -mt-4 rounded-3xl p-2 shadow-lg shadow-slate-900/10">
-                              <div className="diff aspect-[16/10] rounded-t-2xl">
+                              <div className="diff aspect-[16/10] rounded-t-2xl diff-resizer.stopped">
                                 <div className="diff-item-1 h-full">
                                   <div className="bg-primary flex  h-full text-9xl font-black">
                                     <Image
