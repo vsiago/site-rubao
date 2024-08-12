@@ -126,11 +126,11 @@ export default function Home() {
         className="min-h-screen flex flex-col  bg-[#E2E6EC] p-6 py-14"
       >
         <div className="md:container mx-auto flex flex-col flex-1   w-full">
-          <p className="text-bold text-2xl mt-10 text-slate-600">
+          <p className="text-bold text-2xl mt-8 text-slate-600">
             Linha do tempo
           </p>
 
-          <ul className="my-10 flex-1 flex flex-col md:flex-row  gap-3 w-full ">
+          <ul className="my-8 flex-1 flex flex-col md:flex-row  gap-3 w-full ">
             {timeline.map((year, index) => (
               <li
                 key={index}
