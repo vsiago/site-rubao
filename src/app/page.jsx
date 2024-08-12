@@ -125,7 +125,7 @@ export default function Home() {
         id="linha-do-tempo"
         className="min-h-screen flex flex-col  bg-[#E2E6EC] p-6 py-14"
       >
-        <div className="md:container mx-auto flex flex-col flex-1   w-full">
+        <div className="md:container mx-auto flex flex-col flex-1 w-full">
           <p className="text-bold text-2xl mt-8 text-slate-600">
             Linha do tempo
           </p>
@@ -135,11 +135,13 @@ export default function Home() {
               <li
                 key={index}
                 className="w-full  h-full  pointer-events-auto "
-                onClick={() => (handleModal(index), scroller.scrollTo("linha-do-tempo", {
-                  smooth: true,
-                  offset: 0, // Ajuste opcional para compensar a altura do cabeçalho
-                }))}
-                
+                onClick={() => (
+                  handleModal(index),
+                  scroller.scrollTo("linha-do-tempo", {
+                    smooth: true,
+                    offset: 0, // Ajuste opcional para compensar a altura do cabeçalho
+                  })
+                )}
               >
                 <div className=" pointer-events-auto">
                   <div
@@ -177,7 +179,7 @@ export default function Home() {
                     <>
                       {/* <div className=" h-32 bg-gradient-to-b from-slate-100 to-slate-100/0 absolute top-0 left-0 right-0 z-20"></div> */}
                       <ul
-                        className={`flex relative flex-col gap-2 p-3 pb-6 bg-gradient-to-b from-slate-300/5 via-slate-600/10 to-slate-300/0  overflow-x-auto rounded-b-xl transition-[max-height] duration-500 ease-in-out ${
+                        className={`flex relative flex-col gap-2 py-4 pb-6 bg-gradient-to-b from-slate-300/5 via-slate-600/10 to-slate-300/0  overflow-x-auto rounded-b-xl transition-[max-height] duration-500 ease-in-out ${
                           modalActiveIndex === index ? "max-h-96" : "max-h-0"
                         }`}
                         style={{
@@ -192,12 +194,12 @@ export default function Home() {
                             onClick={(event) => event.stopPropagation()}
                             id={event.title}
                           >
-                            <div className="flex items-center gap-3 p-6">
+                            <div className="flex items-center gap-3 py-6 px-3">
                               <p className="text-slate-600 text-lg font-bold ">
                                 {event.title}
                               </p>
                             </div>
-                            <div className="bg-white/80 border-2 border-white -mt-4 rounded-3xl p-2 shadow-lg shadow-slate-900/10">
+                            <div className="bg-white/80 border-white -mt-4 rounded-3xl  shadow-lg shadow-slate-900/10">
                               <div className="diff aspect-[16/10] rounded-t-2xl diff-resizer.stopped">
                                 <div className="diff-item-1 h-full">
                                   <div className="bg-primary flex  h-full text-9xl font-black">
@@ -236,20 +238,22 @@ export default function Home() {
                               </div>
 
                               <div className="flex py-3">
-                                <p className="text-slate-500 p-3 w-[70%]">
+                                <p className="text-slate-500 p-4 w-[70%]">
                                   {event.description}
                                 </p>
-                                <div className=" w-[30%] flex items-end justify-start  flex-col  relative">
+                                <div className=" w-[30%] flex items-end justify-start  flex-col    p-4">
                                   <div className=" flex flex-col items-center">
-                                  <div className="w-11 h-11 bg-slate-300/50 rounded-full cursor-pointer flex items-center justify-center ">
+                                    <div className="w-11 h-11 bg-slate-300/50 rounded-full cursor-pointer flex items-center justify-center ">
                                       <Image
                                         src="/images/icon-coracao.png"
                                         width={28}
                                         height={28}
                                         alt="Ícone curtir"
                                       />
-                                  </div>
-                                    <p className="text-slate-500  mt-1">Curtir</p>
+                                    </div>
+                                    <p className="text-slate-500  mt-1">
+                                      Curtir
+                                    </p>
                                   </div>
                                 </div>
                               </div>
