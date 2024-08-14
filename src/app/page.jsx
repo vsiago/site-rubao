@@ -19,9 +19,22 @@ export default function Home() {
   useEffect(() => {
     const fetchTimeline = async () => {
       try {
-        const response = await axios.get("https://rubaoapi.vercel.app/api/years", );
+        const response = await axios.get("https://rubaoapi.vercel.app/api/years");
+        const data = response.data;
+  
+        // Recupera o estado das curtidas do localStorage
+        const likedEvents = JSON.parse(localStorage.getItem('likedEvents')) || [];
+  
+        // Atualiza o estado local com base no estado do localStorage
+        const updatedTimeline = data.map((year) => ({
+          ...year,
+          events: year.events.map((event) => ({
+            ...event,
+            liked: likedEvents.includes(event._id),
+          })),
+        }));
         
-        setTimeline(response.data);
+        setTimeline(updatedTimeline);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
       }
@@ -40,48 +53,39 @@ export default function Home() {
 
   const handleLikeOrUnlike = async (eventId, liked) => {
     try {
-      if (liked) {
-        // Se já curtiu, então descurtir
-        setTimeline((prevTimeline) =>
-          prevTimeline.map((year) => ({
-            ...year,
-            events: year.events.map((event) =>
-              event._id === eventId
-                ? {
-                    ...event,
-                    likes: event.likes - 1, // Decrementa a curtida localmente
-                    liked: false, // Marca como não curtido
-                  }
-                : event
-            ),
-          }))
-        );
-        await axios.post(`https://rubaoapi.vercel.app/api/events/${eventId}/unlike`);
-      } else {
-        // Se não curtiu, então curtir
-        setTimeline((prevTimeline) =>
-          prevTimeline.map((year) => ({
-            ...year,
-            events: year.events.map((event) =>
-              event._id === eventId
-                ? {
-                    ...event,
-                    likes: event.likes + 1, // Incrementa a curtida localmente
-                    liked: true, // Marca como curtido
-                  }
-                : event
-            ),
-          }))
-        );
-        await axios.post(`https://rubaoapi.vercel.app/api/events/${eventId}/like`);
-      }
+      // Atualiza o estado local
+      const updatedTimeline = timeline.map((year) => ({
+        ...year,
+        events: year.events.map((event) =>
+          event._id === eventId
+            ? {
+                ...event,
+                likes: liked ? event.likes - 1 : event.likes + 1,
+                liked: !liked,
+              }
+            : event
+        ),
+      }));
+      setTimeline(updatedTimeline);
+  
+      // Salva o estado das curtidas no localStorage
+      const likedEvents = updatedTimeline.flatMap((year) => year.events)
+        .filter((event) => event.liked)
+        .map((event) => event._id);
+      localStorage.setItem('likedEvents', JSON.stringify(likedEvents));
+  
+      // Faz a chamada da API
+      await axios.post(
+        `https://rubaoapi.vercel.app/api/events/${eventId}/${liked ? 'unlike' : 'like'}`
+      );
     } catch (error) {
       console.error(
-        `Erro ao ${liked ? "descurtir" : "curtir"} o evento:`,
+        `Erro ao ${liked ? 'descurtir' : 'curtir'} o evento:`,
         error
       );
     }
   };
+  
 
   return (
     <>
