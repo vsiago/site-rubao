@@ -11,6 +11,11 @@ import timelineData from "../../public/timeline.json";
 export default function Home() {
   const [timeline, setTimeline] = useState([]);
   const [modalActiveIndex, setModalActiveIndex] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState("");
+  const [showComments, setShowComments] = useState(false);
+
+  const uri = "http://localhost:5000";
 
   const { ref, inView } = useInView({
     threshold: 0.5, // Quando 50% do elemento estiver visível
@@ -19,12 +24,13 @@ export default function Home() {
   useEffect(() => {
     const fetchTimeline = async () => {
       try {
-        const response = await axios.get("https://rubaoapi.vercel.app/api/years");
+        const response = await axios.get(`${uri}/api/years`);
         const data = response.data;
-  
+
         // Recupera o estado das curtidas do localStorage
-        const likedEvents = JSON.parse(localStorage.getItem('likedEvents')) || [];
-  
+        const likedEvents =
+          JSON.parse(localStorage.getItem("likedEvents")) || [];
+
         // Atualiza o estado local com base no estado do localStorage
         const updatedTimeline = data.map((year) => ({
           ...year,
@@ -33,7 +39,7 @@ export default function Home() {
             liked: likedEvents.includes(event._id),
           })),
         }));
-        
+
         setTimeline(updatedTimeline);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
@@ -47,7 +53,6 @@ export default function Home() {
       setModalActiveIndex(null);
     } else {
       setModalActiveIndex(index);
-      console.log("Clicou no ano ", index);
     }
   };
 
@@ -67,25 +72,78 @@ export default function Home() {
         ),
       }));
       setTimeline(updatedTimeline);
-  
+
       // Salva o estado das curtidas no localStorage
-      const likedEvents = updatedTimeline.flatMap((year) => year.events)
+      const likedEvents = updatedTimeline
+        .flatMap((year) => year.events)
         .filter((event) => event.liked)
         .map((event) => event._id);
-      localStorage.setItem('likedEvents', JSON.stringify(likedEvents));
-  
+      localStorage.setItem("likedEvents", JSON.stringify(likedEvents));
+
       // Faz a chamada da API
       await axios.post(
-        `https://rubaoapi.vercel.app/api/events/${eventId}/${liked ? 'unlike' : 'like'}`
+        `${uri}/api/events/${eventId}/${liked ? "unlike" : "like"}`
       );
     } catch (error) {
       console.error(
-        `Erro ao ${liked ? 'descurtir' : 'curtir'} o evento:`,
+        `Erro ao ${liked ? "descurtir" : "curtir"} o evento:`,
         error
       );
     }
   };
+
+  const fetchComments = async (eventId) => {
+    try {
+      const response = await axios.get(`${uri}/api/events/${eventId}/comments`);
+      setComments(response.data);
+    } catch (error) {
+      console.error("Erro ao buscar comentários:", error);
+    }
+  };
   
+  const handleCommentSubmit = async (eventId) => {
+    try {
+      // Envia o novo comentário para o servidor
+      await axios.post(`${uri}/api/events/${eventId}/comments`, {
+        text: newComment,
+      });
+  
+      // Adiciona o novo comentário ao estado local
+      setComments((prevComments) => [
+        ...prevComments,
+        { text: newComment, date: new Date().toISOString() },
+      ]);
+  
+      // Busca todos os comentários atualizados
+      const response = await axios.get(`${uri}/api/events/${eventId}/comments`);
+      setComments(response.data);
+  
+      // Limpa o campo de input
+      setNewComment("");
+  
+      // Mostra os comentários automaticamente após enviar
+      setShowComments(true);
+    } catch (error) {
+      console.error("Erro ao adicionar comentário:", error);
+    }
+  };
+
+  const handleDeleteComment = async (eventId, commentId) => {
+    try {
+      if (!eventId || !commentId) {
+        console.error("IDs de evento ou comentário inválidos.");
+        return;
+      }
+
+      const url = `${uri}/api/events/${eventId}/comments/${commentId}`;
+
+      await axios.delete(url);
+
+      fetchComments(eventId); // Atualiza os comentários após a exclusão
+    } catch (error) {
+      console.error("Erro ao excluir comentário:", error);
+    }
+  };
 
   return (
     <>
@@ -295,40 +353,126 @@ export default function Home() {
                                 </div>
                               </div>
 
-                              <div className="flex py-3">
-                                <p className="text-slate-500 p-4 w-[70%]">
-                                  {event.description}
-                                </p>
-                                <div className=" w-[30%] flex items-end justify-start  flex-col    p-4">
-                                  <div className=" flex flex-col items-center">
-                                    <div
-                                      className={`w-11 h-11 ${
-                                        event.liked
-                                          ? "bg-[#A55252]/10"
-                                          : "bg-slate-300/50"
-                                      } rounded-full cursor-pointer flex items-center justify-center`}
-                                      onClick={() =>
-                                        handleLikeOrUnlike(
-                                          event._id,
+                              <div className="flex flex-col py-3 ">
+                                <div className="flex">
+                                  <p className="text-slate-500 p-4 w-[70%]">
+                                    {event.description}
+                                  </p>
+                                  <div className=" w-[30%] flex items-end justify-start  flex-col    p-4 ">
+                                    <div className=" flex flex-col items-center">
+                                      <div
+                                        className={`w-11 h-11 ${
                                           event.liked
-                                        )
-                                      }
-                                    >
-                                      <Image
-                                      className={`${event.liked ? "drop-shadow-2xl shadow-red-950" : "opacity-90"}`}
-                                        src={`/images/icon-${event.liked ? "coracao-preenchido" : "coracao-linha"}.png`}
-                                        width={28}
-                                        height={28}
-                                        alt={`Ícone ${
-                                          event.liked ? "descurtir" : "curtir"
+                                            ? "bg-[#A55252]/10"
+                                            : "bg-slate-300/50"
+                                        } rounded-full cursor-pointer flex items-center justify-center`}
+                                        onClick={() =>
+                                          handleLikeOrUnlike(
+                                            event._id,
+                                            event.liked
+                                          )
+                                        }
+                                      >
+                                        <Image
+                                          className={`${
+                                            event.liked
+                                              ? "drop-shadow-2xl shadow-red-950"
+                                              : "opacity-90"
+                                          }`}
+                                          src={`/images/icon-${
+                                            event.liked
+                                              ? "coracao-preenchido"
+                                              : "coracao-linha"
+                                          }.png`}
+                                          width={28}
+                                          height={28}
+                                          alt={`Ícone ${
+                                            event.liked ? "descurtir" : "curtir"
+                                          }`}
+                                        />
+                                      </div>
+                                      <p
+                                        className={` mt-1 ${
+                                          event.liked
+                                            ? "text-[#CC6F6F] font-bold"
+                                            : "text-slate-500"
                                         }`}
-                                      />
+                                      >
+                                        {event.likes} {event.liked ? "" : ""}
+                                      </p>
                                     </div>
-                                    <p className={` mt-1 ${event.liked ? "text-[#CC6F6F] font-bold" : "text-slate-500"}`}>
-                                      {event.likes}{" "}
-                                      {event.liked ? "" : ""}
-                                    </p>
                                   </div>
+                                </div>
+                                <div className="px-3 w-full">
+                                  <input
+                                    className="bg-white p-2 rounded-md border border-slate-300 w-full text-slate-600 focus:border focus:border-sky-500"
+                                    placeholder="Faça um comentário"
+                                    value={newComment}
+                                    onChange={(e) =>
+                                      setNewComment(e.target.value)
+                                    }
+                                  />
+                                  <button
+                                    className="mt-2 bg-blue-500 text-white p-2 rounded-md"
+                                    onClick={() =>
+                                      handleCommentSubmit(event._id)
+                                    }
+                                  >
+                                    Comentar
+                                  </button>
+                                </div>
+                                <div className="px-3 w-full">
+                                  <p
+                                    className="text-slate-500 text-sm my-2 text-end cursor-pointer"
+                                    onClick={() => {
+                                      setShowComments(!showComments);
+                                      if (!showComments) {
+                                        fetchComments(event._id); // Busca os comentários apenas se eles não estiverem visíveis
+                                      }
+                                    }}
+                                  >
+                                    {showComments
+                                      ? "Ocultar comentários"
+                                      : "Ver comentários"}
+                                  </p>
+                                  {showComments && (
+                                    <div className="bg-white p-4 rounded-md shadow-md">
+                                      {comments.length > 0 ? (
+                                        comments.map((comment, index) => (
+                                          <div
+                                            key={index}
+                                            className="border-b border-slate-200 py-2 flex items-center justify-between"
+                                          >
+                                            <div>
+                                              <p className="text-slate-600">
+                                                {comment.text}
+                                              </p>
+                                              <span className="text-sm text-gray-400">
+                                                {new Date(
+                                                  comment.date
+                                                ).toLocaleString()}
+                                              </span>
+                                            </div>
+                                            <button
+                                              className="text-red-500 hover:text-red-700"
+                                              onClick={() =>
+                                                handleDeleteComment(
+                                                  event._id,
+                                                  comment._id
+                                                )
+                                              }
+                                            >
+                                              Excluir
+                                            </button>
+                                          </div>
+                                        ))
+                                      ) : (
+                                        <p className="text-gray-500">
+                                          Nenhum comentário ainda.
+                                        </p>
+                                      )}
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                             </div>
