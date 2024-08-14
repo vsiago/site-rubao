@@ -15,6 +15,25 @@ export default function Home() {
   const [newComment, setNewComment] = useState("");
   const [showComments, setShowComments] = useState(false);
 
+  // Função para gerar um UUID
+const generateUUID = () => {
+  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  );
+};
+
+// Função para definir o userId no localStorage
+const initializeUserId = () => {
+  let userId = localStorage.getItem('userId');
+  if (!userId) {
+    userId = generateUUID();
+    localStorage.setItem('userId', userId);
+  }
+};
+
+// Chame a função quando o site for carregado
+window.addEventListener('load', initializeUserId);
+
   const uri = "http://localhost:5000";
 
   const { ref, inView } = useInView({
