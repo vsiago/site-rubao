@@ -34,7 +34,7 @@ const initializeUserId = () => {
 // Chame a função quando o site for carregado
 window.addEventListener('load', initializeUserId);
 
-  const uri = "http://localhost:5000";
+  const uri = "https://rubaoapi.vercel.app";
 
   const { ref, inView } = useInView({
     threshold: 0.5, // Quando 50% do elemento estiver visível
