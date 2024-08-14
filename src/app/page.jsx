@@ -19,7 +19,7 @@ export default function Home() {
   useEffect(() => {
     const fetchTimeline = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/years");
+        const response = await axios.get("https://rubaoapi-8qswmgg1b-vsiagos-projects.vercel.app/api/years");
         setTimeline(response.data);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
@@ -55,7 +55,7 @@ export default function Home() {
             ),
           }))
         );
-        await axios.post(`http://localhost:5000/api/events/${eventId}/unlike`);
+        await axios.post(`https://rubaoapi-8qswmgg1b-vsiagos-projects.vercel.app/api/events/${eventId}/unlike`);
       } else {
         // Se não curtiu, então curtir
         setTimeline((prevTimeline) =>
@@ -72,7 +72,7 @@ export default function Home() {
             ),
           }))
         );
-        await axios.post(`http://localhost:5000/api/events/${eventId}/like`);
+        await axios.post(`https://rubaoapi-8qswmgg1b-vsiagos-projects.vercel.app/api/events/${eventId}/like`);
       }
     } catch (error) {
       console.error(
