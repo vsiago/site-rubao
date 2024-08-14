@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import axios from "axios"; // Importar o Axios
 import Header from "../components/Header";
 import Footer from "@/components/Footer";
 import { useInView } from "react-intersection-observer";
@@ -16,8 +17,15 @@ export default function Home() {
   });
 
   useEffect(() => {
-    setTimeline(timelineData);
-    console.log(timelineData);
+    const fetchTimeline = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/years");
+        setTimeline(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      }
+    };
+    fetchTimeline();
   }, []);
 
   const handleModal = (index) => {
@@ -26,6 +34,51 @@ export default function Home() {
     } else {
       setModalActiveIndex(index);
       console.log("Clicou no ano ", index);
+    }
+  };
+
+  const handleLikeOrUnlike = async (eventId, liked) => {
+    try {
+      if (liked) {
+        // Se já curtiu, então descurtir
+        setTimeline((prevTimeline) =>
+          prevTimeline.map((year) => ({
+            ...year,
+            events: year.events.map((event) =>
+              event._id === eventId
+                ? {
+                    ...event,
+                    likes: event.likes - 1, // Decrementa a curtida localmente
+                    liked: false, // Marca como não curtido
+                  }
+                : event
+            ),
+          }))
+        );
+        await axios.post(`http://localhost:5000/api/events/${eventId}/unlike`);
+      } else {
+        // Se não curtiu, então curtir
+        setTimeline((prevTimeline) =>
+          prevTimeline.map((year) => ({
+            ...year,
+            events: year.events.map((event) =>
+              event._id === eventId
+                ? {
+                    ...event,
+                    likes: event.likes + 1, // Incrementa a curtida localmente
+                    liked: true, // Marca como curtido
+                  }
+                : event
+            ),
+          }))
+        );
+        await axios.post(`http://localhost:5000/api/events/${eventId}/like`);
+      }
+    } catch (error) {
+      console.error(
+        `Erro ao ${liked ? "descurtir" : "curtir"} o evento:`,
+        error
+      );
     }
   };
 
@@ -243,16 +296,32 @@ export default function Home() {
                                 </p>
                                 <div className=" w-[30%] flex items-end justify-start  flex-col    p-4">
                                   <div className=" flex flex-col items-center">
-                                    <div className="w-11 h-11 bg-slate-300/50 rounded-full cursor-pointer flex items-center justify-center ">
+                                    <div
+                                      className={`w-11 h-11 ${
+                                        event.liked
+                                          ? "bg-[#A55252]/10"
+                                          : "bg-slate-300/50"
+                                      } rounded-full cursor-pointer flex items-center justify-center`}
+                                      onClick={() =>
+                                        handleLikeOrUnlike(
+                                          event._id,
+                                          event.liked
+                                        )
+                                      }
+                                    >
                                       <Image
-                                        src="/images/icon-coracao.png"
+                                      className={`${event.liked ? "drop-shadow-2xl shadow-red-950" : "opacity-90"}`}
+                                        src={`/images/icon-${event.liked ? "coracao-preenchido" : "coracao-linha"}.png`}
                                         width={28}
                                         height={28}
-                                        alt="Ícone curtir"
+                                        alt={`Ícone ${
+                                          event.liked ? "descurtir" : "curtir"
+                                        }`}
                                       />
                                     </div>
-                                    <p className="text-slate-500  mt-1">
-                                      Curtir
+                                    <p className={` mt-1 ${event.liked ? "text-[#CC6F6F] font-bold" : "text-slate-500"}`}>
+                                      {event.likes}{" "}
+                                      {event.liked ? "" : ""}
                                     </p>
                                   </div>
                                 </div>
@@ -281,5 +350,3 @@ export default function Home() {
     </>
   );
 }
-// Tell Next.js to remount this component on every edit
-// @refresh reset
