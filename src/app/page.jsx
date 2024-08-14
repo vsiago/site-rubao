@@ -15,25 +15,6 @@ export default function Home() {
   const [newComment, setNewComment] = useState("");
   const [showComments, setShowComments] = useState(false);
 
-  // Função para gerar um UUID
-const generateUUID = () => {
-  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-  );
-};
-
-// Função para definir o userId no localStorage
-const initializeUserId = () => {
-  let userId = localStorage.getItem('userId');
-  if (!userId) {
-    userId = generateUUID();
-    localStorage.setItem('userId', userId);
-  }
-};
-
-// Chame a função quando o site for carregado
-window.addEventListener('load', initializeUserId);
-
   const uri = "https://rubaoapi.vercel.app";
 
   const { ref, inView } = useInView({
@@ -41,6 +22,28 @@ window.addEventListener('load', initializeUserId);
   });
 
   useEffect(() => {
+    // Função para gerar um UUID
+    const generateUUID = () => {
+      return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+        (
+          c ^
+          (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+        ).toString(16)
+      );
+    };
+
+    // Função para definir o userId no localStorage
+    const initializeUserId = () => {
+      let userId = localStorage.getItem("userId");
+      if (!userId) {
+        userId = generateUUID();
+        localStorage.setItem("userId", userId);
+      }
+    };
+
+    // Chame a função quando o site for carregado
+    window.addEventListener("load", initializeUserId);
+
     const fetchTimeline = async () => {
       try {
         const response = await axios.get(`${uri}/api/years`);
@@ -119,27 +122,27 @@ window.addEventListener('load', initializeUserId);
       console.error("Erro ao buscar comentários:", error);
     }
   };
-  
+
   const handleCommentSubmit = async (eventId) => {
     try {
       // Envia o novo comentário para o servidor
       await axios.post(`${uri}/api/events/${eventId}/comments`, {
         text: newComment,
       });
-  
+
       // Adiciona o novo comentário ao estado local
       setComments((prevComments) => [
         ...prevComments,
         { text: newComment, date: new Date().toISOString() },
       ]);
-  
+
       // Busca todos os comentários atualizados
       const response = await axios.get(`${uri}/api/events/${eventId}/comments`);
       setComments(response.data);
-  
+
       // Limpa o campo de input
       setNewComment("");
-  
+
       // Mostra os comentários automaticamente após enviar
       setShowComments(true);
     } catch (error) {
