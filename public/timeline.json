@@ -17,6 +17,16 @@
   {
     "year": 2023,
     "events": [
+      {
+        "title": "ESF Leandro",
+        "description": "A inauguração da Ponte Coroa Grande x Frontal das Ilhas marca a conexão direta entre os bairros, melhorando a mobilidade e impulsionando o desenvolvimento regional. A nova estrutura promete aliviar o trânsito e facilitar o acesso entre as áreas.",
+        "icon": "/icon",
+        "fotoAntes": "/images/ponte-frontal-antes.jpg",
+        "fotoDepois": "/images/ponte-frontal-depois.png",
+        "dataInicio": "",
+        "dataFim": "",
+        "likes": 0
+      }
     ]
   },
   {
