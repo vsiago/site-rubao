@@ -3,144 +3,14 @@
     "year": 2024,
     "events": [
       {
-        "title": "Reforma Hospital São Francisco Xavier",
-        "description": "Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier",
-        "icon": "/icon",
-        "fotoAntes": "/images/hsfx-antes.jpg",
-        "fotoDepois": "/images/hsfx-depois.png",
-        "dataInicio": "Jan.2023",
-        "dataFim": "Mar. 2024",
-        "likes": 49
-      },
-      {
-        "title": "ESF Leandro",
-        "description": "Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier",
-        "icon": "/icon",
-        "fotoAntes": "/images/esf-antes.jpg",
-        "fotoDepois": "/images/esf-depois.jpg",
-        "dataInicio": "Jan.2023",
-        "dataFim": "Mar. 2024",
-        "likes": 49
-      },
-      {
-        "title": "ESF Saco da Prata",
-        "description": "Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier",
-        "icon": "/icon",
-        "fotoAntes": "/images/esf-saco-prata-antes.jpg",
-        "fotoDepois": "/images/esf-saco-prata-depois.jpg",
-        "dataInicio": "Jan.2023",
-        "dataFim": "Mar. 2024",
-        "likes": 49
-      },
-      {
-        "title": "Farmácia Central",
-        "description": "Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier",
-        "icon": "/icon",
-        "fotoAntes": "/images/farmacia-antes.jpg",
-        "fotoDepois": "/images/farmacia-depois.jpg",
-        "dataInicio": "Jan.2023",
-        "dataFim": "Mar. 2024",
-        "likes": 49
-      },
-      {
-        "title": "Ponte na Estrada da Feitoria, Ibituporanga",
-        "description": "Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier",
-        "icon": "/icon",
-        "fotoAntes": "/images/ponte-ibituporanga-antes.jpg",
-        "fotoDepois": "/images/ponte-ibituporanga-depois.jpg",
-        "dataInicio": "Jan.2023",
-        "dataFim": "Mar. 2024",
-        "likes": 49
-      },
-      {
-        "title": "Praça do Teixeira",
-        "description": "Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier",
-        "icon": "/icon",
-        "fotoAntes": "/images/praca-texeira-antes.jpg",
-        "fotoDepois": "/images/praca-texeira-depois.jpg",
-        "dataInicio": "Jan.2023",
-        "dataFim": "Mar. 2024",
-        "likes": 49
-      },
-      {
-        "title": "Playground, Parque Municipal",
-        "description": "Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier",
-        "icon": "/icon",
-        "fotoAntes": "/images/playground-antes.jpg",
-        "fotoDepois": "/images/playground-depois.jpg",
-        "dataInicio": "Jan.2023",
-        "dataFim": "Mar. 2024",
-        "likes": 49
-      },
-      {
-        "title": "Área do Fresco, Parque Municipal",
-        "description": "Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier",
-        "icon": "/icon",
-        "fotoAntes": "/images/frescor-antes.jpg",
-        "fotoDepois": "/images/frescor-depois.jpg",
-        "dataInicio": "Jan.2023",
-        "dataFim": "Mar. 2024",
-        "likes": 49
-      },
-      {
-        "title": "Contenção de barreira, Serra do Caçador",
-        "description": "Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier",
-        "icon": "/icon",
-        "fotoAntes": "/images/contencao-serra-cacador-antes.jpg",
-        "fotoDepois": "/images/contencao-serra-cacador-depois.jpg",
-        "dataInicio": "Jan.2023",
-        "dataFim": "Mar. 2024",
-        "likes": 49
-      },
-      {
-        "title": "Academia ao ar livre, Parque Municipal",
-        "description": "Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier",
-        "icon": "/icon",
-        "fotoAntes": "/images/academia-parque-antes.jpg",
-        "fotoDepois": "/images/academia-parque-depois.jpg",
-        "dataInicio": "Jan.2023",
-        "dataFim": "Mar. 2024",
-        "likes": 49
-      },
-      {
-        "title": "Academia da Saúde, Chaperó",
-        "description": "Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier",
-        "icon": "/icon",
-        "fotoAntes": "/images/academia-chapero-antes.jpg",
-        "fotoDepois": "/images/academia-chapero-depois.jpg",
-        "dataInicio": "Jan.2023",
-        "dataFim": "Mar. 2024",
-        "likes": 49
-      },
-      {
         "title": "Ponte Coroa Grande x Frontal das Ilhas",
-        "description": "Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier",
-        "icon": "/icon",
-        "fotoAntes": "/images/hsfx-antes.jpg",
-        "fotoDepois": "/images/hsfx-depois.jpg",
-        "dataInicio": "Jan.2023",
-        "dataFim": "Mar. 2024",
-        "likes": 49
-      },
-      {
-        "title": "Playground Calçadão",
-        "description": "Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier",
+        "description": "A inauguração da Ponte Coroa Grande x Frontal das Ilhas marca a conexão direta entre os bairros, melhorando a mobilidade e impulsionando o desenvolvimento regional. A nova estrutura promete aliviar o trânsito e facilitar o acesso entre as áreas.",
         "icon": "/icon",
         "fotoAntes": "/images/ponte-frontal-antes.jpg",
-        "fotoDepois": "/images/ponte-frontal-depois.jpg",
-        "dataInicio": "Jan.2023",
-        "dataFim": "Mar. 2024",
-        "likes": 49
-      },
-      {
-        "title": "Bosque dos Artistas",
-        "description": "Um breve texto Falando sobre a Reforma do Hospital São Francisco Xavier",
-        "icon": "/icon",
-        "fotoAntes": "/images/playground-calcadao-antes.jpg",
-        "fotoDepois": "/images/playground-calcadao-depois.jpg",
-        "dataInicio": "Jan.2023",
-        "dataFim": "Mar. 2024",
-        "likes": 49
+        "fotoDepois": "/images/ponte-frontal-depois.png",
+        "dataInicio": "",
+        "dataFim": "",
+        "likes": 0
       }
     ]
   },

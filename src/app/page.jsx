@@ -15,7 +15,7 @@ export default function Home() {
   const [newComment, setNewComment] = useState("");
   const [showComments, setShowComments] = useState(false);
 
-  const uri = "https://rubaoapi.vercel.app";
+  const uri = "http://localhost:5000";
 
   const { ref, inView } = useInView({
     threshold: 0.5, // Quando 50% do elemento estiver visível
@@ -425,7 +425,7 @@ export default function Home() {
                                     </div>
                                   </div>
                                 </div>
-                                <div className="px-3 w-full">
+                                {/* <div className="px-3 w-full">
                                   <input
                                     className="bg-white p-2 rounded-md border border-slate-300 w-full text-slate-600 focus:border focus:border-sky-500"
                                     placeholder="Faça um comentário"
@@ -442,8 +442,8 @@ export default function Home() {
                                   >
                                     Comentar
                                   </button>
-                                </div>
-                                <div className="px-3 w-full">
+                                </div> */}
+                                {/* <div className="px-3 w-full">
                                   <p
                                     className="text-slate-500 text-sm my-2 text-end cursor-pointer"
                                     onClick={() => {
@@ -495,7 +495,7 @@ export default function Home() {
                                       )}
                                     </div>
                                   )}
-                                </div>
+                                </div> */}
                               </div>
                             </div>
                           </li>
@@ -510,9 +510,9 @@ export default function Home() {
           <nav>
             <a
               href="/biografia-prefeito"
-              className="text-slate-700 h-16 w-full border-2 border-white flex items-center justify-center rounded-full bg-[#005087]/90"
+              className="text-slate-700 h-16 w-full border-2 flex items-center justify-center rounded-full border-[#005087]"
             >
-              <p className="text-white">Biografia</p>
+              <p className="text-slate-600 font-semibold text-lg">Biografia</p>
             </a>
           </nav>
         </div>
