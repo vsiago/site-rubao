@@ -29,7 +29,7 @@ const ImageCropper = ({ imageSrc }) => {
     if (!croppedImage) return;
     const link = document.createElement("a");
     link.href = croppedImage;
-    link.download = "cropped-image.png"; // Nome do arquivo que será baixado
+    link.download = "theme-rubao20.png"; // Nome do arquivo que será baixado
     document.body.appendChild(link); // Adiciona o link ao DOM
     link.click();
     document.body.removeChild(link); // Remove o link do DOM
@@ -64,7 +64,7 @@ const ImageCropper = ({ imageSrc }) => {
         onCropChange={setCrop}
         onZoomChange={setZoom}
         onCropComplete={onCropComplete}
-        style={{ containerStyle: { width: "400px", height: "400px" } }} // Ajusta o tamanho da área de visualização
+        style={{ containerStyle: { minWidth: "400px", minHeight: "400px" } }} // Ajusta o tamanho da área de visualização
       />
       {/* Visualização da Imagem Cortada */}
       {croppedImage && (
