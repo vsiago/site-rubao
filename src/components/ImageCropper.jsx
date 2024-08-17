@@ -64,7 +64,7 @@ const ImageCropper = ({ imageSrc }) => {
         onCropChange={setCrop}
         onZoomChange={setZoom}
         onCropComplete={onCropComplete}
-        style={{ containerStyle: { minWidth: "400px", minHeight: "400px" } }} // Ajusta o tamanho da área de visualização
+        style={{ containerStyle: { minWidth: "100%", minHeight: "100%" } }} // Ajusta o tamanho da área de visualização
       />
       {/* Visualização da Imagem Cortada */}
       {croppedImage && (
