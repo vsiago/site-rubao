@@ -62,7 +62,7 @@ const ImageCropper = ({ imageSrc }) => {
           onCropChange={setCrop}
           onZoomChange={setZoom}
           onCropComplete={onCropComplete}
-          style={{ containerStyle: { width: "100%", height: "100%" } }} // Ajusta o tamanho da área de visualização
+          style={{ containerStyle: { width: "400px", height: "400px" } }} // Ajusta o tamanho da área de visualização
         />
         {/* Visualização da Imagem Cortada */}
         {croppedImage && (
@@ -71,8 +71,8 @@ const ImageCropper = ({ imageSrc }) => {
               backgroundImage: `url(${croppedImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              width: "100%",
-              height: "100%",
+              width: "400px",
+              height: "400px",
               position: "absolute",
               top: 0,
               left: 0,
