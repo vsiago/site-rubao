@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -67,9 +66,9 @@
   }
 }
 
-* {
+/* * {
   user-select: none
-}
+} */
 
 @layer base {
   * {
@@ -84,14 +83,18 @@
 @keyframes fadeIn {
   0% {
     opacity: 0;
-    transform: translateY(60px); /* Opcional: Pode adicionar uma animação de translação */
+    transform: translateY(
+      60px
+    ); /* Opcional: Pode adicionar uma animação de translação */
   }
   50% {
     opacity: 1;
   }
   100% {
     opacity: 1;
-    transform: translateY(0); /* Opcional: Pode adicionar uma animação de translação */
+    transform: translateY(
+      0
+    ); /* Opcional: Pode adicionar uma animação de translação */
     animation-duration: 1s;
   }
 }
@@ -128,7 +131,7 @@
 }
 
 .custom-shape-divider-bottom-1723226387 .shape-fill {
-  fill: #E2E6EC;
+  fill: #e2e6ec;
 }
 
 /* Media Query para telas pequenas */
@@ -159,7 +162,7 @@
 
 .diff-resizer {
   width: 150px; /* Largura inicial */
-  animation: slide 2s ease-in-out ; /* Ajuste a duração e a função de animação conforme necessário */
+  animation: slide 2s ease-in-out; /* Ajuste a duração e a função de animação conforme necessário */
   position: relative; /* Necessário para o posicionamento absoluto do pseudo-elemento */
 }
 
@@ -171,7 +174,7 @@
 }
 
 .diff-item::before {
-  content: '<>'; /* O conteúdo que você quer exibir */
+  content: "<>"; /* O conteúdo que você quer exibir */
   position: absolute; /* Posiciona o pseudo-elemento relativo ao elemento pai */
   right: 0; /* Alinha o pseudo-elemento à borda direita */
   top: 50%; /* Posiciona verticalmente no meio */
@@ -181,6 +184,4 @@
   padding: 0 10px; /* Espaço ao redor do conteúdo */
   z-index: 9999;
   margin-left: 50px;
-  
 }
-

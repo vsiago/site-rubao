@@ -1,0 +1,108 @@
+import React, { useState, useCallback } from "react";
+import Cropper from "react-easy-crop";
+import getCroppedImg from "./getCroppedImg"; // Ajuste o caminho conforme a localização real do arquivo
+import Image from "next/image";
+
+const ImageCropper = ({ imageSrc }) => {
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [croppedImage, setCroppedImage] = useState(null);
+
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
+  const handleSave = async () => {
+    if (!croppedAreaPixels) return;
+
+    try {
+      // Gera a URL da imagem cortada
+      const croppedImageUrl = await getCroppedImg(imageSrc, croppedAreaPixels);
+      setCroppedImage(croppedImageUrl);
+    } catch (error) {
+      console.error("Erro ao salvar imagem cortada:", error);
+    }
+  };
+
+  const handleDownload = () => {
+    if (!croppedImage) return;
+    const link = document.createElement("a");
+    link.href = croppedImage;
+    link.download = "cropped-image.png"; // Nome do arquivo que será baixado
+    document.body.appendChild(link); // Adiciona o link ao DOM
+    link.click();
+    document.body.removeChild(link); // Remove o link do DOM
+  };
+
+  return (
+    <div className="relative w-[400px] h-[400px]">
+      {/* Container para a imagem e a sobreposição */}
+      <div className="relative w-full h-full">
+        {/* Imagem de sobreposição */}
+        <div
+          style={{
+            backgroundImage: 'url("/images/theme-rubao-20.png")',
+            backgroundSize: "cover",
+            width: "100%",
+            height: "100%",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: 1,
+            pointerEvents: "none", // Permite interações com a área abaixo
+          }}
+        />
+        {/* Área de Corte */}
+        <Cropper
+          image={imageSrc}
+          crop={crop}
+          zoom={zoom}
+          aspect={1} // Mantém o corte em formato quadrado
+          onCropChange={setCrop}
+          onZoomChange={setZoom}
+          onCropComplete={onCropComplete}
+          style={{ containerStyle: { width: "100%", height: "100%" } }} // Ajusta o tamanho da área de visualização
+        />
+        {/* Visualização da Imagem Cortada */}
+        {croppedImage && (
+          <div
+            style={{
+              backgroundImage: `url(${croppedImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              width: "100%",
+              height: "100%",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              zIndex: 2,
+            }}
+          />
+        )}
+      </div>
+
+      {/* Botão de Download */}
+      {croppedImage && (
+        <button
+          onClick={handleDownload}
+          className="absolute bottom-2 right-2 bg-red-500 text-white p-2 border border-gray-600"
+          style={{ zIndex: 10 }} // Garantia de visibilidade do botão
+        >
+          Download
+        </button>
+      )}
+
+      {/* Botão de Salvar */}
+      <button
+        onClick={handleSave}
+        className="absolute bottom-2 left-2 bg-red-800 text-white p-2 border border-gray-600"
+        style={{ zIndex: 10 }}
+      >
+        Salvar
+      </button>
+    </div>
+  );
+};
+
+export default ImageCropper;
