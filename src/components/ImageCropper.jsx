@@ -62,7 +62,7 @@ const ImageCropper = ({ imageSrc }) => {
           onCropChange={setCrop}
           onZoomChange={setZoom}
           onCropComplete={onCropComplete}
-          style={{ containerStyle: { width: "400px", height: "400px" } }} // Ajusta o tamanho da área de visualização
+          style={{ containerStyle: { width: "100%", height: "100%" } }} // Ajusta o tamanho da área de visualização
         />
         {/* Visualização da Imagem Cortada */}
         {croppedImage && (
@@ -86,8 +86,8 @@ const ImageCropper = ({ imageSrc }) => {
       {croppedImage && (
         <button
           onClick={handleDownload}
-          className="absolute bottom-2 right-2 bg-red-500 text-white p-2 border border-gray-600"
-          style={{ zIndex: 10 }} // Garantia de visibilidade do botão
+          className="absolute -bottom-14 w-full bg-green-500 text-white p-2 border border-gray-600 rounded-sm"
+          style={{ zIndex: 12 }} // Garantia de visibilidade do botão
         >
           Download
         </button>
@@ -96,7 +96,7 @@ const ImageCropper = ({ imageSrc }) => {
       {/* Botão de Salvar */}
       <button
         onClick={handleSave}
-        className="absolute bottom-2 left-2 bg-red-800 text-white p-2 border border-gray-600"
+        className="absolute -bottom-14 bg-sky-500 text-white p-2 border border-gray-600 w-full rounded-sm"
         style={{ zIndex: 10 }}
       >
         Salvar
