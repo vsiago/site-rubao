@@ -13,7 +13,6 @@ const getCroppedImg = async (imageSrc, crop) => {
 
     // Carrega a imagem de overlay
     const overlayImage = await createImage("/images/theme-rubao-20.png"); // Ajuste o caminho conforme necessário
-    console.log("Overlay Image Loaded:", overlayImage);
 
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");

@@ -38,50 +38,50 @@ const ImageCropper = ({ imageSrc }) => {
   return (
     <div className="relative w-[400px] h-[400px]">
       {/* Container para a imagem e a sobreposição */}
-      <div className="relative w-full h-full border">
-        {/* Imagem de sobreposição */}
+      {/* Imagem de sobreposição */}
+      <div
+        className="border-2 border-white/10 rounded-md"
+        style={{
+          backgroundImage: 'url("/images/theme-rubao-20.png")',
+          backgroundSize: "cover",
+          width: "100%",
+          maxWidth: "400px",
+          height: "100%",
+          maxHeight: "100%",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 1,
+          pointerEvents: "none", // Permite interações com a área abaixo
+        }}
+      />
+      {/* Área de Corte */}
+      <Cropper
+        image={imageSrc}
+        crop={crop}
+        zoom={zoom}
+        aspect={1} // Mantém o corte em formato quadrado
+        onCropChange={setCrop}
+        onZoomChange={setZoom}
+        onCropComplete={onCropComplete}
+        style={{ containerStyle: { width: "400px", height: "400px" } }} // Ajusta o tamanho da área de visualização
+      />
+      {/* Visualização da Imagem Cortada */}
+      {croppedImage && (
         <div
-          className="border-2 border-white/10 rounded-md"
           style={{
-            backgroundImage: 'url("/images/theme-rubao-20.png")',
+            backgroundImage: `url(${croppedImage})`,
             backgroundSize: "cover",
+            backgroundPosition: "center",
             width: "400px",
             height: "400px",
             position: "absolute",
             top: 0,
             left: 0,
-            zIndex: 1,
-            pointerEvents: "none", // Permite interações com a área abaixo
+            zIndex: 2,
           }}
         />
-        {/* Área de Corte */}
-        <Cropper
-          image={imageSrc}
-          crop={crop}
-          zoom={zoom}
-          aspect={1} // Mantém o corte em formato quadrado
-          onCropChange={setCrop}
-          onZoomChange={setZoom}
-          onCropComplete={onCropComplete}
-          style={{ containerStyle: { width: "100%", height: "100%" } }} // Ajusta o tamanho da área de visualização
-        />
-        {/* Visualização da Imagem Cortada */}
-        {croppedImage && (
-          <div
-            style={{
-              backgroundImage: `url(${croppedImage})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              width: "400px",
-              height: "400px",
-              position: "absolute",
-              top: 0,
-              left: 0,
-              zIndex: 2,
-            }}
-          />
-        )}
-      </div>
+      )}
 
       {/* Botão de Download */}
       {croppedImage && (
