@@ -38,14 +38,15 @@ const ImageCropper = ({ imageSrc }) => {
   return (
     <div className="relative w-[400px] h-[400px]">
       {/* Container para a imagem e a sobreposição */}
-      <div className="relative w-full h-full">
+      <div className="relative w-full h-full border">
         {/* Imagem de sobreposição */}
         <div
+          className="border-2 border-white/10 rounded-md"
           style={{
             backgroundImage: 'url("/images/theme-rubao-20.png")',
             backgroundSize: "cover",
-            width: "100%",
-            height: "100%",
+            width: "400px",
+            height: "400px",
             position: "absolute",
             top: 0,
             left: 0,
