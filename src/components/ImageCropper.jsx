@@ -1,25 +1,13 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "./getCroppedImg"; // Ajuste o caminho conforme a localização real do arquivo
+import Image from "next/image";
 
 const ImageCropper = ({ imageSrc }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
-  const [minZoom, setMinZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
-
-  // Ajusta o zoom mínimo com base no tamanho da imagem
-  useEffect(() => {
-    const img = new Image();
-    img.src = imageSrc;
-    img.onload = () => {
-      const { width, height } = img;
-      const minZoomLevel = Math.max(400 / width, 400 / height);
-      setZoom(minZoomLevel);
-      setMinZoom(minZoomLevel);
-    };
-  }, [imageSrc]);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -72,7 +60,6 @@ const ImageCropper = ({ imageSrc }) => {
         image={imageSrc}
         crop={crop}
         zoom={zoom}
-        minZoom={minZoom} // Ajuste dinâmico do minZoom
         aspect={1} // Mantém o corte em formato quadrado
         onCropChange={setCrop}
         onZoomChange={setZoom}
