@@ -1,13 +1,17 @@
-import React, { useState, useCallback } from "react";
+"use client";
+import React, { useState, useCallback, useEffect } from "react";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "./getCroppedImg"; // Ajuste o caminho conforme a localização real do arquivo
-import Image from "next/image";
 
 const ImageCropper = ({ imageSrc }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
+
+  useEffect(() => {
+    setZoom(1); // Definir o zoom inicial para que a imagem preencha o quadrado de 400x400
+  }, [imageSrc]);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -17,7 +21,6 @@ const ImageCropper = ({ imageSrc }) => {
     if (!croppedAreaPixels) return;
 
     try {
-      // Gera a URL da imagem cortada
       const croppedImageUrl = await getCroppedImg(imageSrc, croppedAreaPixels);
       setCroppedImage(croppedImageUrl);
     } catch (error) {
@@ -37,7 +40,6 @@ const ImageCropper = ({ imageSrc }) => {
 
   return (
     <div className="relative w-[400px] h-[400px]">
-      {/* Container para a imagem e a sobreposição */}
       {/* Imagem de sobreposição */}
       <div
         className="border-2 border-white/10 rounded-md"
@@ -45,9 +47,7 @@ const ImageCropper = ({ imageSrc }) => {
           backgroundImage: 'url("/images/theme-rubao-20.png")',
           backgroundSize: "cover",
           width: "100%",
-          maxWidth: "400px",
           height: "100%",
-          maxHeight: "100%",
           position: "absolute",
           top: 0,
           left: 0,
@@ -64,13 +64,23 @@ const ImageCropper = ({ imageSrc }) => {
         onCropChange={setCrop}
         onZoomChange={setZoom}
         onCropComplete={onCropComplete}
+        cropSize={{ width: 400, height: 400 }} // Define a área de corte para 400x400
         style={{
           containerStyle: {
-            minWidth: "100%",
-            minHeight: "100%",
+            width: "100%",
+            height: "100%",
+            position: "relative",
+          },
+          cropAreaStyle: {
+            width: "400px",
+            height: "400px",
+            maxWidth: "100%",
+            maxHeight: "100%",
+          },
+          mediaStyle: {
             objectFit: "cover",
           },
-        }} // Ajusta o tamanho da área de visualização
+        }}
       />
       {/* Visualização da Imagem Cortada */}
       {croppedImage && (
