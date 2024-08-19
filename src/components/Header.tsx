@@ -132,7 +132,10 @@ export default function Header() {
                 {item.nome}
               </a>
             </li>
+            
           ))}
+                      <a href="/theme" className="ml-3 bg-yellow-500 rounded-full p-2 px-4 hover:bg-white transition-all ease-in-out duration-200">
+            <p className="text-blue-950 font-bold">Tema Perfil</p></a>
         </ul>
         <ul className="hidden md:flex gap-3 items-center">
           {menuItems.map((item, intex) => (
