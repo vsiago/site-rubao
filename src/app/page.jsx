@@ -284,7 +284,7 @@ export default function Home() {
 
       {/* SECTION TIMELINE */}
 
-      {/* <section
+      <section
         id="linha-do-tempo"
         className="min-h-screen flex flex-col  bg-[#E2E6EC] p-6 py-14"
       >
@@ -540,7 +540,7 @@ export default function Home() {
             </a>
           </nav>
         </div>
-      </section> */}
+      </section>
       <Footer />
     </>
   );
