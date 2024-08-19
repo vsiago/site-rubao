@@ -53,7 +53,7 @@ export default function Header() {
       <nav className="min-h-full px-6 flex  w-full justify-between items-center md:container mx-auto ">
         <a href="/">
           <Image
-            src="/rubao-logo-clara.svg"
+            src="/logo-rubao-2024.svg"
             width={140}
             height={20}
             alt="Logo Rubao"
@@ -83,22 +83,22 @@ export default function Header() {
         ) : (
           <ul
             onClick={() => setOpen(!open)}
-            className="md:hidden scale-125 relative flex h-10 w-10 flex-col items-center justify-center gap-[8px] cursor-pointer hover:bg-slate-950/40 rounded transition duration-150 ease-in hover:transform hover:scale-105"
+            className="md:hidden  relative flex h-10 w-10 flex-col items-center justify-center gap-[6px] cursor-pointer hover:bg-slate-950/40 rounded transition duration-150 ease-in hover:transform hover:scale-105"
           >
             <li
               className={`${
                 open ? "transform rotate-45 absolute w-7" : "w-5"
-              }  h-[3px] rounded-[2px] bg-[#0DB2EE] transition duration-150 ease-in-out`}
+              }  h-[4px] rounded-[2px] bg-[#FFF000] transition duration-150 ease-in-out`}
             ></li>
             <li
               className={`${
                 open ? "transform -rotate-45 absolute" : ""
-              } w-7 h-[3px] rounded-[2px] bg-white transition duration ease-in-out`}
+              } w-7 h-[4px] rounded-[2px] bg-white transition duration ease-in-out`}
             ></li>
             <li
               className={`${
                 open ? "transform -rotate-45 absolute w-3" : "w-5"
-              }  h-[3px] rounded-[2px] bg-[#0CE7D5] transition duration ease-in-out`}
+              }  h-[4px] rounded-[2px] bg-[#0CE7E7] transition duration ease-in-out`}
             ></li>
           </ul>
         )}

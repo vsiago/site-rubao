@@ -24,7 +24,7 @@ const Theme = () => {
   };
 
   return (
-    <main className="min-h-screen flex flex-col">
+    <main className="min-h-screen flex flex-col bg-slate-700">
       <Header />
       <main className="flex-1 flex flex-col items-center justify-center p-10">
         <div

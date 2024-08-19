@@ -236,7 +236,7 @@ export default function Home() {
               </p>
             </div>
             <a
-              className="p-3 px-9 cursor-pointer w-full md:w-[50%] lg:w-[28%] border-2 border-[#0CC6F5] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center"
+              className="p-3 px-9 cursor-pointer w-full md:w-[50%] lg:w-[28%] border-2 border-[#FFF000] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center"
               onClick={() =>
                 scroller.scrollTo("linha-do-tempo", {
                   smooth: true,
