@@ -214,26 +214,23 @@ export default function Home() {
           <main className="w-full flex-1 flex flex-col justify-end md:justify-center">
             <div>
               <div className="flex items-baseline gap-3">
-                <span className="animate text-[#0CC6F5] text-4xl font-semibold italic ">
-                  Prefeito
-                </span>
                 <div className="">
                   <Image
-                    width={55}
-                    height={55}
+                    width={400}
+                    height={80}
                     alt="logo B Bubão"
-                    src={require("../../public/logo-b.svg")}
+                    src={require("../../public/logo-rubao-20.svg")}
                     className="animate"
                   />
                 </div>
               </div>
-              <p className="animate delay1 text-[#ffffff] text-8xl font-black ">
-                Rubão
-              </p>
-              <p className="animate delay1 text-[#ffffff] text-2xl  italic mt-3 tracking-wide">
-                Por uma Itaguaí <br />
-                ainda melhor
-              </p>
+              <Image
+                    width={300}
+                    height={80}
+                    alt="logo B Bubão"
+                    src={require("../../public/pra-fazer-muito-mais.svg")}
+                    className="animate delay1 mt-6"
+                  />
             </div>
             <a
               className="p-3 px-9 cursor-pointer w-full md:w-[50%] lg:w-[28%] border-2 border-[#FFF000] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center"
