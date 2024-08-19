@@ -41,8 +41,21 @@ export default function Home() {
       }
     };
 
-    // Chame a função quando o site for carregado
-    window.addEventListener("load", initializeUserId);
+    const registerView = async () => {
+      const userId = localStorage.getItem("userId");
+
+      try {
+        await axios.post("/api/view", { userId });
+      } catch (error) {
+        console.error("Erro ao registrar a visualização:", error.message);
+      }
+    };
+
+    // Chama a função quando o site for carregado
+    window.addEventListener("load", () => {
+      const userId = initializeUserId();
+      registerView(userId);
+    });
 
     const fetchTimeline = async () => {
       try {
@@ -68,6 +81,11 @@ export default function Home() {
       }
     };
     fetchTimeline();
+
+    // Limpeza do listener
+    return () => {
+      window.removeEventListener("load", initializeUserId);
+    };
   }, []);
 
   const handleModal = (index) => {
