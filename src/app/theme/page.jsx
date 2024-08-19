@@ -31,7 +31,7 @@ const Theme = () => {
         <p className="text-4xl my-10 font-semibold text-center">
           Personalize sua com temas do Rubão 20
         </p>
-        <div className="container  flex flex-col gap-6 md:flex-row ">
+        <div className="container  flex flex-col gap-6 md:flex-row mb-20">
           <a
             href="/theme/profile"
             className="h-80 w-full border-2 border-white bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
@@ -77,7 +77,7 @@ const Theme = () => {
           </a>
           <a
             href="#theme/feed"
-            className="cursor-not-allowed h-80 w-full border-2 border-slate-300 bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
+            className="cursor-not-allowed mb-16 h-80 w-full border-2 border-slate-300 bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
           >
             <div className=" h-[70%] w-full flex items-center justify-center">
               <div className="h-48 w-48 pt-4">
