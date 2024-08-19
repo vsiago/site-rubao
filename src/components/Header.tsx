@@ -16,7 +16,7 @@ export default function Header() {
     {
       nome: "Biografia",
       link: "/biografia-prefeito",
-    }
+    },
   ];
 
   useEffect(() => {
@@ -132,10 +132,13 @@ export default function Header() {
                 {item.nome}
               </a>
             </li>
-            
           ))}
-                      <a href="/theme/profile" className="ml-3 bg-[#FFF000] rounded-full p-2 px-4 hover:bg-white transition-all ease-in-out duration-200">
-            <p className="text-blue-950 font-bold">Tema Perfil</p></a>
+          <a
+            href="/theme"
+            className="ml-3 bg-[#FFF000] rounded-full p-2 px-4 hover:bg-white transition-all ease-in-out duration-200"
+          >
+            <p className="text-blue-950 font-bold">Temas</p>
+          </a>
         </ul>
         <ul className="hidden md:flex gap-3 items-center">
           {menuItems.map((item, intex) => (
@@ -148,13 +151,14 @@ export default function Header() {
               >
                 {item.nome}
               </Link>
-              
             </li>
-            
           ))}
-            <a href="/theme/profile" className="ml-3 bg-[#FFF000] rounded-full p-2 px-4 hover:bg-white transition-all ease-in-out duration-200">
-            <p className="text-blue-950 font-bold">Tema Perfil</p></a>
-
+          <a
+            href="/theme"
+            className="ml-3 bg-[#FFF000] rounded-full p-2 px-4 hover:bg-white transition-all ease-in-out duration-200"
+          >
+            <p className="text-blue-950 font-bold">Temas</p>
+          </a>
         </ul>
       </nav>
     </header>
