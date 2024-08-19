@@ -26,21 +26,14 @@ const Theme = () => {
   return (
     <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90  to-[#003055]">
       <Header />
-      <main className="flex-1 flex flex-col items-center justify-center p-10">
-<div
-          onClick={handleFileClick}
-          className="w-64 h-12 flex p-3 items-center justify-center bg-sky-500 text-white  cursor-pointer rounded-full border-2 border-white/20 hover:bg-white hover:text-blue-900 transition-all duration-200 hover:shadow-2xl"
-        >
-         <p> Selecione uma imagem</p>
-</div>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          style={{ display: 'none' }}
-          ref={fileInputRef}
-        />
-        {imageSrc && <ImageCropper imageSrc={imageSrc} />}
+      <main className="flex-1  flex flex-col items-center justify-center mt-40">
+      <p className="text-4xl my-10 font-semibold text-center">Personalize sua com temas do Rubão 20</p>
+        <div className="container  flex flex-col gap-6 md:flex-row ">
+          <a href="/theme/profile" className="h-80 w-full border-2 border-white bg-white/50 rounded-2xl"></a>
+          <a href="#theme/stories" className="h-80 w-full border-2 border-white bg-white/50 rounded-2xl"></a>
+          <a href="#theme/feed" className="h-80 w-full border-2 border-white bg-white/50 rounded-2xl"></a>
+
+        </div>
       </main>
       <Footer />
     </main>
