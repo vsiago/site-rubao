@@ -15,7 +15,7 @@ export default function Home() {
   const [newComment, setNewComment] = useState("");
   const [showComments, setShowComments] = useState(false);
 
-  const uri = "http://localhost:5000";
+  const uri = "https://rubaoapi.vercel.app/";
 
   const { ref, inView } = useInView({
     threshold: 0.5, // Quando 50% do elemento estiver visível
@@ -284,7 +284,7 @@ export default function Home() {
 
       {/* SECTION TIMELINE */}
 
-      <section
+      {/* <section
         id="linha-do-tempo"
         className="min-h-screen flex flex-col  bg-[#E2E6EC] p-6 py-14"
       >
@@ -540,7 +540,7 @@ export default function Home() {
             </a>
           </nav>
         </div>
-      </section>
+      </section> */}
       <Footer />
     </>
   );
