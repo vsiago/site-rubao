@@ -15,7 +15,7 @@ export default function Home() {
   const [newComment, setNewComment] = useState("");
   const [showComments, setShowComments] = useState(false);
 
-  const uri = "https://rubaoapi.vercel.app/";
+  const uri = "https://rubaoapi.vercel.app";
 
   const { ref, inView } = useInView({
     threshold: 0.5, // Quando 50% do elemento estiver visível
