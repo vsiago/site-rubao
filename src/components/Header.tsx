@@ -14,7 +14,7 @@ export default function Header() {
       link: "/",
     },
     {
-      nome: "Biografia do Prefeito",
+      nome: "Biografia",
       link: "/biografia-prefeito",
     }
   ];
@@ -126,7 +126,7 @@ export default function Header() {
                   open
                     ? "inline-block ml-0 pointer-events-auto transition ease-in py-6"
                     : "py-0 opacity-0 ml-6 hidden pointer-events-none"
-                } text-slate-300 border-b-[1px] border-slate-950/40 w-full focus:text-white focus:font-semibold`}
+                } text-white border-b-[1px] border-slate-950/40 w-full hover:text-white focus:font-semibold`}
                 href={`${item.link}`}
               >
                 {item.nome}
@@ -143,7 +143,7 @@ export default function Header() {
               <Link
                 className={`${
                   scrolled ? "text-white" : ""
-                } h-20 px-2 py-1 text-slate-400 active:text-sky-400 transition-all ease-linear duration-150`}
+                } h-20 px-2 py-1 text-white hover:text-sky-400 transition-all ease-linear duration-150`}
                 href={item.link}
               >
                 {item.nome}
