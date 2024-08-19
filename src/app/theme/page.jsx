@@ -38,7 +38,13 @@ const Theme = () => {
           >
             <div className=" h-[70%] w-full flex items-center justify-center">
               <div className="h-48 w-48 pt-4">
-                <Image width={200} height={200} alt="Imagem perfil personalizada" src="/example-profile.png" className="w-full h-full object-contain" />
+                <Image
+                  width={200}
+                  height={200}
+                  alt="Imagem perfil personalizada"
+                  src="/example-profile.png"
+                  className="w-full h-full object-contain"
+                />
               </div>
             </div>
 
@@ -52,12 +58,18 @@ const Theme = () => {
           >
             <div className=" h-[70%] w-full flex items-center justify-center">
               <div className="h-48 w-48 pt-4">
-                <Image width={200} height={200} alt="Imagem perfil personalizada" src="/example-profile.png" className="w-full h-full object-contain" />
+                <Image
+                  width={200}
+                  height={200}
+                  alt="Imagem perfil personalizada"
+                  src="/example-feed.png"
+                  className="w-full h-full object-contain"
+                />
               </div>
             </div>
 
             <div className="bg-white h-[30%] w-full rounded-b-2xl flex items-center justify-start text-slate-700 p-8">
-              <p className="text-2xl font-bold text-[#013360]">Perfil</p>
+              <p className="text-2xl font-bold text-[#013360]">Feed</p>
             </div>
           </a>
           <a
@@ -66,12 +78,18 @@ const Theme = () => {
           >
             <div className=" h-[70%] w-full flex items-center justify-center">
               <div className="h-48 w-48 pt-4">
-                <Image width={200} height={200} alt="Imagem perfil personalizada" src="/example-profile.png" className="w-full h-full object-contain" />
+                <Image
+                  width={200}
+                  height={200}
+                  alt="Imagem perfil personalizada"
+                  src="/example-storie.png"
+                  className="w-full h-full object-contain"
+                />
               </div>
             </div>
 
             <div className="bg-white h-[30%] w-full rounded-b-2xl flex items-center justify-start text-slate-700 p-8">
-              <p className="text-2xl font-bold text-[#013360]">Perfil</p>
+              <p className="text-2xl font-bold text-[#013360]">Stories</p>
             </div>
           </a>
         </div>
