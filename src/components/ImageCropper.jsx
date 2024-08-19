@@ -10,7 +10,7 @@ const ImageCropper = ({ imageSrc }) => {
   const [croppedImage, setCroppedImage] = useState(null);
 
   useEffect(() => {
-    setZoom(1); // Definir o zoom inicial
+    setZoom(1); // Definir o zoom inicial para que a imagem preencha o quadrado de 400x400
   }, [imageSrc]);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
@@ -32,19 +32,19 @@ const ImageCropper = ({ imageSrc }) => {
     if (!croppedImage) return;
     const link = document.createElement("a");
     link.href = croppedImage;
-    link.download = "theme-1080x1920.png"; // Nome do arquivo que será baixado
+    link.download = "theme-rubao20.png"; // Nome do arquivo que será baixado
     document.body.appendChild(link); // Adiciona o link ao DOM
     link.click();
     document.body.removeChild(link); // Remove o link do DOM
   };
 
   return (
-    <div className="relative w-[1080px] h-[1920px]">
+    <div className="relative w-[400px] h-[400px]">
       {/* Imagem de sobreposição */}
       <div
         className="border-2 border-white/10 rounded-md"
         style={{
-          backgroundImage: 'url("/images/theme-1080x1920.png")',
+          backgroundImage: 'url("/images/theme-rubao-20.png")',
           backgroundSize: "cover",
           width: "100%",
           height: "100%",
@@ -60,11 +60,11 @@ const ImageCropper = ({ imageSrc }) => {
         image={imageSrc}
         crop={crop}
         zoom={zoom}
-        aspect={9 / 16} // Aspect ratio para 1080x1920
+        aspect={1} // Mantém o corte em formato quadrado
         onCropChange={setCrop}
         onZoomChange={setZoom}
         onCropComplete={onCropComplete}
-        cropSize={{ width: 1080, height: 1920 }} // Define a área de corte para 1080x1920
+        cropSize={{ width: 400, height: 400 }} // Define a área de corte para 400x400
         style={{
           containerStyle: {
             width: "100%",
@@ -72,8 +72,8 @@ const ImageCropper = ({ imageSrc }) => {
             position: "relative",
           },
           cropAreaStyle: {
-            width: "1080px",
-            height: "1920px",
+            width: "400px",
+            height: "400px",
             maxWidth: "100%",
             maxHeight: "100%",
           },
@@ -89,8 +89,8 @@ const ImageCropper = ({ imageSrc }) => {
             backgroundImage: `url(${croppedImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            width: "1080px",
-            height: "1920px",
+            width: "400px",
+            height: "400px",
             position: "absolute",
             top: 0,
             left: 0,

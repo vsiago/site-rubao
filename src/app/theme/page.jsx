@@ -24,15 +24,15 @@ const Theme = () => {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-700">
+    <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90  to-[#003055]">
       <Header />
       <main className="flex-1 flex flex-col items-center justify-center p-10">
-        <div
+<div
           onClick={handleFileClick}
-          className="w-64 h-12 flex p-3 items-center justify-center bg-sky-500 text-white  cursor-pointer rounded-full border-2 border-white/20"
+          className="w-64 h-12 flex p-3 items-center justify-center bg-sky-500 text-white  cursor-pointer rounded-full border-2 border-white/20 hover:bg-white hover:text-blue-900 transition-all duration-200 hover:shadow-2xl"
         >
          <p> Selecione uma imagem</p>
-        </div>
+</div>
         <input
           type="file"
           accept="image/*"
