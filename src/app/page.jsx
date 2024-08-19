@@ -31,41 +31,42 @@ export default function Home() {
         ).toString(16)
       );
     };
-
+  
     // Função para definir o userId no localStorage
     const initializeUserId = () => {
       let userId = localStorage.getItem("userId");
       if (!userId) {
         userId = generateUUID();
         localStorage.setItem("userId", userId);
+        console.log("Novo userId gerado e salvo no localStorage:", userId);
+      } else {
+        console.log("userId já existente no localStorage:", userId);
       }
+      return userId;
     };
-
-    const registerView = async () => {
-      const userId = localStorage.getItem("userId");
-
+  
+    // Função para registrar a visualização no servidor
+    const registerView = async (userId) => {
       try {
-        await axios.post("/api/view", { userId });
+        console.log("Registrando visualização para userId:", userId);
+        const response = await axios.post(`${uri}/api/view`, { userId });
+        console.log("Visualização registrada com sucesso:", response.data);
       } catch (error) {
         console.error("Erro ao registrar a visualização:", error.message);
       }
     };
-
-    // Chama a função quando o site for carregado
-    window.addEventListener("load", () => {
-      const userId = initializeUserId();
-      registerView(userId);
-    });
-
+  
+    // Função para buscar a linha do tempo
     const fetchTimeline = async () => {
       try {
+        console.log("Buscando dados da linha do tempo...");
         const response = await axios.get(`${uri}/api/years`);
         const data = response.data;
-
+  
         // Recupera o estado das curtidas do localStorage
         const likedEvents =
           JSON.parse(localStorage.getItem("likedEvents")) || [];
-
+  
         // Atualiza o estado local com base no estado do localStorage
         const updatedTimeline = data.map((year) => ({
           ...year,
@@ -74,19 +75,25 @@ export default function Home() {
             liked: likedEvents.includes(event._id),
           })),
         }));
-
+  
         setTimeline(updatedTimeline);
+        console.log("Linha do tempo carregada com sucesso:", updatedTimeline);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
       }
     };
+  
+    // Inicializa o userId, registra a visualização e busca a linha do tempo
+    const userId = initializeUserId();
+    registerView(userId);
     fetchTimeline();
-
+  
     // Limpeza do listener
     return () => {
       window.removeEventListener("load", initializeUserId);
     };
   }, []);
+  
 
   const handleModal = (index) => {
     if (modalActiveIndex === index) {
@@ -277,7 +284,7 @@ export default function Home() {
 
       {/* SECTION TIMELINE */}
 
-      {/* <section
+      <section
         id="linha-do-tempo"
         className="min-h-screen flex flex-col  bg-[#E2E6EC] p-6 py-14"
       >
@@ -533,7 +540,7 @@ export default function Home() {
             </a>
           </nav>
         </div>
-      </section> */}
+      </section>
       <Footer />
     </>
   );
