@@ -10,6 +10,10 @@ export default function Header() {
 
   const menuItems = [
     {
+      nome: "Tema Foto Perfil",
+      link: "/theme",
+    },
+    {
       nome: "Início",
       link: "/",
     },
