@@ -29,7 +29,7 @@ const Theme = () => {
       <main className="flex-1 flex flex-col items-center justify-center p-10">
         <div
           onClick={handleFileClick}
-          className="w-64 h-12 flex items-center justify-center bg-blue-500 text-white rounded cursor-pointer"
+          className="w-64 h-12 flex items-center justify-center bg-sky-500 text-white  cursor-pointer rounded-full"
         >
           Selecione uma imagem
         </div>

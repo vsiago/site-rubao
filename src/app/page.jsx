@@ -204,7 +204,7 @@ export default function Home() {
         <source src="/video/seq-rubao.mp4" type="video/mp4" />
         Seu navegador não suporta a tag de vídeo.
       </video>
-      <section className="relative flex-1 min-h-screen w-full flex flex-col bg-gradient-to-br from-[#005087]/80 via-[#005087] to-[#105F98] items-start justify-start md:items-start md:pt-40 ">
+      <section className="relative flex-1 min-h-screen w-full flex flex-col bg-gradient-to-br from-[#053C81]/90  to-[#003055] items-start justify-start md:items-start md:pt-40 ">
         <div
           ref={ref}
           className={`flex items-center w-full justify-center flex-col md:container flex-1 px-10 z-10${
@@ -225,7 +225,7 @@ export default function Home() {
                 </div>
               </div>
               <Image
-                    width={300}
+                    width={400}
                     height={80}
                     alt="logo B Bubão"
                     src={require("../../public/pra-fazer-muito-mais.svg")}

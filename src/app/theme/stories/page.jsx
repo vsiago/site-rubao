@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useCallback, useEffect } from "react";
 import Cropper from "react-easy-crop";
-import getCroppedImg from "./getCroppedImg"; // Ajuste o caminho conforme a localização real do arquivo
+import getCroppedImg from "../../../components/getCroppedImg"; // Ajuste o caminho conforme a localização real do arquivo
 
 const ImageCropper = ({ imageSrc }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
@@ -32,14 +32,14 @@ const ImageCropper = ({ imageSrc }) => {
     if (!croppedImage) return;
     const link = document.createElement("a");
     link.href = croppedImage;
-    link.download = "theme-1080x1920.png"; // Nome do arquivo que será baixado
+    link.download = "theme-rubao20-1080x1920.png"; // Nome do arquivo que será baixado
     document.body.appendChild(link); // Adiciona o link ao DOM
     link.click();
     document.body.removeChild(link); // Remove o link do DOM
   };
 
   return (
-    <div className="relative w-[1080px] h-[1920px]">
+    <div className="relative w-full max-w-[540px] h-[960px] mx-auto">
       {/* Imagem de sobreposição */}
       <div
         className="border-2 border-white/10 rounded-md"
@@ -72,10 +72,8 @@ const ImageCropper = ({ imageSrc }) => {
             position: "relative",
           },
           cropAreaStyle: {
-            width: "1080px",
-            height: "1920px",
-            maxWidth: "100%",
-            maxHeight: "100%",
+            width: "100%",
+            height: "100%",
           },
           mediaStyle: {
             objectFit: "cover",
@@ -89,8 +87,8 @@ const ImageCropper = ({ imageSrc }) => {
             backgroundImage: `url(${croppedImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            width: "1080px",
-            height: "1920px",
+            width: "100%",
+            height: "100%",
             position: "absolute",
             top: 0,
             left: 0,
@@ -103,7 +101,7 @@ const ImageCropper = ({ imageSrc }) => {
       {croppedImage && (
         <button
           onClick={handleDownload}
-          className="absolute -bottom-14 w-full bg-green-500 text-white p-2 border border-gray-600 rounded-sm"
+          className="absolute bottom-0 w-full bg-green-500 text-white p-2 border border-gray-600 rounded-sm"
           style={{ zIndex: 12 }} // Garantia de visibilidade do botão
         >
           Download
@@ -113,7 +111,7 @@ const ImageCropper = ({ imageSrc }) => {
       {/* Botão de Salvar */}
       <button
         onClick={handleSave}
-        className="absolute -bottom-14 bg-sky-500 text-white p-2 border border-gray-600 w-full rounded-sm"
+        className="absolute bottom-14 bg-sky-500 text-white p-2 border border-gray-600 w-full rounded-sm"
         style={{ zIndex: 10 }}
       >
         Salvar
