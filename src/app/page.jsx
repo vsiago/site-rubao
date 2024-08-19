@@ -277,7 +277,7 @@ export default function Home() {
 
       {/* SECTION TIMELINE */}
 
-      <section
+      {/* <section
         id="linha-do-tempo"
         className="min-h-screen flex flex-col  bg-[#E2E6EC] p-6 py-14"
       >
@@ -333,7 +333,6 @@ export default function Home() {
                   </div>
                   {modalActiveIndex === index && (
                     <>
-                      {/* <div className=" h-32 bg-gradient-to-b from-slate-100 to-slate-100/0 absolute top-0 left-0 right-0 z-20"></div> */}
                       <ul
                         className={`flex relative flex-col gap-2 py-4 pb-6 bg-gradient-to-b from-slate-300/5 via-slate-600/10 to-slate-300/0  overflow-x-auto rounded-b-xl transition-[max-height] duration-500 ease-in-out ${
                           modalActiveIndex === index ? "max-h-96" : "max-h-0"
@@ -443,7 +442,7 @@ export default function Home() {
                                     </div>
                                   </div>
                                 </div>
-                                {/* <div className="px-3 w-full">
+                                 <div className="px-3 w-full">
                                   <input
                                     className="bg-white p-2 rounded-md border border-slate-300 w-full text-slate-600 focus:border focus:border-sky-500"
                                     placeholder="Faça um comentário"
@@ -460,8 +459,8 @@ export default function Home() {
                                   >
                                     Comentar
                                   </button>
-                                </div> */}
-                                {/* <div className="px-3 w-full">
+                                </div> 
+                               <div className="px-3 w-full">
                                   <p
                                     className="text-slate-500 text-sm my-2 text-end cursor-pointer"
                                     onClick={() => {
@@ -513,7 +512,7 @@ export default function Home() {
                                       )}
                                     </div>
                                   )}
-                                </div> */}
+                                </div>
                               </div>
                             </div>
                           </li>
@@ -534,7 +533,7 @@ export default function Home() {
             </a>
           </nav>
         </div>
-      </section>
+      </section> */}
       <Footer />
     </>
   );

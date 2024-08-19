@@ -102,38 +102,7 @@ export default function Header() {
             ></li>
           </ul>
         )}
-        <ul
-          className={`${
-            open
-              ? "bg-gradient-to-br from-[#0E264A] via-[#0E3560] to-[#105F98] flex opacity-100 w-full h-screen left-0 absolute z-[1000]"
-              : "w-full h-0"
-          } fixed ${
-            scrolled ? "top-16" : "top-20"
-          } right-0 flex flex-col transition duration-200 ease-out opacity-0 flex-1`}
-        >
-          {menuItems.map((item, index) => (
-            <li
-              key={item.nome}
-              style={{ transitionDelay: `${open ? index * 70 : 0}ms` }}
-              className={`px-6 ${
-                open
-                  ? "opacity-100 transform translate-x-0 "
-                  : "opacity-0 transform -translate-x-10"
-              } transition-all ease-out duration-500`}
-            >
-              <a
-                className={`${
-                  open
-                    ? "inline-block ml-0 pointer-events-auto transition ease-in py-6"
-                    : "py-0 opacity-0 ml-6 hidden pointer-events-none"
-                } text-slate-300 border-b-[1px] border-slate-950/40 w-full focus:text-white focus:font-semibold`}
-                href={`${item.link}`}
-              >
-                {item.nome}
-              </a>
-            </li>
-          ))}
-        </ul>
+
         <ul className="hidden md:flex gap-3">
           {menuItems.map((item, intex) => (
             <li key={item.nome}>
