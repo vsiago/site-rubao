@@ -28,11 +28,12 @@ const Profile = () => {
       <Header />
       <main className="flex-1 flex flex-col items-center justify-center p-10 border">
         <div className="my-6">
-          <p className="text-2xl md:text-4xl  font-semibold text-center">
-            Personalize sua foto de perfil
+          <p className="text-3xl md:text-4xl  font-semibold text-center">
+            Personalize sua <br className="md:hidden" />
+            foto de perfil
           </p>
           <p className="text-center text-base font-light text-slate-400">
-            Para um melhor encaixe, recomendamos que a imagem seja quadrada 4:4.
+            Recomendamos uma imagem quadrada 4:4 para melhor encaixe.
           </p>
         </div>
 
