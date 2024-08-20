@@ -27,13 +27,14 @@ const Profile = () => {
     <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90 to-[#003055] border">
       <Header />
       <main className="flex-1 flex flex-col items-center justify-center p-10 border">
-        <div className="my-6">
+        <div className="my-7">
           <p className="text-3xl md:text-4xl  font-semibold text-center">
             Personalize sua <br className="md:hidden" />
             foto de perfil
           </p>
-          <p className="text-center text-base font-light text-slate-400">
-            Recomendamos uma imagem quadrada 4:4 para melhor encaixe.
+          <p className="text-center text-xs md:text-base font-light text-slate-400 mt-2">
+            Recomendamos uma imagem <br className="md:hidden" /> quadrada 4:4
+            para melhor encaixe.
           </p>
         </div>
 
