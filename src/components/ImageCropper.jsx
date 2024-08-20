@@ -1,4 +1,3 @@
-"use client";
 import React, { useState, useCallback, useEffect } from "react";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "./getCroppedImg"; // Ajuste o caminho conforme a localização real do arquivo
@@ -103,8 +102,8 @@ const ImageCropper = ({ imageSrc }) => {
       {croppedImage && (
         <button
           onClick={handleDownload}
-          className="absolute -bottom-14 w-full bg-green-500 text-white p-2 border border-gray-600 rounded-sm"
-          style={{ zIndex: 12 }} // Garantia de visibilidade do botão
+          className="absolute -bottom-16 w-full bg-green-500 border-2 hover:bg-green-200 hover:text-green-900 shadow-2xl hover:scale-110 border-green-100 text-white p-3  rounded-full transition-all duration-150 ease-in-out"
+          style={{ zIndex: 5 }} // Garantia de visibilidade do botão
         >
           Download
         </button>
@@ -113,8 +112,8 @@ const ImageCropper = ({ imageSrc }) => {
       {/* Botão de Salvar */}
       <button
         onClick={handleSave}
-        className="absolute -bottom-14 bg-sky-500 text-white p-2 border border-gray-600 w-full rounded-sm"
-        style={{ zIndex: 10 }}
+        className="absolute -bottom-16 bg-sky-500 border-2 border-sky-300  p-3 w-full rounded-full hover:bg-sky-200 text-white hover:text-blue-900 transition-all duration-150 ease-in-out"
+        style={{ zIndex: 4 }} // Garantia de visibilidade do botão
       >
         Salvar
       </button>
