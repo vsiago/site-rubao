@@ -27,10 +27,15 @@ const Profile = () => {
     <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90 to-[#003055] border">
       <Header />
       <main className="flex-1 flex flex-col items-center justify-center p-10 border">
-        <p className="text-2xl md:text-4xl my-10 font-semibold text-center">
-          Personalize sua foto de perfil
-        </p>
-        
+        <div className="my-6">
+          <p className="text-2xl md:text-4xl  font-semibold text-center">
+            Personalize sua foto de perfil
+          </p>
+          <p className="text-center text-base font-light text-slate-400">
+            Para um encaixe perfeito, recomendamos que a imagem seja quadrada.
+          </p>
+        </div>
+
         {/* Esconde o botão quando imageSrc está ativo */}
         {!imageSrc && (
           <div
