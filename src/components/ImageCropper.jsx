@@ -63,23 +63,6 @@ const ImageCropper = ({ imageSrc }) => {
         onCropChange={setCrop}
         onZoomChange={setZoom}
         onCropComplete={onCropComplete}
-        cropSize={{ width: 400, height: 400 }} // Define a área de corte para 400x400
-        style={{
-          containerStyle: {
-            width: "100%",
-            height: "100%",
-            position: "relative",
-          },
-          cropAreaStyle: {
-            width: "400px",
-            height: "400px",
-            maxWidth: "100%",
-            maxHeight: "100%",
-          },
-          mediaStyle: {
-            objectFit: "cover",
-          },
-        }}
       />
       {/* Visualização da Imagem Cortada */}
       {croppedImage && (
