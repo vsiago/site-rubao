@@ -32,7 +32,7 @@ const Profile = () => {
             Personalize sua foto de perfil
           </p>
           <p className="text-center text-base font-light text-slate-400">
-            Para um encaixe perfeito, recomendamos que a imagem seja quadrada.
+            Para um melhor encaixa, recomendamos que a imagem seja quadrada 4:4
           </p>
         </div>
 
