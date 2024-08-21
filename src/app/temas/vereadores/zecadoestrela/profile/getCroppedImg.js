@@ -20,7 +20,6 @@ const getCroppedImg = async (imageSrc, crop) => {
     // Define as dimensões do canvas para o tamanho do crop
     canvas.width = crop.width;
     canvas.height = crop.height;
-
     // Desenha a imagem recortada no canvas
     ctx.drawImage(
       userImage,
