@@ -39,7 +39,7 @@ const Profile = () => {
                   width={300}
                   height={300}
                   alt="Imagem perfil personalizada"
-                  src="/images/thumb-thumb-zoia.png"
+                  src="/images/thumb-zoia.png"
                   className="w-full h-full object-contain"
                 />
               </div>
