@@ -51,7 +51,7 @@ const Theme = () => {
 
             <div className="bg-white h-[30%] w-full rounded-b-2xl flex items-center justify-start text-slate-700 p-8">
               <p className="text-2xl font-bold text-[#013360]">Perfil</p>
-              <span className="font-normal italic text-green-500 ml-3">
+              <span className="font-normal italic text-lg text-green-500 ml-3">
                 {"Disponível"}
               </span>
             </div>
@@ -74,7 +74,7 @@ const Theme = () => {
 
             <div className="bg-slate-300 h-[30%] w-full rounded-b-2xl flex items-center justify-start text-slate-700 p-8">
               <p className="text-2xl font-bold text-[#013360]">Feed</p>
-              <span className="font-normal italic text-slate-500 ml-3">
+              <span className="font-normal italic text-lg text-slate-500 ml-3">
                 {"(Disponível em breve)"}
               </span>
             </div>
@@ -97,7 +97,7 @@ const Theme = () => {
 
             <div className="bg-slate-300 h-[30%] w-full rounded-b-2xl flex items-center justify-start text-slate-700 p-8">
               <p className="text-2xl font-bold text-[#013360]">Stories</p>
-              <span className="font-normal italic text-slate-500 ml-3">
+              <span className="font-normal italic text-lg text-slate-500 ml-3">
                 {"(Disponível em breve)"}
               </span>
             </div>
