@@ -30,19 +30,23 @@ const Profile = () => {
       <main className="flex-1 flex flex-col items-center justify-center p-10 border">
         <div className="my-7">
           {!imageSrc && (
-            <div className="h-40 w-40   mx-auto">
-              <Image
-                width={110}
-                height={110}
-                alt="Imagem perfil personalizada"
-                src="/images/thumb-guilhermefaria.png"
-                className="w-full h-full object-contain"
-              />
-            </div>
+            <>
+              <p className="text-3xl md:text-4xl  font-semibold text-center mb-10">
+                Atualize sua foto <br className="md:hidden" /> de perfil
+              </p>
+              <div className="h-40 w-40   mx-auto">
+                <Image
+                  width={110}
+                  height={110}
+                  alt="Imagem perfil personalizada"
+                  src="/images/thumb-guilhermefaria.png"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </>
           )}
-          <p className="text-3xl md:text-4xl  font-semibold text-center">
-            Personalize sua <br className="md:hidden" />
-            foto de perfil
+          <p className="text-xl md:text-4xl  font-semibold text-center">
+            Guilherme Farias <br /> + Rubão
           </p>
           <p className="text-center text-xs md:text-base font-light text-slate-400 mt-2">
             Recomendamos uma imagem <br className="md:hidden" /> quadrada 4:4
