@@ -51,6 +51,9 @@ const Theme = () => {
 
             <div className="bg-white h-[30%] w-full rounded-b-2xl flex items-center justify-start text-slate-700 p-8">
               <p className="text-2xl font-bold text-[#013360]">Perfil</p>
+              <span className="font-normal italic text-green-500 ml-3">
+                {"Disponível"}
+              </span>
             </div>
           </Link>
           <Link
