@@ -133,12 +133,16 @@ export default function Header() {
               </a>
             </li>
           ))}
-          <a
-            href="/theme"
-            className="ml-3 bg-[#FFF000] rounded-full p-2 px-4 hover:bg-white transition-all ease-in-out duration-200"
-          >
-            <p className="text-blue-950 font-bold">Temas</p>
-          </a>
+          {open ? (
+            <a
+              href="/theme"
+              className="ml-3 bg-[#FFF000] rounded-full p-2 px-4 hover:bg-white transition-all ease-in-out duration-200"
+            >
+              <p className="text-blue-950 font-bold">Temas</p>
+            </a>
+          ) : (
+            ""
+          )}
         </ul>
         <ul className="hidden md:flex gap-3 items-center">
           {menuItems.map((item, intex) => (
@@ -153,12 +157,16 @@ export default function Header() {
               </Link>
             </li>
           ))}
-          <a
-            href="/theme"
-            className="ml-3 bg-[#FFF000] rounded-full p-2 px-4 hover:bg-white transition-all ease-in-out duration-200"
-          >
-            <p className="text-blue-950 font-bold">Temas</p>
-          </a>
+          {open ? (
+            <a
+              href="/theme"
+              className="ml-3 bg-[#FFF000] rounded-full p-2 px-4 hover:bg-white transition-all ease-in-out duration-200"
+            >
+              <p className="text-blue-950 font-bold">Temas</p>
+            </a>
+          ) : (
+            ""
+          )}
         </ul>
       </nav>
     </header>

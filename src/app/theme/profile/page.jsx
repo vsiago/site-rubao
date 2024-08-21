@@ -3,6 +3,7 @@ import React, { useState, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ImageCropper from "../../../components/ImageCropper"; // Ajuste o caminho conforme necessário
+import Image from "next/image";
 
 const Profile = () => {
   const [imageSrc, setImageSrc] = useState(null);
@@ -28,6 +29,17 @@ const Profile = () => {
       <Header />
       <main className="flex-1 flex flex-col items-center justify-center p-10 border">
         <div className="my-7">
+          {!imageSrc && (
+            <div className="h-36 w-36   mx-auto">
+              <Image
+                width={110}
+                height={110}
+                alt="Imagem perfil personalizada"
+                src="/example-profile.png"
+                className="w-full h-full object-contain"
+              />
+            </div>
+          )}
           <p className="text-3xl md:text-4xl  font-semibold text-center">
             Personalize sua <br className="md:hidden" />
             foto de perfil
