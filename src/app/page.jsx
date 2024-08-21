@@ -232,7 +232,7 @@ export default function Home() {
                 className="animate delay1 mt-6"
               />
             </div>
-            <p className="animate delay2 text-xs text-slate-400 text-normal text-center mt-2 md:text-start md:text-base md:w-[50%] md:mt-6">
+            <p className="animate delay2 text-xs text-slate-400 text-normal text-center mt-3 md:text-start md:text-base md:w-[50%] md:mt-6">
               Coligação: Por uma Itaguaí ainda melhor! - Podemos, Republicanos,
               PDT, PSD, PP | CNPJ Candidatos - 56.863.190/0001-25
             </p>
