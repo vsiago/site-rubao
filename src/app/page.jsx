@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { useInView } from "react-intersection-observer";
 import { scroller } from "react-scroll";
 import timelineData from "../../public/timeline.json";
+import Link from "next/link";
 
 export default function Home() {
   const [timeline, setTimeline] = useState([]);
@@ -31,7 +32,7 @@ export default function Home() {
         ).toString(16)
       );
     };
-  
+
     // Função para definir o userId no localStorage
     const initializeUserId = () => {
       let userId = localStorage.getItem("userId");
@@ -44,7 +45,7 @@ export default function Home() {
       }
       return userId;
     };
-  
+
     // Função para registrar a visualização no servidor
     const registerView = async (userId) => {
       try {
@@ -55,18 +56,18 @@ export default function Home() {
         console.error("Erro ao registrar a visualização:", error.message);
       }
     };
-  
+
     // Função para buscar a linha do tempo
     const fetchTimeline = async () => {
       try {
         console.log("Buscando dados da linha do tempo...");
         const response = await axios.get(`${uri}/api/years`);
         const data = response.data;
-  
+
         // Recupera o estado das curtidas do localStorage
         const likedEvents =
           JSON.parse(localStorage.getItem("likedEvents")) || [];
-  
+
         // Atualiza o estado local com base no estado do localStorage
         const updatedTimeline = data.map((year) => ({
           ...year,
@@ -75,25 +76,24 @@ export default function Home() {
             liked: likedEvents.includes(event._id),
           })),
         }));
-  
+
         setTimeline(updatedTimeline);
         console.log("Linha do tempo carregada com sucesso:", updatedTimeline);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
       }
     };
-  
+
     // Inicializa o userId, registra a visualização e busca a linha do tempo
     const userId = initializeUserId();
     registerView(userId);
     fetchTimeline();
-  
+
     // Limpeza do listener
     return () => {
       window.removeEventListener("load", initializeUserId);
     };
   }, []);
-  
 
   const handleModal = (index) => {
     if (modalActiveIndex === index) {
@@ -225,32 +225,28 @@ export default function Home() {
                 </div>
               </div>
               <Image
-                    width={400}
-                    height={80}
-                    alt="logo B Bubão"
-                    src={require("../../public/pra-fazer-muito-mais.svg")}
-                    className="animate delay1 mt-6"
-                  />
+                width={400}
+                height={80}
+                alt="logo B Bubão"
+                src={require("../../public/pra-fazer-muito-mais.svg")}
+                className="animate delay1 mt-6"
+              />
             </div>
-            <a
+            <Link
               className="p-3 px-9 cursor-pointer w-full md:w-[50%] lg:w-[28%] border-2 border-[#FFF000] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center"
-              onClick={() =>
-                scroller.scrollTo("linha-do-tempo", {
-                  smooth: true,
-                  offset: 0, // Ajuste opcional para compensar a altura do cabeçalho
-                })
-              }
+              href="/temas"
             >
-              <div className="mt-2">
+              <div className="">
                 <Image
                   width={35}
                   height={32}
                   alt="logo B Bubão"
                   src={require("../../public/arrow.svg")}
+                  className="-rotate-90"
                 />
               </div>
-              <span className="text-white text-xl">Confira</span>
-            </a>
+              <span className="text-white text-xl">Personalizar Perfil</span>
+            </Link>
           </main>
         </div>
         <div className="h-32 w-full"></div>
