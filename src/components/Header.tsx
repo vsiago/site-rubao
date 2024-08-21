@@ -134,12 +134,12 @@ export default function Header() {
             </li>
           ))}
           {open ? (
-            <a
-              href="/theme"
+            <Link
+              href="/temas"
               className="ml-3 bg-[#FFF000] rounded-full p-2 px-4 hover:bg-white transition-all ease-in-out duration-200"
             >
               <p className="text-blue-950 font-bold">Temas</p>
-            </a>
+            </Link>
           ) : (
             ""
           )}
@@ -157,12 +157,12 @@ export default function Header() {
               </Link>
             </li>
           ))}
-          <a
-            href="/theme"
+          <Link
+            href="/temas"
             className="ml-3 bg-[#FFF000] rounded-full p-2 px-4 hover:bg-white transition-all ease-in-out duration-200"
           >
             <p className="text-blue-950 font-bold">Temas</p>
-          </a>
+          </Link>
         </ul>
       </nav>
     </header>

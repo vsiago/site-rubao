@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ImageCropper from "../../components/ImageCropper"; // Ajuste o caminho conforme necessário
 import Image from "next/image";
+import Link from "next/link";
 
 const Theme = () => {
   const [imageSrc, setImageSrc] = useState(null);
@@ -32,8 +33,8 @@ const Theme = () => {
           Personalize sua com temas do Rubão 20
         </p>
         <div className="container  flex flex-col gap-6 md:flex-row mb-20">
-          <a
-            href="/theme/profile"
+          <Link
+            href="/temas/profile"
             className="h-80 w-full border-2 border-white bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
           >
             <div className=" h-[70%] w-full flex items-center justify-center">
@@ -51,9 +52,9 @@ const Theme = () => {
             <div className="bg-white h-[30%] w-full rounded-b-2xl flex items-center justify-start text-slate-700 p-8">
               <p className="text-2xl font-bold text-[#013360]">Perfil</p>
             </div>
-          </a>
-          <a
-            href="#theme/stories"
+          </Link>
+          <Link
+            href="#temas/stories"
             className="cursor-not-allowed h-80 w-full border-2 border-slate-300 bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
           >
             <div className=" h-[70%] w-full flex items-center justify-center">
@@ -74,9 +75,9 @@ const Theme = () => {
                 {"(Disponível em breve)"}
               </span>
             </div>
-          </a>
-          <a
-            href="#theme/feed"
+          </Link>
+          <Link
+            href="#temas/feed"
             className="cursor-not-allowed mb-16 h-80 w-full border-2 border-slate-300 bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
           >
             <div className=" h-[70%] w-full flex items-center justify-center">
@@ -97,7 +98,7 @@ const Theme = () => {
                 {"(Disponível em breve)"}
               </span>
             </div>
-          </a>
+          </Link>
         </div>
       </main>
       <Footer />
