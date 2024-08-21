@@ -6,38 +6,40 @@ const createImage = (url) =>
     img.src = url;
   });
 
-const getCroppedImg = async (imageSrc, crop) => {
+const getCroppedImg = async (imageSrc, crop, zoom) => {
   try {
-    // Carrega a imagem do usuário
     const userImage = await createImage(imageSrc);
-
-    // Carrega a imagem de overlay
-    const overlayImage = await createImage("/images/theme-rubao-20.png"); // Ajuste o caminho conforme necessário
 
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
 
-    // Define as dimensões do canvas para o tamanho do crop
+    // Configura o tamanho do canvas
     canvas.width = crop.width;
     canvas.height = crop.height;
 
-    // Desenha a imagem recortada no canvas
+    // Ajusta a escala e posição da imagem para garantir que ela não estique
+    const scaleX = userImage.width / crop.width;
+    const scaleY = userImage.height / crop.height;
+    const scale = Math.min(scaleX, scaleY);
+
+    const offsetX = (userImage.width - crop.width * scale) / 2;
+    const offsetY = (userImage.height - crop.height * scale) / 2;
+
     ctx.drawImage(
       userImage,
-      crop.x,
-      crop.y,
-      crop.width,
-      crop.height,
+      crop.x * scale,
+      crop.y * scale,
+      crop.width * scale,
+      crop.height * scale,
       0,
       0,
       crop.width,
       crop.height
     );
 
-    // Adiciona o overlay se a imagem de overlay estiver carregada
-    if (overlayImage) {
-      ctx.drawImage(overlayImage, 0, 0, crop.width, crop.height);
-    }
+    // Adiciona o efeito de blur no fundo (se necessário)
+    ctx.filter = "blur(20px)";
+    ctx.drawImage(userImage, 0, 0, crop.width, crop.height);
 
     // Converte o canvas para uma URL de objeto (Blob URL)
     return new Promise((resolve) => {

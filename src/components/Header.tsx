@@ -157,16 +157,12 @@ export default function Header() {
               </Link>
             </li>
           ))}
-          {open ? (
-            <a
-              href="/theme"
-              className="ml-3 bg-[#FFF000] rounded-full p-2 px-4 hover:bg-white transition-all ease-in-out duration-200"
-            >
-              <p className="text-blue-950 font-bold">Temas</p>
-            </a>
-          ) : (
-            ""
-          )}
+          <a
+            href="/theme"
+            className="ml-3 bg-[#FFF000] rounded-full p-2 px-4 hover:bg-white transition-all ease-in-out duration-200"
+          >
+            <p className="text-blue-950 font-bold">Temas</p>
+          </a>
         </ul>
       </nav>
     </header>
