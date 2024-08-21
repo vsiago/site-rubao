@@ -25,9 +25,9 @@ const Profile = () => {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90 to-[#003055] border">
+    <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90 to-[#003055]">
       <Header />
-      <main className="flex-1 flex flex-col items-center justify-center p-10 border">
+      <main className="flex-1 flex flex-col items-center justify-center p-10 mb-20">
         <div className="my-7">
           {!imageSrc && (
             <>
