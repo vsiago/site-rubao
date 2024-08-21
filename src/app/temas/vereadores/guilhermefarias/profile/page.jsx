@@ -45,7 +45,7 @@ const Profile = () => {
               </div>
             </>
           )}
-          <p className="text-xl md:text-4xl  font-semibold text-center">
+          <p className="text-xl md:text-2xl  font-semibold text-center">
             Guilherme Farias <br /> + Rubão
           </p>
           <p className="text-center text-xs md:text-base font-light text-slate-400 mt-2">
