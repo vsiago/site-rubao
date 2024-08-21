@@ -27,13 +27,13 @@ const Profile = () => {
   return (
     <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90 to-[#003055]">
       <Header />
-      <main className="flex-1 flex flex-col items-center justify-center p-10 mb-20">
+      <main className="flex-1 flex flex-col items-center justify-center p-10 mb-20 mt-12">
         <div className="my-7">
           {!imageSrc && (
-            <div className="h-36 w-36   mx-auto">
+            <div className="h-64 w-64   mx-auto">
               <Image
-                width={110}
-                height={110}
+                width={300}
+                height={300}
                 alt="Imagem perfil personalizada"
                 src="/example-profile.png"
                 className="w-full h-full object-contain"
