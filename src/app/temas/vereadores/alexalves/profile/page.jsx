@@ -6,16 +6,13 @@ import ImageCropper from "./ImageCropper";
 import Image from "next/image";
 import Head from "next/head";
 
-const Profile = ({
-  title = "Dr. Rubão e Alex Alves",
-  vereadorName = "Alex Alves",
-}) => {
+const Profile = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
-    document.title = title; // Configura o título da aba do navegador
-  }, [title]);
+    document.title = "Dr. Rubão e Alex Alves"; // Configura o título da aba do navegador
+  }, []);
 
   const handleFileClick = () => {
     fileInputRef.current.click();
@@ -36,8 +33,8 @@ const Profile = ({
     <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90 to-[#003055]">
       <Head>
         <meta property="og:image" content="/images/thumb-vereador.png" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={`Perfil de ${vereadorName}`} />
+        <meta property="og:title" content={document.title} />
+        <meta property="og:description" content="Perfil de Alex Alves" />
       </Head>
       <Header />
       <main className="flex-1 flex flex-col items-center justify-center p-10 mb-20 mt-12">
@@ -59,7 +56,7 @@ const Profile = ({
             </>
           )}
           <p className="text-xl md:text-2xl font-semibold text-center">
-            {vereadorName} + Rubão
+            Alex Alves + Rubão
           </p>
           <p className="text-center text-xs md:text-base font-light text-slate-400 mt-2">
             Recomendamos uma imagem <br className="md:hidden" /> quadrada 4:4
