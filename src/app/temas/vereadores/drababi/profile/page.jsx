@@ -7,7 +7,7 @@ import ImageCropper from "./ImageCropper";
 import Image from "next/image";
 import Head from "next/head";
 
-const vereador = "Drª Baby";
+const vereador = "Dra Baby";
 const thumb = "thumb-veterinariababi.png";
 const profile = "profile-veterinariababi.png";
 
