@@ -12,7 +12,7 @@ const getCroppedImg = async (imageSrc, crop) => {
     const userImage = await createImage(imageSrc);
 
     // Carrega a imagem de overlay
-    const overlayImage = await createImage("/images/profile-durgel.png"); // Ajuste o caminho conforme necessário
+    const overlayImage = await createImage("/images/profile-dugel.png"); // Ajuste o caminho conforme necessário
 
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");

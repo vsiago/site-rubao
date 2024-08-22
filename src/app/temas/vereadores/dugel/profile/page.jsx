@@ -39,14 +39,14 @@ const Profile = () => {
                   width={300}
                   height={300}
                   alt="Imagem perfil personalizada"
-                  src="/images/thumb-durgel.png"
+                  src="/images/thumb-dugel.png"
                   className="w-full h-full object-contain"
                 />
               </div>
             </>
           )}
           <p className="text-xl md:text-2xl  font-semibold text-center">
-            Duegel + Rubão
+            Dugel + Rubão
           </p>
           <p className="text-center text-xs md:text-base font-light text-slate-400 mt-2">
             Recomendamos uma imagem <br className="md:hidden" /> quadrada 4:4
