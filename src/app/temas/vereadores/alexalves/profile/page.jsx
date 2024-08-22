@@ -1,14 +1,21 @@
 "use client";
-import React, { useState, useRef } from "react";
-import Head from "next/head";
+import React, { useState, useRef, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ImageCropper from "./ImageCropper"; // Ajuste o caminho conforme necessário
+import ImageCropper from "./ImageCropper";
 import Image from "next/image";
+import Head from "next/head";
 
-const Profile = () => {
+const Profile = ({
+  title = "Dr. Rubão e Alex Alves",
+  vereadorName = "Alex Alves",
+}) => {
   const [imageSrc, setImageSrc] = useState(null);
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    document.title = title; // Configura o título da aba do navegador
+  }, [title]);
 
   const handleFileClick = () => {
     fileInputRef.current.click();
@@ -26,82 +33,83 @@ const Profile = () => {
   };
 
   return (
-    <>
+    <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90 to-[#003055]">
       <Head>
-        <title>Alex Alves - Perfil</title>
-        <meta
-          name="description"
-          content="Perfil de Alex Alves, atualize sua foto de perfil e veja as informações."
-        />
-        <meta property="og:title" content="Alex Alves - Perfil" />
-        <meta
-          property="og:description"
-          content="Atualize sua foto de perfil e veja as informações."
-        />
-        <meta
-          property="og:image"
-          content="https://www.drrubao.com.br/images/thumb-alexalves.png"
-        />
-        <meta
-          property="og:url"
-          content="https://www.drrubao.com.br/images/thumb-alexalves.png"
-        />
-        <meta property="og:type" content="profile" />
-        <meta property="fb:app_id" content="YOUR_FB_APP_ID" />{" "}
-        {/* Opcional: Adicione o ID do seu aplicativo do Facebook */}
+        <meta property="og:image" content="/images/thumb-vereador.png" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={`Perfil de ${vereadorName}`} />
       </Head>
-      <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90 to-[#003055]">
-        <Header />
-        <main className="flex-1 flex flex-col items-center justify-center p-10 mb-20 mt-12">
-          <div className="my-7">
-            {!imageSrc && (
-              <>
-                <p className="text-3xl md:text-4xl font-semibold text-center mb-10">
-                  Atualize sua foto <br className="md:hidden" /> de perfil
-                </p>
-                <div className="h-64 w-64 mx-auto">
-                  <Image
-                    width={300}
-                    height={300}
-                    alt="Imagem perfil personalizada"
-                    src="/images/thumb-alexalves.png"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </>
-            )}
-            <p className="text-xl md:text-2xl font-semibold text-center">
-              Alex Alves + Rubão
-            </p>
-            <p className="text-center text-xs md:text-base font-light text-slate-400 mt-2">
-              Recomendamos uma imagem <br className="md:hidden" /> quadrada 4:4
-              para melhor encaixe.
-            </p>
-          </div>
-
-          {/* Esconde o botão quando imageSrc está ativo */}
+      <Header />
+      <main className="flex-1 flex flex-col items-center justify-center p-10 mb-20 mt-12">
+        <div className="my-7">
           {!imageSrc && (
-            <div
-              onClick={handleFileClick}
-              className="w-64 h-12 flex p-3 items-center justify-center bg-sky-500 text-white cursor-pointer rounded-full border-2 border-white/20 hover:bg-white hover:text-blue-900 transition-all duration-200 hover:shadow-2xl"
-            >
-              <p>Selecione uma imagem</p>
-            </div>
+            <>
+              <p className="text-3xl md:text-4xl font-semibold text-center mb-10">
+                Atualize sua foto <br className="md:hidden" /> de perfil
+              </p>
+              <div className="h-64 w-64 mx-auto">
+                <Image
+                  width={300}
+                  height={300}
+                  alt="Imagem perfil personalizada"
+                  src="/images/thumb-alexalves.png"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </>
           )}
+          <p className="text-xl md:text-2xl font-semibold text-center">
+            {vereadorName} + Rubão
+          </p>
+          <p className="text-center text-xs md:text-base font-light text-slate-400 mt-2">
+            Recomendamos uma imagem <br className="md:hidden" /> quadrada 4:4
+            para melhor encaixe.
+          </p>
+        </div>
 
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            style={{ display: "none" }}
-            ref={fileInputRef}
-          />
+        {/* Esconde o botão quando imageSrc está ativo */}
+        {!imageSrc && (
+          <div
+            onClick={handleFileClick}
+            className="w-64 h-12 flex p-3 items-center justify-center bg-sky-500 text-white cursor-pointer rounded-full border-2 border-white/20 hover:bg-white hover:text-blue-900 transition-all duration-200 hover:shadow-2xl"
+          >
+            <p>Selecione uma imagem</p>
+          </div>
+        )}
 
-          {imageSrc && <ImageCropper imageSrc={imageSrc} />}
-        </main>
-        <Footer />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+          style={{ display: "none" }}
+          ref={fileInputRef}
+        />
+
+        {imageSrc && <ImageCropper imageSrc={imageSrc} />}
+
+        <div className="flex justify-center items-center mt-4">
+          <a href="https://www.whatsapp.com/" target="_blank" rel="noreferrer">
+            <Image
+              src="/images/icon-whatsapp.svg"
+              alt="WhatsApp"
+              width={32}
+              height={32}
+              className="mr-4"
+            />
+          </a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+            <Image
+              src="/images/icon-instagram.svg"
+              alt="Instagram"
+              width={32}
+              height={32}
+            />
+          </a>
+          {/* Adicione outros ícones de redes sociais conforme necessário */}
+        </div>
       </main>
-    </>
+      <Footer />
+    </main>
   );
 };
 
