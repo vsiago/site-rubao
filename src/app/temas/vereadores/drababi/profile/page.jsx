@@ -1,13 +1,25 @@
+// profile.js
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ImageCropper from "./ImageCropper"; // Ajuste o caminho conforme necessário
+import ImageCropper from "./ImageCropper";
 import Image from "next/image";
+import Head from "next/head";
+
+const vereador = "Drª Baby";
+const thumb = "thumb-veterinariababi.png";
+const profile = "profile-veterinariababi.png";
+
+const nameDownload = `Dr Rubão ${vereador}`;
 
 const Profile = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    document.title = `Dr. Rubão e ${vereador}`; // Configura o título da aba do navegador
+  }, []);
 
   const handleFileClick = () => {
     fileInputRef.current.click();
@@ -26,27 +38,41 @@ const Profile = () => {
 
   return (
     <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90 to-[#003055]">
+      <Head>
+        <title>{`Troque a foto do seu perfil com ${vereador}`}</title>
+        <meta
+          property="og:image"
+          content={`https://www.drrubao.com.br/images/${thumb}`}
+        />
+        <meta
+          property="og:title"
+          content={`Troque a foto do seu perfil com ${vereador}`}
+        />
+        <meta property="og:description" content={`Perfil de ${vereador}`} />
+        <meta property="og:url" content="https://example.com/profile" />
+        <meta property="og:type" content="profile" />
+      </Head>
       <Header />
       <main className="flex-1 flex flex-col items-center justify-center p-10 mb-20 mt-12">
         <div className="my-7">
           {!imageSrc && (
             <>
-              <p className="text-3xl md:text-4xl  font-semibold text-center mb-10">
+              <p className="text-3xl md:text-4xl font-semibold text-center mb-10">
                 Atualize sua foto <br className="md:hidden" /> de perfil
               </p>
-              <div className="h-64 w-64   mx-auto">
+              <div className="h-64 w-64 mx-auto">
                 <Image
                   width={300}
                   height={300}
                   alt="Imagem perfil personalizada"
-                  src="/images/thumb-veterinariababi.png"
+                  src={`/images/${thumb}`}
                   className="w-full h-full object-contain"
                 />
               </div>
             </>
           )}
-          <p className="text-xl md:text-2xl  font-semibold text-center">
-            Veterinária Baby + Rubão
+          <p className="text-xl md:text-2xl font-semibold text-center">
+            {`${vereador} + Rubão`}
           </p>
           <p className="text-center text-xs md:text-base font-light text-slate-400 mt-2">
             Recomendamos uma imagem <br className="md:hidden" /> quadrada 4:4
@@ -72,7 +98,13 @@ const Profile = () => {
           ref={fileInputRef}
         />
 
-        {imageSrc && <ImageCropper imageSrc={imageSrc} />}
+        {imageSrc && (
+          <ImageCropper
+            imageSrc={imageSrc}
+            downloadFileName={nameDownload}
+            backgroundImageUrl={`/images/${profile}`}
+          />
+        )}
       </main>
       <Footer />
     </main>
