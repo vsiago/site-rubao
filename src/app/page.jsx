@@ -16,6 +16,8 @@ export default function Home() {
   const [newComment, setNewComment] = useState("");
   const [showComments, setShowComments] = useState(false);
 
+  // deploy
+
   const uri = "https://rubaoapi.vercel.app";
 
   const { ref, inView } = useInView({
