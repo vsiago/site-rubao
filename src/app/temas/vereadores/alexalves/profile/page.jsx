@@ -6,12 +6,14 @@ import ImageCropper from "./ImageCropper";
 import Image from "next/image";
 import Head from "next/head";
 
+const vereador = "Alex Alves";
+
 const Profile = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
-    document.title = "Nome do Vereador"; // Configura o título da aba do navegador
+    document.title = `Dr. Rubão e ${vereador}`; // Configura o título da aba do navegador
   }, []);
 
   const handleFileClick = () => {
@@ -61,7 +63,7 @@ const Profile = () => {
             </>
           )}
           <p className="text-xl md:text-2xl font-semibold text-center">
-            Alex Alves + Rubão
+            {`${vereador} + Rubão`}
           </p>
           <p className="text-center text-xs md:text-base font-light text-slate-400 mt-2">
             Recomendamos uma imagem <br className="md:hidden" /> quadrada 4:4
@@ -88,27 +90,6 @@ const Profile = () => {
         />
 
         {imageSrc && <ImageCropper imageSrc={imageSrc} />}
-
-        <div className="flex justify-center items-center mt-4">
-          <a href="https://www.whatsapp.com/" target="_blank" rel="noreferrer">
-            <Image
-              src="/images/icon-whatsapp.svg"
-              alt="WhatsApp"
-              width={32}
-              height={32}
-              className="mr-4"
-            />
-          </a>
-          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
-            <Image
-              src="/images/icon-instagram.svg"
-              alt="Instagram"
-              width={32}
-              height={32}
-            />
-          </a>
-          {/* Adicione outros ícones de redes sociais conforme necessário */}
-        </div>
       </main>
       <Footer />
     </main>
