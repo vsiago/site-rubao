@@ -31,7 +31,7 @@ const ImageCropper = ({ imageSrc }) => {
     if (!croppedImage) return;
     const link = document.createElement("a");
     link.href = croppedImage;
-    link.download = "harondojesus-rubao.png"; // Nome do arquivo que será baixado
+    link.download = "haroldojesus-rubao.png"; // Nome do arquivo que será baixado
     document.body.appendChild(link); // Adiciona o link ao DOM
     link.click();
     document.body.removeChild(link); // Remove o link do DOM
@@ -43,7 +43,7 @@ const ImageCropper = ({ imageSrc }) => {
       <div
         className="border-2 border-white/10 rounded-md"
         style={{
-          backgroundImage: 'url("/images/profile-harondojesus.png")',
+          backgroundImage: 'url("/images/profile-haroldojesus.png")',
           backgroundSize: "cover",
           width: "100%",
           height: "100%",
