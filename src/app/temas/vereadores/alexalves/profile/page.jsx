@@ -11,7 +11,7 @@ const Profile = () => {
   const fileInputRef = useRef(null);
 
   useEffect(() => {
-    document.title = "Dr. Rubão e Alex Alves"; // Configura o título da aba do navegador
+    document.title = "Nome do Vereador"; // Configura o título da aba do navegador
   }, []);
 
   const handleFileClick = () => {
@@ -32,9 +32,14 @@ const Profile = () => {
   return (
     <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90 to-[#003055]">
       <Head>
-        <meta property="og:image" content="/images/thumb-vereador.png" />
-        <meta property="og:title" content="Dr. Rubão e Alex Alves" />
+        <meta
+          property="og:image"
+          content="https://www.drrubao.com.br/images/thumb-vereador.png"
+        />
+        <meta property="og:title" content="Nome do Vereador" />
         <meta property="og:description" content="Perfil de Alex Alves" />
+        <meta property="og:url" content="https://example.com/profile" />
+        <meta property="og:type" content="profile" />
       </Head>
       <Header />
       <main className="flex-1 flex flex-col items-center justify-center p-10 mb-20 mt-12">
