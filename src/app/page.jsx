@@ -236,21 +236,25 @@ export default function Home() {
               Coligação: Por uma Itaguaí ainda melhor! - Podemos, Republicanos,
               PDT, PSD, PP | CNPJ Candidatos - 56.863.190/0001-25
             </p>
-            <Link
+            <a
               className="p-3 px-9 cursor-pointer w-full md:w-[50%] lg:w-[28%] border-2 border-[#FFF000] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center"
-              href="/temas"
+              onClick={() =>
+                scroller.scrollTo("linha-do-tempo", {
+                  smooth: true,
+                  offset: 0, // Ajuste opcional para compensar a altura do cabeçalho
+                })
+              }
             >
-              <div className="">
-                <Image
-                  width={35}
-                  height={32}
-                  alt="logo B Bubão"
-                  src={require("../../public/arrow.svg")}
-                  className="-rotate-90"
-                />
-              </div>
-              <span className="text-white text-xl">Personalizar Perfil</span>
-            </Link>
+              <div className="flex justify-between"></div>
+              <span className="text-white text-xl block">Conheça</span>
+              <Image
+                width={35}
+                height={32}
+                alt="logo B Bubão"
+                src={require("../../public/arrow.svg")}
+                className="mt-2 ml-6"
+              />
+            </a>
           </main>
         </div>
         <div className="h-32 w-full"></div>
@@ -529,10 +533,12 @@ export default function Home() {
           </ul>
           <nav>
             <a
-              href="/biografia-prefeito"
+              href="/temas"
               className="text-slate-700 h-16 w-full border-2 flex items-center justify-center rounded-full border-[#005087]"
             >
-              <p className="text-slate-600 font-semibold text-lg">Biografia</p>
+              <p className="text-slate-600 font-semibold text-lg">
+                Personalizar Perfil
+              </p>
             </a>
           </nav>
         </div>
