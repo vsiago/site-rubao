@@ -237,7 +237,7 @@ export default function Home() {
               PDT, PSD, PP | CNPJ Candidatos - 56.863.190/0001-25
             </p>
             <a
-              className="p-3 px-9 cursor-pointer w-full md:w-[50%] lg:w-[28%] border-2 border-[#FFF000] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-center"
+              className="p-3 px-9 cursor-pointer w-full md:w-[50%] lg:w-[28%] border-2 border-[#FFF000] rounded-full font-bold text-base text-center gap-3 mt-16 flex items-center justify-between"
               onClick={() =>
                 scroller.scrollTo("linha-do-tempo", {
                   smooth: true,
@@ -245,14 +245,13 @@ export default function Home() {
                 })
               }
             >
-              <div className="flex justify-between"></div>
               <span className="text-white text-xl block">Conheça</span>
               <Image
                 width={35}
                 height={32}
                 alt="logo B Bubão"
                 src={require("../../public/arrow.svg")}
-                className="mt-2 ml-6"
+                className="mt-2"
               />
             </a>
           </main>
