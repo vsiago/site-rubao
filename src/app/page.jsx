@@ -281,7 +281,7 @@ export default function Home() {
 
       {/* SECTION TIMELINE */}
 
-      {/* <section
+      <section
         id="linha-do-tempo"
         className="min-h-screen flex flex-col  bg-[#E2E6EC] p-6 py-14"
       >
@@ -331,8 +331,7 @@ export default function Home() {
                       src={require("../../public/arrow.svg")}
                       className={`${
                         modalActiveIndex === index ? " rotate-180 " : ""
-                      } transition-all 1s ease-in-out`}
-                      onClick={(event) => event.stopPropagation()}
+                      } transition-all 1s ease-in-out pointer-events-none`}
                     />
                   </div>
                   {modalActiveIndex === index && (
@@ -446,7 +445,7 @@ export default function Home() {
                                     </div>
                                   </div>
                                 </div>
-                                 <div className="px-3 w-full">
+                                <div className="px-3 w-full">
                                   <input
                                     className="bg-white p-2 rounded-md border border-slate-300 w-full text-slate-600 focus:border focus:border-sky-500"
                                     placeholder="Faça um comentário"
@@ -463,8 +462,8 @@ export default function Home() {
                                   >
                                     Comentar
                                   </button>
-                                </div> 
-                               <div className="px-3 w-full">
+                                </div>
+                                <div className="px-3 w-full">
                                   <p
                                     className="text-slate-500 text-sm my-2 text-end cursor-pointer"
                                     onClick={() => {
@@ -537,7 +536,7 @@ export default function Home() {
             </a>
           </nav>
         </div>
-      </section> */}
+      </section>
       <Footer />
     </>
   );
