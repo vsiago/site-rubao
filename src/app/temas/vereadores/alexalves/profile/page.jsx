@@ -33,7 +33,7 @@ const Profile = () => {
     <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90 to-[#003055]">
       <Head>
         <meta property="og:image" content="/images/thumb-vereador.png" />
-        <meta property="og:title" content={document.title} />
+        <meta property="og:title" content="Dr. Rubão e Alex Alves" />
         <meta property="og:description" content="Perfil de Alex Alves" />
       </Head>
       <Header />
