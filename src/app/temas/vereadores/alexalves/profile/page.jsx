@@ -38,19 +38,17 @@ const Profile = () => {
           property="og:description"
           content="Atualize sua foto de perfil e veja as informações."
         />
-        <meta property="og:image" content="/images/thumb-alexalves.png" />
+        <meta
+          property="og:image"
+          content="https://www.drrubao.com.br/images/thumb-alexalves.png"
+        />
         <meta
           property="og:url"
-          content="https://www.drrubao.com.br/temas/vereadores/alexalves/profile"
+          content="https://www.drrubao.com.br/images/thumb-alexalves.png"
         />
         <meta property="og:type" content="profile" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:title" content="Alex Alves - Perfil" />
-        <meta
-          property="twitter:description"
-          content="Atualize sua foto de perfil e veja as informações."
-        />
-        <meta property="twitter:image" content="/images/thumb-alexalves.png" />
+        <meta property="fb:app_id" content="YOUR_FB_APP_ID" />{" "}
+        {/* Opcional: Adicione o ID do seu aplicativo do Facebook */}
       </Head>
       <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90 to-[#003055]">
         <Header />
