@@ -1,8 +1,9 @@
+// ImageCropper.js
 import React, { useState, useCallback, useEffect } from "react";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "./getCroppedImg"; // Ajuste o caminho conforme a localização real do arquivo
 
-const ImageCropper = ({ imageSrc }) => {
+const ImageCropper = ({ imageSrc, downloadFileName, backgroundImageUrl }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
@@ -20,7 +21,11 @@ const ImageCropper = ({ imageSrc }) => {
     if (!croppedAreaPixels) return;
 
     try {
-      const croppedImageUrl = await getCroppedImg(imageSrc, croppedAreaPixels);
+      const croppedImageUrl = await getCroppedImg(
+        imageSrc,
+        croppedAreaPixels,
+        backgroundImageUrl
+      );
       setCroppedImage(croppedImageUrl);
     } catch (error) {
       console.error("Erro ao salvar imagem cortada:", error);
@@ -31,7 +36,7 @@ const ImageCropper = ({ imageSrc }) => {
     if (!croppedImage) return;
     const link = document.createElement("a");
     link.href = croppedImage;
-    link.download = "marielydonipa-rubao.png"; // Nome do arquivo que será baixado
+    link.download = downloadFileName; // Nome do arquivo que será baixado
     document.body.appendChild(link); // Adiciona o link ao DOM
     link.click();
     document.body.removeChild(link); // Remove o link do DOM
@@ -43,7 +48,7 @@ const ImageCropper = ({ imageSrc }) => {
       <div
         className="border-2 border-white/10 rounded-md"
         style={{
-          backgroundImage: 'url("/images/profile-marielydonipa.png")',
+          backgroundImage: `url(${backgroundImageUrl})`,
           backgroundSize: "cover",
           width: "100%",
           height: "100%",
