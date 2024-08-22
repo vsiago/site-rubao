@@ -1,3 +1,4 @@
+// profile.js
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import Header from "@/components/Header";
@@ -7,6 +8,10 @@ import Image from "next/image";
 import Head from "next/head";
 
 const vereador = "Alex Alves";
+const thumb = "thumb-alexalves.png";
+const profile = "profile-alexalves.png";
+
+const nameDownload = `Dr Rubão ${vereador}`;
 
 const Profile = () => {
   const [imageSrc, setImageSrc] = useState(null);
@@ -34,12 +39,16 @@ const Profile = () => {
   return (
     <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90 to-[#003055]">
       <Head>
+        <title>{`Troque a foto do seu perfil com ${vereador}`}</title>
         <meta
           property="og:image"
-          content="https://www.drrubao.com.br/images/thumb-vereador.png"
+          content={`https://www.drrubao.com.br/images/${thumb}`}
         />
-        <meta property="og:title" content="Nome do Vereador" />
-        <meta property="og:description" content="Perfil de Alex Alves" />
+        <meta
+          property="og:title"
+          content={`Troque a foto do seu perfil com ${vereador}`}
+        />
+        <meta property="og:description" content={`Perfil de ${vereador}`} />
         <meta property="og:url" content="https://example.com/profile" />
         <meta property="og:type" content="profile" />
       </Head>
@@ -56,7 +65,7 @@ const Profile = () => {
                   width={300}
                   height={300}
                   alt="Imagem perfil personalizada"
-                  src="/images/thumb-alexalves.png"
+                  src={`/images/${thumb}`}
                   className="w-full h-full object-contain"
                 />
               </div>
@@ -89,7 +98,13 @@ const Profile = () => {
           ref={fileInputRef}
         />
 
-        {imageSrc && <ImageCropper imageSrc={imageSrc} />}
+        {imageSrc && (
+          <ImageCropper
+            imageSrc={imageSrc}
+            downloadFileName={nameDownload}
+            backgroundImageUrl={`/images/${profile}`}
+          />
+        )}
       </main>
       <Footer />
     </main>
