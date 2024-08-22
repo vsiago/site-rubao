@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
+import Head from "next/head";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ImageCropper from "./ImageCropper"; // Ajuste o caminho conforme necessário
@@ -25,57 +26,84 @@ const Profile = () => {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90 to-[#003055]">
-      <Header />
-      <main className="flex-1 flex flex-col items-center justify-center p-10 mb-20 mt-12">
-        <div className="my-7">
-          {!imageSrc && (
-            <>
-              <p className="text-3xl md:text-4xl  font-semibold text-center mb-10">
-                Atualize sua foto <br className="md:hidden" /> de perfil
-              </p>
-              <div className="h-64 w-64   mx-auto">
-                <Image
-                  width={300}
-                  height={300}
-                  alt="Imagem perfil personalizada"
-                  src="/images/thumb-alexalves.png"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            </>
-          )}
-          <p className="text-xl md:text-2xl  font-semibold text-center">
-            Alex Alves + Rubão
-          </p>
-          <p className="text-center text-xs md:text-base font-light text-slate-400 mt-2">
-            Recomendamos uma imagem <br className="md:hidden" /> quadrada 4:4
-            para melhor encaixe.
-          </p>
-        </div>
-
-        {/* Esconde o botão quando imageSrc está ativo */}
-        {!imageSrc && (
-          <div
-            onClick={handleFileClick}
-            className="w-64 h-12 flex p-3 items-center justify-center bg-sky-500 text-white cursor-pointer rounded-full border-2 border-white/20 hover:bg-white hover:text-blue-900 transition-all duration-200 hover:shadow-2xl"
-          >
-            <p>Selecione uma imagem</p>
-          </div>
-        )}
-
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          style={{ display: "none" }}
-          ref={fileInputRef}
+    <>
+      <Head>
+        <title>Alex Alves - Perfil</title>
+        <meta
+          name="description"
+          content="Perfil de Alex Alves, atualize sua foto de perfil e veja as informações."
         />
+        <meta property="og:title" content="Alex Alves - Perfil" />
+        <meta
+          property="og:description"
+          content="Atualize sua foto de perfil e veja as informações."
+        />
+        <meta property="og:image" content="/images/thumb-alexalves.png" />
+        <meta
+          property="og:url"
+          content="https://www.drrubao.com.br/temas/vereadores/alexalves/profile"
+        />
+        <meta property="og:type" content="profile" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content="Alex Alves - Perfil" />
+        <meta
+          property="twitter:description"
+          content="Atualize sua foto de perfil e veja as informações."
+        />
+        <meta property="twitter:image" content="/images/thumb-alexalves.png" />
+      </Head>
+      <main className="min-h-screen flex flex-col bg-gradient-to-b from-[#053C81]/90 to-[#003055]">
+        <Header />
+        <main className="flex-1 flex flex-col items-center justify-center p-10 mb-20 mt-12">
+          <div className="my-7">
+            {!imageSrc && (
+              <>
+                <p className="text-3xl md:text-4xl font-semibold text-center mb-10">
+                  Atualize sua foto <br className="md:hidden" /> de perfil
+                </p>
+                <div className="h-64 w-64 mx-auto">
+                  <Image
+                    width={300}
+                    height={300}
+                    alt="Imagem perfil personalizada"
+                    src="/images/thumb-alexalves.png"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </>
+            )}
+            <p className="text-xl md:text-2xl font-semibold text-center">
+              Alex Alves + Rubão
+            </p>
+            <p className="text-center text-xs md:text-base font-light text-slate-400 mt-2">
+              Recomendamos uma imagem <br className="md:hidden" /> quadrada 4:4
+              para melhor encaixe.
+            </p>
+          </div>
 
-        {imageSrc && <ImageCropper imageSrc={imageSrc} />}
+          {/* Esconde o botão quando imageSrc está ativo */}
+          {!imageSrc && (
+            <div
+              onClick={handleFileClick}
+              className="w-64 h-12 flex p-3 items-center justify-center bg-sky-500 text-white cursor-pointer rounded-full border-2 border-white/20 hover:bg-white hover:text-blue-900 transition-all duration-200 hover:shadow-2xl"
+            >
+              <p>Selecione uma imagem</p>
+            </div>
+          )}
+
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            style={{ display: "none" }}
+            ref={fileInputRef}
+          />
+
+          {imageSrc && <ImageCropper imageSrc={imageSrc} />}
+        </main>
+        <Footer />
       </main>
-      <Footer />
-    </main>
+    </>
   );
 };
 
