@@ -32,7 +32,7 @@ const Theme = () => {
         <p className="text-3xl md:text-4xl my-10 font-semibold text-center">
           Personalize sua com <br className="md:hidden" /> temas do Rubão 20
         </p>
-        <div className="container  flex flex-col gap-6 md:flex-row mb-20">
+        <div className="container  flex flex-col gap-6 md:flex-row ">
           <Link
             href="/temas/profile"
             className="h-80 w-full border-2 border-white bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
@@ -101,6 +101,14 @@ const Theme = () => {
                 {"(Disponível em breve)"}
               </span>
             </div>
+          </Link>
+        </div>
+        <div className="container w-full mb-20">
+          <Link
+            href="/vereadores"
+            className=" border-2 border-[#FFF000] block w-full p-4 rounded-full text-center"
+          >
+            <p>Encontrar por vereador</p>
           </Link>
         </div>
       </main>
