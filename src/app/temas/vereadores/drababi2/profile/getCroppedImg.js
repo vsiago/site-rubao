@@ -1,3 +1,4 @@
+// getCroppedImg.js
 const createImage = (url) =>
   new Promise((resolve, reject) => {
     const img = new Image();
@@ -6,15 +7,13 @@ const createImage = (url) =>
     img.src = url;
   });
 
-const getCroppedImg = async (imageSrc, crop) => {
+const getCroppedImg = async (imageSrc, crop, overlayImageUrl) => {
   try {
     // Carrega a imagem do usuário
     const userImage = await createImage(imageSrc);
 
     // Carrega a imagem de overlay
-    const overlayImage = await createImage(
-      "/images/profile-veterinariababi.png"
-    ); // Ajuste o caminho conforme necessário
+    const overlayImage = await createImage(overlayImageUrl); // Ajuste o caminho conforme necessário
 
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
