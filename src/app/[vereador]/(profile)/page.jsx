@@ -96,7 +96,7 @@ const Profile = () => {
                   onClick={handleCopyClick}
                   className="absolute top-0 -right-3 p-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600"
                 >
-                  <FiCopy size={24} />
+                  <FiCopy size={28} />
                 </button>
                 {copySuccess && (
                   <span className="absolute top-12 right-0 p-2 bg-green-500 text-white rounded-md shadow-lg">
