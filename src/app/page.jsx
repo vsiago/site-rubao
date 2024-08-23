@@ -39,9 +39,9 @@ export default function Home() {
       if (!userId) {
         userId = generateUUID();
         localStorage.setItem("userId", userId);
-        console.log("Novo userId gerado e salvo no localStorage:", userId);
+        // console.log("Novo userId gerado e salvo no localStorage:", userId);
       } else {
-        console.log("userId já existente no localStorage:", userId);
+        // console.log("userId já existente no localStorage:", userId);
       }
       return userId;
     };
@@ -49,9 +49,9 @@ export default function Home() {
     // Função para registrar a visualização no servidor
     const registerView = async (userId) => {
       try {
-        console.log("Registrando visualização para userId:", userId);
+        // console.log("Registrando visualização para userId:", userId);
         const response = await axios.post(`${uri}/api/view`, { userId });
-        console.log("Visualização registrada com sucesso:", response.data);
+        // console.log("Visualização registrada com sucesso:", response.data);
       } catch (error) {
         console.error("Erro ao registrar a visualização:", error.message);
       }
@@ -60,7 +60,7 @@ export default function Home() {
     // Função para buscar a linha do tempo
     const fetchTimeline = async () => {
       try {
-        console.log("Buscando dados da linha do tempo...");
+        // console.log("Buscando dados da linha do tempo...");
         const response = await axios.get(`${uri}/api/years`);
         const data = response.data;
 
@@ -78,7 +78,7 @@ export default function Home() {
         }));
 
         setTimeline(updatedTimeline);
-        console.log("Linha do tempo carregada com sucesso:", updatedTimeline);
+        // console.log("Linha do tempo carregada com sucesso:", updatedTimeline);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
       }
