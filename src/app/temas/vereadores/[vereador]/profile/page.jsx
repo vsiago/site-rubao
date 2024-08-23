@@ -9,7 +9,6 @@ import Image from "next/image";
 import Head from "next/head";
 import { useParams } from "next/navigation"; // Alterado para useParams
 
-// Dados do vereador, idealmente você deve buscar isso de um banco de dados ou API
 const vereadores = {
   alexalves: {
     name: "Alex Alves",
