@@ -195,7 +195,7 @@ export default function Home() {
   return (
     <>
       {/* <Header /> */}
-      {/* <video
+      <video
         autoPlay
         loop
         muted
@@ -203,9 +203,9 @@ export default function Home() {
       >
         <source src="/video/seq-rubao.mp4" type="video/mp4" />
         Seu navegador não suporta a tag de vídeo.
-      </video> */}
-      <section className="relative flex-1 min-h-screen w-full flex flex-col bg-gradient-to-br from-[#053C81]/90  to-[#003055] items-center justify-center md:items-start md:pt-40 ">
-        {/* <div
+      </video>
+      <section className="relative flex-1 min-h-screen w-full flex flex-col bg-gradient-to-br from-[#053C81]/90  to-[#003055] items-start justify-start md:items-start md:pt-40 ">
+        <div
           ref={ref}
           className={`flex items-center w-full justify-center flex-col md:container flex-1 px-10 z-10${
             inView ? "" : ""
@@ -256,11 +256,8 @@ export default function Home() {
             </a>
           </main>
         </div>
-        <div className="h-32 w-full"></div> */}
-        <div className="mx-auto">
-          <p className="text-2xl">Página em construção...</p>
-        </div>
-        {/* <div class="custom-shape-divider-bottom-1723226387" className="">
+        <div className="h-32 w-full"></div>
+        <div class="custom-shape-divider-bottom-1723226387" className="">
           <svg
             data-name="Layer 1"
             xmlns="http://www.w3.org/2000/svg"
@@ -282,12 +279,12 @@ export default function Home() {
               class="shape-fill"
             ></path>
           </svg>
-        </div> */}
+        </div>
       </section>
 
       {/* SECTION TIMELINE */}
 
-      {/* <section
+      <section
         id="linha-do-tempo"
         className="min-h-screen flex flex-col  bg-[#E2E6EC] p-6 py-14"
       >
@@ -451,7 +448,7 @@ export default function Home() {
                                     </div>
                                   </div>
                                 </div>
-                                <div className="px-3 w-full">
+                                {/* <div className="px-3 w-full">
                                   <input
                                     className="bg-white p-2 rounded-md border border-slate-300 w-full text-slate-600 focus:border focus:border-sky-500"
                                     placeholder="Faça um comentário"
@@ -521,7 +518,7 @@ export default function Home() {
                                       )}
                                     </div>
                                   )}
-                                </div>
+                                </div> */}
                               </div>
                             </div>
                           </li>
@@ -544,8 +541,8 @@ export default function Home() {
             </a>
           </nav>
         </div>
-      </section> */}
-      {/* <Footer /> */}
+      </section>
+      <Footer />
     </>
   );
 }
