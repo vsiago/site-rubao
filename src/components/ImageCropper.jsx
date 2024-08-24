@@ -6,6 +6,31 @@ const ImageCropper = ({ imageSrc }) => {
   const [croppedImage, setCroppedImage] = useState(null);
   const cropperRef = useRef(null);
 
+  // Função para criar uma imagem com efeito de desfoque
+  const applyBlurBackground = (imageSrc) => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.src = imageSrc;
+      img.crossOrigin = "Anonymous"; // Permite o uso de imagens de diferentes origens
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = 400;
+        canvas.height = 400;
+
+        // Desenha a imagem no canvas
+        ctx.drawImage(img, 0, 0, 400, 400);
+
+        // Aplica o filtro de desfoque
+        ctx.filter = "blur(10px)"; // Ajuste o valor do desfoque conforme necessário
+        ctx.drawImage(canvas, 0, 0, 400, 400);
+
+        resolve(canvas.toDataURL("image/png"));
+      };
+    });
+  };
+
+  // Função para salvar a imagem cortada
   const handleSave = async () => {
     if (!cropperRef.current) return;
 
@@ -13,23 +38,23 @@ const ImageCropper = ({ imageSrc }) => {
     const croppedCanvas = cropper.getCroppedCanvas({
       width: 400,
       height: 400,
-      fillColor: "#ffffff", // Preenche com uma cor de fundo se houver áreas vazias
     });
 
-    const overlayImage = new Image();
-    overlayImage.src = "/images/theme-rubao-20.png"; // Caminho da imagem de sobreposição
-    overlayImage.onload = () => {
+    const blurredBackgroundUrl = await applyBlurBackground(imageSrc);
+    const blurredBackgroundImg = new Image();
+    blurredBackgroundImg.src = blurredBackgroundUrl;
+    blurredBackgroundImg.onload = () => {
       // Cria um novo canvas para combinar a imagem cortada e a sobreposição
       const combinedCanvas = document.createElement("canvas");
       combinedCanvas.width = 400;
       combinedCanvas.height = 400;
       const ctx = combinedCanvas.getContext("2d");
 
-      // Desenha a imagem de sobreposição primeiro para que fique como fundo
-      ctx.drawImage(overlayImage, 0, 0, 400, 400);
+      // Desenha a imagem de fundo desfocada
+      ctx.drawImage(blurredBackgroundImg, 0, 0, 400, 400);
 
-      // Desenha a imagem cortada por cima da sobreposição
-      ctx.drawImage(croppedCanvas, 0, 0);
+      // Desenha a imagem cortada por cima do fundo desfocado
+      ctx.drawImage(croppedCanvas, 0, 0, 400, 400);
 
       // Converte o canvas combinado em uma URL de objeto (Blob URL)
       combinedCanvas.toBlob((blob) => {
@@ -53,23 +78,9 @@ const ImageCropper = ({ imageSrc }) => {
 
   return (
     <div className="relative w-[400px] h-[400px]">
-      <div
-        className="border-2 border-white/10 rounded-md"
-        style={{
-          backgroundImage: 'url("/images/theme-rubao-20.png")',
-          backgroundSize: "cover",
-          width: "100%",
-          height: "100%",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          zIndex: 1,
-          pointerEvents: "none", // Permite interações com a área abaixo
-        }}
-      />
       <Cropper
         src={imageSrc}
-        style={{ height: "100%", width: "100%" }} // Garante que o cropper ocupe toda a área de 400x400px
+        style={{ height: "400px", width: "400px" }} // Garante que o cropper ocupe toda a área de 400x400px
         aspectRatio={1}
         guides={false}
         ref={cropperRef}
