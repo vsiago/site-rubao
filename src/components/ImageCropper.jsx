@@ -86,13 +86,13 @@ const ImageCropper = ({ imageSrc }) => {
         ref={cropperRef}
         background={false} // Remove o fundo padrão do Cropper
         viewMode={0} // Permite que a imagem fique menor do que a área de corte
-        minCropBoxHeight={100} // Altura mínima da caixa de corte
-        minCropBoxWidth={100} // Largura mínima da caixa de corte
+        minCropBoxHeight={400} // Altura mínima da caixa de corte
+        minCropBoxWidth={400} // Largura mínima da caixa de corte
         minContainerWidth={400} // Largura mínima do contêiner
         minContainerHeight={400} // Altura mínima do contêiner
         minCanvasWidth={100} // Largura mínima da imagem no canvas
         minCanvasHeight={100} // Altura mínima da imagem no canvas
-        minZoomRatio={0.5} // Permite zoom out até 50% do tamanho original
+        minZoomRatio={0} // Permite zoom out até 50% do tamanho original
         dragMode="move" // Modo de arrastar a imagem
         cropBoxResizable={false} // Desabilita redimensionamento da área de corte
         cropBoxMovable={false} // Desabilita mover a área de corte
