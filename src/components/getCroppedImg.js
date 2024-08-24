@@ -14,34 +14,42 @@ const getCroppedImg = async (imageSrc, crop) => {
     // Carrega a imagem de overlay
     const overlayImage = await createImage("/images/theme-rubao-20.png"); // Ajuste o caminho conforme necessário
 
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
+    // Cria um canvas para a imagem original
+    const originalCanvas = document.createElement("canvas");
+    const originalCtx = originalCanvas.getContext("2d");
+    originalCanvas.width = userImage.width;
+    originalCanvas.height = userImage.height;
 
-    // Define as dimensões do canvas para o tamanho do crop
-    canvas.width = crop.width;
-    canvas.height = crop.height;
+    // Desenha a imagem original no canvas
+    originalCtx.drawImage(userImage, 0, 0);
 
-    // Desenha a imagem recortada no canvas
-    ctx.drawImage(
-      userImage,
-      crop.x,
-      crop.y,
-      crop.width,
-      crop.height,
-      0,
-      0,
-      crop.width,
-      crop.height
+    // Cria um canvas para o recorte
+    const cropCanvas = document.createElement("canvas");
+    const cropCtx = cropCanvas.getContext("2d");
+    cropCanvas.width = crop.width;
+    cropCanvas.height = crop.height;
+
+    // Desenha a parte recortada da imagem original no canvas de recorte
+    cropCtx.drawImage(
+      originalCanvas,
+      crop.x, // Coordenada X do recorte na imagem original
+      crop.y, // Coordenada Y do recorte na imagem original
+      crop.width, // Largura do recorte
+      crop.height, // Altura do recorte
+      0, // Coordenada X na canvas de recorte
+      0, // Coordenada Y na canvas de recorte
+      crop.width, // Largura na canvas de recorte
+      crop.height // Altura na canvas de recorte
     );
 
-    // Adiciona o overlay se a imagem de overlay estiver carregada
+    // Adiciona a imagem de overlay
     if (overlayImage) {
-      ctx.drawImage(overlayImage, 0, 0, crop.width, crop.height);
+      cropCtx.drawImage(overlayImage, 0, 0, crop.width, crop.height);
     }
 
-    // Converte o canvas para uma URL de objeto (Blob URL)
+    // Converte o canvas de recorte para uma URL de objeto (Blob URL)
     return new Promise((resolve) => {
-      canvas.toBlob((blob) => {
+      cropCanvas.toBlob((blob) => {
         resolve(URL.createObjectURL(blob));
       }, "image/png");
     });
