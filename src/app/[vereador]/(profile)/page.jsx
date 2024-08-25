@@ -109,10 +109,10 @@ const Profile = () => {
           <p className="text-xl md:text-2xl font-semibold text-center">
             {name} + Rubão
           </p>
-          <p className="text-center text-xs md:text-base font-light text-slate-400 mt-2">
+          {/* <p className="text-center text-xs md:text-base font-light text-slate-400 mt-2">
             Recomendamos uma imagem <br className="md:hidden" /> quadrada 4:4
             para melhor encaixe.
-          </p>
+          </p> */}
         </div>
 
         {/* Esconde o botão quando imageSrc está ativo */}

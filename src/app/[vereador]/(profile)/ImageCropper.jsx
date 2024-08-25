@@ -1,35 +1,70 @@
-// ImageCropper.js
-import React, { useState, useCallback, useEffect } from "react";
-import Cropper from "react-easy-crop";
-import getCroppedImg from "./getCroppedImg"; // Ajuste o caminho conforme a localização real do arquivo
+import React, { useState, useRef, useEffect } from "react";
+import Cropper from "react-cropper";
+import "cropperjs/dist/cropper.css";
 
 const ImageCropper = ({ imageSrc, downloadFileName, backgroundImageUrl }) => {
-  const [crop, setCrop] = useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
+  const cropperRef = useRef(null);
+  const [overlayLoaded, setOverlayLoaded] = useState(false);
 
-  useEffect(() => {
-    setZoom(1); // Definir o zoom inicial para que a imagem preencha o quadrado de 400x400
-  }, [imageSrc]);
+  // Função para criar uma imagem com efeito de desfoque
+  const applyBlurBackground = (imageSrc) => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.src = imageSrc;
+      img.crossOrigin = "Anonymous";
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = 400;
+        canvas.height = 400;
 
-  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-    setCroppedAreaPixels(croppedAreaPixels);
-  }, []);
+        ctx.drawImage(img, 0, 0, 400, 400);
+        ctx.filter = "blur(10px)";
+        ctx.drawImage(canvas, 0, 0, 400, 400);
 
+        resolve(canvas.toDataURL("image/png"));
+      };
+    });
+  };
+
+  // Função para salvar a imagem cortada
   const handleSave = async () => {
-    if (!croppedAreaPixels) return;
+    if (!cropperRef.current) return;
 
-    try {
-      const croppedImageUrl = await getCroppedImg(
-        imageSrc,
-        croppedAreaPixels,
-        backgroundImageUrl
-      );
-      setCroppedImage(croppedImageUrl);
-    } catch (error) {
-      console.error("Erro ao salvar imagem cortada:", error);
-    }
+    const cropper = cropperRef.current.cropper;
+    const croppedCanvas = cropper.getCroppedCanvas({
+      width: 400,
+      height: 400,
+    });
+
+    const blurredBackgroundUrl = await applyBlurBackground(imageSrc);
+    const blurredBackgroundImg = new Image();
+    blurredBackgroundImg.src = blurredBackgroundUrl;
+
+    blurredBackgroundImg.onload = () => {
+      const combinedCanvas = document.createElement("canvas");
+      combinedCanvas.width = 400;
+      combinedCanvas.height = 400;
+      const ctx = combinedCanvas.getContext("2d");
+
+      ctx.drawImage(blurredBackgroundImg, 0, 0, 400, 400);
+      ctx.drawImage(croppedCanvas, 0, 0, 400, 400);
+
+      // Adiciona a imagem de fundo fornecida pelo componente pai
+      const backgroundImg = new Image();
+      backgroundImg.src = backgroundImageUrl;
+      backgroundImg.onload = () => {
+        ctx.drawImage(backgroundImg, 0, 0, 400, 400);
+
+        combinedCanvas.toBlob((blob) => {
+          if (blob) {
+            const croppedImageUrl = URL.createObjectURL(blob);
+            setCroppedImage(croppedImageUrl);
+          }
+        }, "image/png");
+      };
+    };
   };
 
   const handleDownload = () => {
@@ -37,39 +72,58 @@ const ImageCropper = ({ imageSrc, downloadFileName, backgroundImageUrl }) => {
     const link = document.createElement("a");
     link.href = croppedImage;
     link.download = downloadFileName; // Nome do arquivo que será baixado
-    document.body.appendChild(link); // Adiciona o link ao DOM
+    document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link); // Remove o link do DOM
+    document.body.removeChild(link);
   };
+
+  // Função para lidar com o carregamento da imagem de fundo
+  useEffect(() => {
+    const img = new Image();
+    img.src = backgroundImageUrl;
+    img.onload = () => setOverlayLoaded(true);
+  }, [backgroundImageUrl]);
 
   return (
     <div className="relative w-[400px] h-[400px]">
-      {/* Imagem de sobreposição */}
-      <div
-        className="border-2 border-white/10 rounded-md"
-        style={{
-          backgroundImage: `url(${backgroundImageUrl})`,
-          backgroundSize: "cover",
-          width: "100%",
-          height: "100%",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          zIndex: 1,
-          pointerEvents: "none", // Permite interações com a área abaixo
-        }}
-      />
-      {/* Área de Corte */}
       <Cropper
-        image={imageSrc}
-        crop={crop}
-        zoom={zoom}
-        aspect={1} // Mantém o corte em formato quadrado
-        onCropChange={setCrop}
-        onZoomChange={setZoom}
-        onCropComplete={onCropComplete}
-        cropSize={{ width: 400, height: 400 }} // Define a área de corte para 400x400
+        src={imageSrc}
+        style={{ height: "400px", width: "400px" }}
+        aspectRatio={1}
+        guides={false}
+        ref={cropperRef}
+        background={false}
+        viewMode={0}
+        minCropBoxHeight={400}
+        minCropBoxWidth={400}
+        minContainerWidth={400}
+        minContainerHeight={400}
+        minCanvasWidth={100}
+        minCanvasHeight={100}
+        minZoomRatio={0}
+        dragMode="move"
+        cropBoxResizable={false}
+        cropBoxMovable={false}
       />
+
+      {/* Adiciona o background diretamente sobre o Cropper */}
+      {overlayLoaded && (
+        <img
+          src={backgroundImageUrl}
+          alt="Background"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "400px",
+            height: "400px",
+            objectFit: "cover",
+            pointerEvents: "none", // Permite interações com o Cropper
+            zIndex: 1, // Fica atrás da visualização da imagem cortada
+          }}
+        />
+      )}
+
       {/* Visualização da Imagem Cortada */}
       {croppedImage && (
         <div
@@ -91,8 +145,8 @@ const ImageCropper = ({ imageSrc, downloadFileName, backgroundImageUrl }) => {
       {croppedImage && (
         <button
           onClick={handleDownload}
-          className="absolute -bottom-16 w-full bg-green-500 border-2 hover:bg-green-200 hover:text-green-900 shadow-2xl hover:scale-110 border-green-100 text-white p-3  rounded-full transition-all duration-150 ease-in-out"
-          style={{ zIndex: 5 }} // Garantia de visibilidade do botão
+          className="absolute -bottom-16 w-full bg-green-500 border-2 hover:bg-green-200 hover:text-green-900 shadow-2xl hover:scale-110 border-green-100 text-white p-3 rounded-full transition-all duration-150 ease-in-out"
+          style={{ zIndex: 5 }}
         >
           Download
         </button>
@@ -101,8 +155,8 @@ const ImageCropper = ({ imageSrc, downloadFileName, backgroundImageUrl }) => {
       {/* Botão de Salvar */}
       <button
         onClick={handleSave}
-        className="absolute -bottom-16 bg-sky-500 border-2 border-sky-300  p-3 w-full rounded-full hover:bg-sky-200 text-white hover:text-blue-900 transition-all duration-150 ease-in-out"
-        style={{ zIndex: 4 }} // Garantia de visibilidade do botão
+        className="absolute -bottom-16 bg-sky-500 border-2 border-sky-300 p-3 w-full rounded-full hover:bg-sky-200 text-white hover:text-blue-900 transition-all duration-150 ease-in-out"
+        style={{ zIndex: 4 }}
       >
         Salvar
       </button>
