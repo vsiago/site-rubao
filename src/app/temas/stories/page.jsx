@@ -42,12 +42,12 @@ const Profile = () => {
       <main className="flex-1 flex flex-col items-center justify-center p-10 mb-20 mt-12">
         <div className="my-7">
           {!imageSrc && (
-            <div className="relative h-64 w-64 mx-auto">
+            <div className="relative h-72 w-64 mx-auto">
               <Image
-                width={300}
-                height={300}
+                width={400}
+                height={400}
                 alt="Imagem perfil personalizada"
-                src="/example-profile.png"
+                src="/example-storie.png"
                 className="w-full h-full object-contain"
               />
               <button
@@ -63,9 +63,11 @@ const Profile = () => {
               )}
             </div>
           )}
-          <p className="text-3xl md:text-4xl font-semibold text-center">
-            Crie Stories com Dr. Rubão
-          </p>
+          {!imageSrc && (
+            <p className="text-3xl md:text-4xl font-semibold text-center">
+              Crie Stories com Dr. Rubão
+            </p>
+          )}
           {/* <p className="text-center text-xs md:text-base font-light text-slate-400 mt-2">
             Recomendamos uma imagem <br className="md:hidden" /> quadrada 4:4
             para melhor encaixe.
