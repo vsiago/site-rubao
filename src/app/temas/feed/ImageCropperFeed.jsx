@@ -63,7 +63,7 @@ const ImageCropper = ({ imageSrc }) => {
     if (!croppedImage) return;
     const link = document.createElement("a");
     link.href = croppedImage;
-    link.download = "image-with-overlay.png";
+    link.download = "rubao20.png";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -101,7 +101,7 @@ const ImageCropper = ({ imageSrc }) => {
         <Cropper
           src={imageSrc}
           style={{ height: "300px", width: "300px" }}
-          aspectRatio={9 / 16}
+          aspectRatio={1}
           guides={false}
           ref={cropperRef}
           background={false}
