@@ -30,7 +30,7 @@ const Theme = () => {
       <Header />
       <main className="flex-1  flex flex-col items-center justify-center mt-40 md:mt-20">
         <p className="text-3xl md:text-4xl my-10 font-semibold text-center">
-          Personalize sua com foto <br className="md:hidden" /> temas do Rubão
+          Personalize sua foto com <br className="md:hidden" /> temas do Rubão
           20
         </p>
         <div className="container  flex flex-col gap-6 gap-y-12 md:flex-row ">
