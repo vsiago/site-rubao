@@ -63,7 +63,7 @@ const ImageCropper = ({ imageSrc }) => {
     if (!croppedImage) return;
     const link = document.createElement("a");
     link.href = croppedImage;
-    link.download = "image-with-overlay.png";
+    link.download = "stories-rubao20.png";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -158,7 +158,7 @@ const ImageCropper = ({ imageSrc }) => {
           className="absolute font-bold -bottom-20 w-full bg-green-500 border-2 hover:bg-green-200 hover:text-green-900 shadow-2xl hover:scale-110 border-green-100 text-white p-3 rounded-full transition-all duration-150 ease-in-out"
           style={{ zIndex: 5 }}
         >
-          Baixar
+          Download
         </button>
       )}
 
