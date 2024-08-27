@@ -32,13 +32,13 @@ const Theme = () => {
         <p className="text-3xl md:text-4xl my-10 font-semibold text-center">
           Personalize sua com <br className="md:hidden" /> temas do Rubão 20
         </p>
-        <div className="container  flex flex-col gap-6 md:flex-row ">
+        <div className="container  flex flex-col gap-6 gap-y-12 md:flex-row ">
           <Link
             href="/temas/profile"
-            className="h-72 w-full  bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
+            className="h-60 w-full bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
           >
             <div className=" h-[85%] w-full flex items-center justify-center">
-              <div className="h-64 w-64 pt-4">
+              <div className="h-44 w-44 pt-4">
                 <Image
                   width={200}
                   height={200}
@@ -58,10 +58,10 @@ const Theme = () => {
           </Link>
           <Link
             href="/temas/stories"
-            className=" h-72 w-full  bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
+            className=" h-60 w-full  bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
           >
             <div className=" h-[85%] w-full flex items-center justify-center">
-              <div className="h-64 w-64 pt-4">
+              <div className="h-44 w-44 pt-4">
                 <Image
                   width={200}
                   height={200}
@@ -81,10 +81,10 @@ const Theme = () => {
           </Link>
           <Link
             href="/temas/feed"
-            className=" mb-16 h-72 w-full bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
+            className=" mb-16 h-60 w-full bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
           >
             <div className=" h-[85%] w-full flex items-center justify-center">
-              <div className="h-64 w-64 pt-4">
+              <div className="h-44 w-44 pt-4">
                 <Image
                   width={200}
                   height={200}
