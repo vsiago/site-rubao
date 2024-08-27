@@ -57,8 +57,8 @@ const Theme = () => {
             </div>
           </Link>
           <Link
-            href="#temas/stories"
-            className="cursor-not-allowed h-80 w-full border-2 border-slate-300 bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
+            href="/temas/stories"
+            className=" h-80 w-full border-2 border-slate-300 bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
           >
             <div className=" h-[70%] w-full flex items-center justify-center">
               <div className="h-48 w-48 pt-4">
@@ -72,16 +72,16 @@ const Theme = () => {
               </div>
             </div>
 
-            <div className="bg-slate-300 h-[30%] w-full rounded-b-2xl flex items-center justify-start text-slate-700 p-8">
+            <div className="bg-white h-[30%] w-full rounded-b-2xl flex items-center justify-start text-slate-700 p-8">
               <p className="text-2xl font-bold text-[#013360]">Feed</p>
-              <span className="font-normal italic text-lg text-slate-500 ml-3">
-                {"(Disponível em breve)"}
+              <span className="font-normal italic text-lg text-green-500 ml-3">
+                {"Disponível"}
               </span>
             </div>
           </Link>
           <Link
-            href="#temas/feed"
-            className="cursor-not-allowed mb-16 h-80 w-full border-2 border-slate-300 bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
+            href="/temas/feed"
+            className=" mb-16 h-80 w-full border-2 border-slate-300 bg-white/30 rounded-2xl shadow-xl hover:drop-shadow-2xl transition-all duration-200 ease-in-out"
           >
             <div className=" h-[70%] w-full flex items-center justify-center">
               <div className="h-48 w-48 pt-4">
@@ -95,10 +95,10 @@ const Theme = () => {
               </div>
             </div>
 
-            <div className="bg-slate-300 h-[30%] w-full rounded-b-2xl flex items-center justify-start text-slate-700 p-8">
+            <div className="bg-white h-[30%] w-full rounded-b-2xl flex items-center justify-start text-slate-700 p-8">
               <p className="text-2xl font-bold text-[#013360]">Stories</p>
-              <span className="font-normal italic text-lg text-slate-500 ml-3">
-                {"(Disponível em breve)"}
+              <span className="font-normal italic text-lg text-green-500 ml-3">
+                {"Disponível"}
               </span>
             </div>
           </Link>

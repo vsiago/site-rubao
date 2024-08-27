@@ -7,7 +7,7 @@ const ImageCropper = ({ imageSrc }) => {
   const [loading, setLoading] = useState(true); // Estado de carregamento
   const [isSaving, setIsSaving] = useState(false); // Novo estado para rastrear o salvamento
   const cropperRef = useRef(null);
-  const overlayImageSrc = "/images/frame-stories-rubao20.png"; // Substitua pelo caminho da sua imagem de overlay
+  const overlayImageSrc = "/images/frame-feed-rubao20.png"; // Substitua pelo caminho da sua imagem de overlay
 
   // Carregar a imagem e monitorar o estado de carregamento
   useEffect(() => {
@@ -26,7 +26,7 @@ const ImageCropper = ({ imageSrc }) => {
 
     const cropper = cropperRef.current.cropper;
     const croppedCanvas = cropper.getCroppedCanvas({
-      width: 540,
+      width: 960,
       height: 960,
     });
 
@@ -36,17 +36,17 @@ const ImageCropper = ({ imageSrc }) => {
 
     blurredBackgroundImg.onload = () => {
       const combinedCanvas = document.createElement("canvas");
-      combinedCanvas.width = 540;
+      combinedCanvas.width = 960;
       combinedCanvas.height = 960;
       const ctx = combinedCanvas.getContext("2d");
 
-      ctx.drawImage(blurredBackgroundImg, 0, 0, 540, 960);
-      ctx.drawImage(croppedCanvas, 0, 0, 540, 960);
+      ctx.drawImage(blurredBackgroundImg, 0, 0, 960, 960);
+      ctx.drawImage(croppedCanvas, 0, 0, 960, 960);
 
       const overlayImage = new Image();
       overlayImage.src = overlayImageSrc;
       overlayImage.onload = () => {
-        ctx.drawImage(overlayImage, 0, 0, 540, 960);
+        ctx.drawImage(overlayImage, 0, 0, 960, 960);
 
         combinedCanvas.toBlob((blob) => {
           if (blob) {
@@ -78,12 +78,12 @@ const ImageCropper = ({ imageSrc }) => {
       img.onload = () => {
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
-        canvas.width = 540;
+        canvas.width = 960;
         canvas.height = 960;
 
-        ctx.drawImage(img, 0, 0, 540, 960);
+        ctx.drawImage(img, 0, 0, 960, 960);
         ctx.filter = "blur(10px)";
-        ctx.drawImage(canvas, 0, 0, 540, 960);
+        ctx.drawImage(canvas, 0, 0, 960, 960);
 
         resolve(canvas.toDataURL("image/png"));
       };
@@ -91,7 +91,7 @@ const ImageCropper = ({ imageSrc }) => {
   };
 
   return (
-    <div className="relative w-[270px] h-[480px]">
+    <div className="relative w-[300px] h-[300px]">
       {loading ? (
         // Spinner de carregamento
         <div className="flex justify-center items-center w-full h-full">
@@ -100,18 +100,18 @@ const ImageCropper = ({ imageSrc }) => {
       ) : (
         <Cropper
           src={imageSrc}
-          style={{ height: "480px", width: "270px" }}
+          style={{ height: "300px", width: "300px" }}
           aspectRatio={9 / 16}
           guides={false}
           ref={cropperRef}
           background={false}
           viewMode={0}
-          minCropBoxHeight={480}
-          minCropBoxWidth={270}
-          minContainerWidth={270}
-          minContainerHeight={480}
-          minCanvasWidth={270}
-          minCanvasHeight={480}
+          minCropBoxHeight={300}
+          minCropBoxWidth={300}
+          minContainerWidth={300}
+          minContainerHeight={300}
+          minCanvasWidth={300}
+          minCanvasHeight={300}
           dragMode="move"
           cropBoxResizable={false}
           cropBoxMovable={false}
@@ -126,8 +126,8 @@ const ImageCropper = ({ imageSrc }) => {
           position: "absolute",
           top: 0,
           left: 0,
-          width: "270px",
-          height: "480px",
+          width: "300px",
+          height: "300px",
           objectFit: "cover",
           pointerEvents: "none",
           zIndex: 1,
@@ -141,8 +141,8 @@ const ImageCropper = ({ imageSrc }) => {
             backgroundImage: `url(${croppedImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            width: "270px",
-            height: "480px",
+            width: "300px",
+            height: "300px",
             position: "absolute",
             top: 0,
             left: 0,
