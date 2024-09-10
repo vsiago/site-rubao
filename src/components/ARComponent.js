@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 
+// Função para converter graus para radianos
+const toRad = (value) => (value * Math.PI) / 180;
+
 // Função para calcular a distância entre dois pontos geográficos (Haversine Formula)
 const haversineDistance = (lat1, lon1, lat2, lon2) => {
-  const toRad = (value) => (value * Math.PI) / 180;
   const R = 6371; // Raio da Terra em km
-
   const dLat = toRad(lat2 - lat1);
   const dLon = toRad(lon2 - lon1);
 
@@ -20,33 +21,45 @@ const haversineDistance = (lat1, lon1, lat2, lon2) => {
 
 const ARComponent = () => {
   const [userPosition, setUserPosition] = useState(null);
+  const [cubePosition, setCubePosition] = useState(null); // Posição do cubo
   const [distanceMeters, setDistanceMeters] = useState(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       require('aframe');
 
+      // Obter a posição do usuário
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
-          setUserPosition({
+          const userPos = {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
-          });
+          };
+          setUserPosition(userPos);
+          
+          // Colocar o cubo a 50 metros de distância
+          const distInKm = 0.05; // 50 metros em km
+          const distInDegrees = distInKm / 111.32; // Aproximadamente 111.32 km por grau de latitude
+
+          const cubeLat = userPos.latitude + distInDegrees; // 50 metros ao norte
+          const cubeLon = userPos.longitude; // Manter a mesma longitude
+
+          setCubePosition({ latitude: cubeLat, longitude: cubeLon });
         });
       }
     }
   }, []);
 
   useEffect(() => {
-    if (userPosition) {
+    if (userPosition && cubePosition) {
       const distanceKm = haversineDistance(
         userPosition.latitude,
         userPosition.longitude,
-        prefeituraLatitude,
-        prefeituraLongitude
+        cubePosition.latitude,
+        cubePosition.longitude
       );
 
-      // Convertendo para metros
+      // Converter para metros
       const distanceMeters = distanceKm * 1000;
       setDistanceMeters(distanceMeters);
 
@@ -59,10 +72,7 @@ const ARComponent = () => {
 
       return () => clearInterval(intervalId);
     }
-  }, [userPosition]);
-
-  const prefeituraLatitude = -22.8641035;  // Latitude da Prefeitura
-  const prefeituraLongitude = -43.7799832; // Longitude da Prefeitura
+  }, [userPosition, cubePosition]);
 
   return (
     <div>
@@ -73,17 +83,19 @@ const ARComponent = () => {
       >
         <a-camera position="0 0 0"></a-camera>
         
-        {/* Cubo flutuando a 20 metros de altura */}
-        <a-box 
-          position="0 20 -30"  // O cubo está 20 metros para cima e 30 metros à frente
-          width="5" 
-          height="5" 
-          depth="5" 
-          color="#4CC3D9"
-        ></a-box>
+        {/* Mostrar o cubo apenas quando a posição for calculada */}
+        {cubePosition && (
+          <a-box 
+            position="0 20 -50"  // 50 metros de distância à frente
+            width="5" 
+            height="5" 
+            depth="5" 
+            color="#4CC3D9"
+          ></a-box>
+        )}
       </a-scene>
       
-      {/* Mostrar a distância em metros para debug */}
+      {/* Mostrar a distância para debug */}
       <div style={{ position: 'absolute', top: '10px', left: '10px', color: '#fff' }}>
         {distanceMeters !== null ? (
           <p>Distância do cubo: {distanceMeters.toFixed(2)} metros</p>
