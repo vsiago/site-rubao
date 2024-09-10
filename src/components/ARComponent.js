@@ -20,6 +20,7 @@ const haversineDistance = (lat1, lon1, lat2, lon2) => {
 
 const ARComponent = () => {
   const [userPosition, setUserPosition] = useState(null);
+  const [showImage, setShowImage] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -36,10 +37,7 @@ const ARComponent = () => {
     }
   }, []);
 
-  const prefeituraLatitude = -22.8641035;
-  const prefeituraLongitude = -43.7799832;
-
-  const isPointingToSky = () => {
+  useEffect(() => {
     if (userPosition) {
       const distance = haversineDistance(
         userPosition.latitude,
@@ -48,10 +46,15 @@ const ARComponent = () => {
         prefeituraLongitude
       );
 
-      return distance < 0.01; // Ajuste o valor de distância conforme necessário
+      console.log('Distância:', distance); // Adicione este log para verificar a distância
+
+      const shouldShowImage = distance < 0.01;
+      setShowImage(shouldShowImage);
     }
-    return false;
-  };
+  }, [userPosition]);
+
+  const prefeituraLatitude = -22.8641035;
+  const prefeituraLongitude = -43.7799832;
 
   return (
     <div>
@@ -62,7 +65,7 @@ const ARComponent = () => {
       >
         <a-camera position="0 0 0"></a-camera>
         
-        {isPointingToSky() && (
+        {showImage && (
           <a-image
             src="/ar-rubao20.png"
             position="0 1.5 -3"
