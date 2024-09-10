@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 
 const ARComponent = () => {
   const [userLocation, setUserLocation] = useState({ latitude: null, longitude: null });
-  const [isInLocation, setIsInLocation] = useState(false);
+  const [canSeeAR, setCanSeeAR] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -17,49 +17,60 @@ const ARComponent = () => {
           const { latitude, longitude } = position.coords;
           setUserLocation({ latitude, longitude });
 
-          // Define uma localização de referência (Prefeitura de Itaguaí)
-          const targetLocation = {
-            latitude: -22.8641,  // Latitude da prefeitura
-            longitude: -43.7772, // Longitude da prefeitura
-          };
-
-          // Verifique se o usuário está perto da localização alvo (precisão de 100 metros)
-          const distance = getDistanceFromLatLonInKm(
-            latitude,
-            longitude,
-            targetLocation.latitude,
-            targetLocation.longitude
-          );
-
-          if (distance <= 0.1) { // Aproximadamente 100 metros
-            setIsInLocation(true);
+          // Verifique se o usuário está dentro de Itaguaí
+          if (isInItaguai(latitude, longitude)) {
+            // Ativa a AR se o usuário estiver mirando na direção da prefeitura
+            const isPointingToPrefeitura = isPointingTowardsCityHall(latitude, longitude);
+            if (isPointingToPrefeitura) {
+              setCanSeeAR(true);
+            }
           }
         });
       }
     }
   }, []);
 
-  // Função para calcular a distância entre duas coordenadas
-  function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Raio da Terra em km
-    const dLat = deg2rad(lat2 - lat1);
-    const dLon = deg2rad(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const d = R * c; // Distância em km
-    return d;
+  // Função que verifica se o usuário está dentro de Itaguaí (limites aproximados)
+  function isInItaguai(lat, lon) {
+    const itaguaiBounds = {
+      north: -22.80,
+      south: -23.00,
+      east: -43.60,
+      west: -44.00,
+    };
+
+    return (
+      lat <= itaguaiBounds.north &&
+      lat >= itaguaiBounds.south &&
+      lon <= itaguaiBounds.east &&
+      lon >= itaguaiBounds.west
+    );
   }
 
-  function deg2rad(deg) {
-    return deg * (Math.PI / 180);
+  // Função para verificar se o usuário está apontando na direção da prefeitura
+  function isPointingTowardsCityHall(lat, lon) {
+    const cityHallLat = -22.8669;  // Latitude da Prefeitura de Itaguaí
+    const cityHallLon = -43.7751;  // Longitude da Prefeitura de Itaguaí
+
+    // Cálculo simples de direção (neste exemplo, isso pode ser expandido)
+    const userDirectionToCityHall = Math.atan2(cityHallLat - lat, cityHallLon - lon);
+    const userHeading = getUserHeading(); // Função para obter direção da bússola ou dispositivo
+
+    // Verifica se o usuário está olhando para a direção correta (com tolerância de 15 graus)
+    const angleDifference = Math.abs(userDirectionToCityHall - userHeading);
+    return angleDifference < (15 * (Math.PI / 180)); // 15 graus de tolerância
+  }
+
+  // Exemplo de função para pegar a direção do dispositivo
+  function getUserHeading() {
+    // Suporte básico para dispositivos com API de orientação
+    // Retorna um valor de exemplo (norte)
+    return 0; // 0 radianos corresponde ao norte
   }
 
   return (
     <div>
-      {isInLocation ? (
+      {canSeeAR ? (
         <a-scene
           mindar="imageTargetSrc: /assets/target.mind; autoStart: true;"
           embedded
@@ -78,7 +89,7 @@ const ARComponent = () => {
           </a-entity>
         </a-scene>
       ) : (
-        <p>Você precisa estar perto da Prefeitura de Itaguaí para acessar essa experiência de realidade aumentada.</p>
+        <p>Você precisa estar em Itaguaí e mirando na direção da Prefeitura para visualizar a realidade aumentada.</p>
       )}
     </div>
   );
