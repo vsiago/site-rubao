@@ -45,26 +45,25 @@ const ARComponent = () => {
         prefeituraLatitude,
         prefeituraLongitude
       );
-
+  
       console.log('Distância:', distance);
-
-      const shouldShowImage = distance < 0.01;
+  
+      // Temporariamente aumentar o limite de distância para teste
+      const shouldShowImage = distance < 0.1;
       setShowImage(shouldShowImage);
-
-      // Alertar a coordenada da imagem
+  
       if (shouldShowImage) {
         alert(`Imagem posicionada em: X: 0, Y: 1.5, Z: -3`);
       }
-
-      // Configurar intervalo para alertar a distância a cada 10 segundos
+  
       const intervalId = setInterval(() => {
-        alert(`Distância: ${distance.toFixed(2)} km`);
-      }, 10000); // 10000 ms = 10 segundos
-
-      // Limpar intervalo quando o componente for desmontado
+        console.log(`Distância atual: ${distance}`);
+      }, 10000);
+  
       return () => clearInterval(intervalId);
     }
   }, [userPosition]);
+  
 
   const prefeituraLatitude = -22.8641035;
   const prefeituraLongitude = -43.7799832;
@@ -74,7 +73,7 @@ const ARComponent = () => {
       <a-scene
         embedded
         vr-mode-ui="enabled: false"
-        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh' }}
+        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
       >
         <a-camera position="0 0 0"></a-camera>
         
