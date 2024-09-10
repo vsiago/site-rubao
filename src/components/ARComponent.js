@@ -17,7 +17,14 @@ const ARComponent = () => {
         vr-mode-ui="enabled: false"
         style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh' }}
       >
-        <a-camera position="0 0 0"></a-camera>
+        {/* Câmera configurada para usar a câmera traseira */}
+        <a-camera
+          position="0 0 0"
+          look-controls="enabled: false"
+          mindar-camera="videoConstraints: { facingMode: { ideal: 'environment' } }"
+          // Garantindo que use a câmera traseira
+          camera="active: true; video: { facingMode: { ideal: 'environment' } }"
+        ></a-camera>
 
         {/* Texto simples no centro da tela */}
         <a-text
