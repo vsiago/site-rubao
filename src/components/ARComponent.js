@@ -19,9 +19,22 @@ const haversineDistance = (lat1, lon1, lat2, lon2) => {
   return R * c; // Distância em km
 };
 
+// Função para converter coordenadas geográficas (latitude e longitude) para um sistema cartesiano simplificado
+const latLonToXYZ = (lat, lon, distance) => {
+  const phi = toRad(90 - lat);
+  const theta = toRad(lon);
+
+  const x = distance * Math.sin(phi) * Math.cos(theta);
+  const y = distance * Math.sin(phi) * Math.sin(theta);
+  const z = distance * Math.cos(phi);
+
+  return { x, y, z };
+};
+
 const ARComponent = () => {
   const [userPosition, setUserPosition] = useState(null);
   const [distanceMeters, setDistanceMeters] = useState(null);
+  const [cubePosition, setCubePosition] = useState({ x: 0, y: 0, z: 0 });
 
   // Latitude e Longitude da Prefeitura de Itaguaí
   const prefeituraLatitude = -22.8641035;
@@ -52,6 +65,10 @@ const ARComponent = () => {
           const distanceMeters = distanceKm * 1000;
           setDistanceMeters(distanceMeters);
 
+          // Converter a posição da Prefeitura para coordenadas XYZ
+          const cubePos = latLonToXYZ(prefeituraLatitude, prefeituraLongitude, distanceMeters);
+          setCubePosition(cubePos);
+
           console.log(`Distância até a Prefeitura: ${distanceMeters.toFixed(2)} metros`);
         });
       }
@@ -67,14 +84,14 @@ const ARComponent = () => {
       >
         <a-camera position="0 0 0"></a-camera>
         
-        {/* Mostrar o cubo fixo na posição da Prefeitura */}
-        <a-box
-            position="0 0 -50" // 50 metros à frente e 20 metros acima do chão
-            width="20" // Aumentando a largura para 20 metros
-            height="50" // Aumentando a altura para 20 metros
-            depth="20" // Aumentando a profundidade para 20 metros
-            color="#4CC3D9"
-          ></a-box>
+        {/* Mostrar o cubo fixo na posição XYZ da Prefeitura */}
+        <a-box 
+          position={`${cubePosition.x} 20 ${cubePosition.z}`}  // Ajustar a altura se necessário
+          width="20" 
+          height="20" 
+          depth="20" 
+          color="#4CC3D9"
+        ></a-box>
       </a-scene>
 
       {/* Mostrar a distância para debug */}
