@@ -37,6 +37,10 @@ const ARComponent = () => {
     }
   }, []);
 
+  
+  const prefeituraLatitude = -22.8641035;
+  const prefeituraLongitude = -43.7799832;
+
   useEffect(() => {
     if (userPosition) {
       const distance = haversineDistance(
@@ -66,8 +70,6 @@ const ARComponent = () => {
     }
   }, [userPosition]);
 
-  const prefeituraLatitude = -22.8641035;
-  const prefeituraLongitude = -43.7799832;
 
   return (
     <div>
