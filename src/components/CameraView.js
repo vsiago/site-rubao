@@ -3,7 +3,9 @@ import React, { useEffect } from 'react';
 const CameraView = () => {
   useEffect(() => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true })
+      navigator.mediaDevices.getUserMedia({
+        video: { facingMode: { ideal: 'environment' } } // Habilitar a câmera traseira
+      })
         .then((stream) => {
           const videoElement = document.getElementById('video');
           if (videoElement) {
