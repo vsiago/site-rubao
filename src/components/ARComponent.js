@@ -7,7 +7,7 @@ const ARComponent = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       require('aframe');
-      
+
       // Obter a posição do usuário
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -21,8 +21,8 @@ const ARComponent = () => {
   }, []);
 
   // Latitude e Longitude da Prefeitura de Itaguaí
-  const prefeituraLatitude = -22.8641035; // Substitua pela latitude real
-  const prefeituraLongitude = -43.7799832; // Substitua pela longitude real
+  const prefeituraLatitude = -22.8715; // Substitua pela latitude real
+  const prefeituraLongitude = -43.5957; // Substitua pela longitude real
 
   // Função para verificar se a posição do usuário está alinhada com a Prefeitura
   const isPointingToSky = () => {
@@ -41,12 +41,11 @@ const ARComponent = () => {
   return (
     <div>
       <a-scene
-        embedded
-        vr-mode-ui="enabled: false"
+	@@ -18,14 +46,16 @@ const ARComponent = () => {
         style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh' }}
       >
         <a-camera position="0 0 0"></a-camera>
-        
+
         {/* Mostrar imagem apenas se estiver apontando para o céu */}
         {isPointingToSky() && (
           <a-image
@@ -59,6 +58,3 @@ const ARComponent = () => {
       </a-scene>
     </div>
   );
-};
-
-export default dynamic(() => Promise.resolve(ARComponent), { ssr: false });
