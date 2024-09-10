@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
 const ARComponent = () => {
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      // Importa 'aframe' somente no cliente
+      // Importar 'aframe' apenas no cliente
       require('aframe');
     }
   }, []);
@@ -13,30 +14,26 @@ const ARComponent = () => {
     <div>
       <a-scene
         embedded
-        style={{ width: '100%', height: '100vh' }}
         vr-mode-ui="enabled: false"
+        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh' }}
       >
-        {/* Configura a câmera */}
+        {/* Câmera configurada para usar a câmera traseira */}
         <a-camera
           position="0 0 0"
           look-controls="enabled: false"
-          video="facingMode: environment"
+          mindar-camera="videoConstraints: { facingMode: { ideal: 'environment' } }"
+          // Garantindo que use a câmera traseira
+          camera="active: true; video: { facingMode: { ideal: 'environment' } }"
         ></a-camera>
 
-        {/* Cubo grande e visível */}
-        <a-entity
-          geometry="primitive: box"
-          material="color: red;"
-          scale="10 10 10"  // Tamanho grande do cubo
-          position="0 0 -5"  // Ajuste da posição do cubo
-          rotation="0 0 0"
-        >
-          <a-text
-            value="Cubo Norte"
-            scale="10 10 10"  // Tamanho do texto
-            position="0 0 5"  // Ajuste da posição do texto
-          ></a-text>
-        </a-entity>
+        {/* Texto simples no centro da tela */}
+        <a-text
+          value="Norte"
+          position="0 1.5 -3"  // Posiciona o texto à frente da câmera
+          align="center"
+          color="red"
+          width="6">
+        </a-text>
       </a-scene>
     </div>
   );
