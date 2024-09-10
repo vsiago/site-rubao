@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 
-// Função para calcular a distância entre dois pontos geográficos
+// Função para calcular a distância entre dois pontos geográficos (Haversine Formula)
 const haversineDistance = (lat1, lon1, lat2, lon2) => {
   const toRad = (value) => (value * Math.PI) / 180;
-  const R = 6371; // Raio da Terra em quilômetros
+  const R = 6371; // Raio da Terra em km
 
   const dLat = toRad(lat2 - lat1);
   const dLon = toRad(lon2 - lon1);
@@ -15,12 +15,12 @@ const haversineDistance = (lat1, lon1, lat2, lon2) => {
     Math.sin(dLon / 2) * Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-  return R * c; // Distância em quilômetros
+  return R * c; // Distância em km
 };
 
 const ARComponent = () => {
   const [userPosition, setUserPosition] = useState(null);
-  const [showImage, setShowImage] = useState(false);
+  const [distance, setDistance] = useState(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -37,39 +37,28 @@ const ARComponent = () => {
     }
   }, []);
 
-  
-  const prefeituraLatitude = -22.8641035;
-  const prefeituraLongitude = -43.7799832;
-
   useEffect(() => {
     if (userPosition) {
-      const distance = haversineDistance(
+      const dist = haversineDistance(
         userPosition.latitude,
         userPosition.longitude,
         prefeituraLatitude,
         prefeituraLongitude
       );
 
-      console.log('Distância:', distance);
+      setDistance(dist);
 
-      const shouldShowImage = distance < 0.01;
-      setShowImage(shouldShowImage);
-
-      // Alertar as coordenadas da imagem e a distância
-      if (shouldShowImage) {
-        alert(`Imagem posicionada em: X: 0, Y: 1.5, Z: -3`);
-      }
-
-      // Configurar intervalo para alertar a distância a cada 10 segundos
+      // Exibir distância atual a cada 10 segundos
       const intervalId = setInterval(() => {
-        alert(`Distância: ${distance.toFixed(2)} km`);
-      }, 10000); // 10000 ms = 10 segundos
+        alert(`Distância atual do cubo: ${dist.toFixed(2)} km`);
+      }, 10000); // 10 segundos
 
-      // Limpar intervalo quando o componente for desmontado
       return () => clearInterval(intervalId);
     }
   }, [userPosition]);
 
+  const prefeituraLatitude = -22.8641035;  // Latitude da Prefeitura
+  const prefeituraLongitude = -43.7799832; // Longitude da Prefeitura
 
   return (
     <div>
@@ -78,22 +67,28 @@ const ARComponent = () => {
         vr-mode-ui="enabled: false"
         style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh', zIndex: 1 }}
       >
-        {/* Certifique-se de que a câmera está ativa */}
         <a-camera position="0 0 0"></a-camera>
         
-        {/* Adicione uma caixa de teste para ver se os elementos estão renderizando */}
-        <a-box position="0 1 -3" rotation="0 45 45" color="#4CC3D9"></a-box>
-
-        {/* Mostrar imagem quando estiver dentro do alcance */}
-        {showImage && (
-          <a-image
-            src="/ar-rubao20.png"
-            position="0 1.5 -3"
-            width="2"
-            height="2"
-          ></a-image>
+        {/* Cubo flutuando a 20 metros de altura */}
+        {distance !== null && (
+          <a-box 
+            position="0 20 -30"  // 20 metros para cima, 30 metros à frente
+            width="5" 
+            height="5" 
+            depth="5" 
+            color="#4CC3D9"
+          ></a-box>
         )}
       </a-scene>
+      
+      {/* Mostrar a distância para debug */}
+      <div style={{ position: 'absolute', top: '10px', left: '10px', color: '#fff' }}>
+        {distance !== null ? (
+          <p>Distância do cubo: {distance.toFixed(2)} km</p>
+        ) : (
+          <p>Obtendo sua posição...</p>
+        )}
+      </div>
     </div>
   );
 };
