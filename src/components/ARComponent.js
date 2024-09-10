@@ -1,10 +1,15 @@
 import React, { useEffect } from 'react';
-import 'aframe';
-import 'mind-ar/dist/mindar-image-aframe.prod.js';
+import dynamic from 'next/dynamic';
 
 const ARComponent = () => {
   useEffect(() => {
-    // Aqui pode colocar inicializações ou configs do MindAR se necessário
+    if (typeof window !== 'undefined') {
+      // Importa 'aframe' e 'mind-ar' somente no cliente
+      require('aframe');
+      require('mind-ar/dist/mindar-image-aframe.prod.js');
+      
+      // Qualquer outra inicialização do A-Frame ou MindAR pode ser colocada aqui
+    }
   }, []);
 
   return (
@@ -19,4 +24,4 @@ const ARComponent = () => {
   );
 };
 
-export default ARComponent;
+export default dynamic(() => Promise.resolve(ARComponent), { ssr: false });
