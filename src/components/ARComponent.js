@@ -19,14 +19,13 @@ const ARComponent = () => {
       >
         <a-camera position="0 0 0"></a-camera>
 
-        {/* Texto simples no centro da tela */}
-        <a-text
-          value="Norte"
-          position="0 1.5 -3"  // Posiciona o texto à frente da câmera
-          align="center"
-          color="red"
-          width="6">
-        </a-text>
+        {/* Imagem substituindo o texto */}
+        <a-image
+          src="/ar-rubao20.png"  // Caminho para a imagem
+          position="0 1.5 -3"  // Posiciona a imagem à frente da câmera
+          width="2"  // Largura da imagem
+          height="2"  // Altura da imagem
+        ></a-image>
       </a-scene>
     </div>
   );
