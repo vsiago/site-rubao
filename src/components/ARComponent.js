@@ -20,7 +20,7 @@ const haversineDistance = (lat1, lon1, lat2, lon2) => {
 
 const ARComponent = () => {
   const [userPosition, setUserPosition] = useState(null);
-  const [distance, setDistance] = useState(null);
+  const [distanceMeters, setDistanceMeters] = useState(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -39,18 +39,22 @@ const ARComponent = () => {
 
   useEffect(() => {
     if (userPosition) {
-      const dist = haversineDistance(
+      const distanceKm = haversineDistance(
         userPosition.latitude,
         userPosition.longitude,
         prefeituraLatitude,
         prefeituraLongitude
       );
 
-      setDistance(dist);
+      // Convertendo para metros
+      const distanceMeters = distanceKm * 1000;
+      setDistanceMeters(distanceMeters);
 
-      // Exibir distância atual a cada 10 segundos
+      console.log(`Distância: ${distanceMeters.toFixed(2)} metros`);
+
+      // Exibir a distância atual a cada 10 segundos
       const intervalId = setInterval(() => {
-        alert(`Distância atual do cubo: ${dist.toFixed(2)} km`);
+        alert(`Distância atual do cubo: ${distanceMeters.toFixed(2)} metros`);
       }, 10000); // 10 segundos
 
       return () => clearInterval(intervalId);
@@ -70,21 +74,19 @@ const ARComponent = () => {
         <a-camera position="0 0 0"></a-camera>
         
         {/* Cubo flutuando a 20 metros de altura */}
-        {distance !== null && (
-          <a-box 
-            position="0 20 -30"  // 20 metros para cima, 30 metros à frente
-            width="5" 
-            height="5" 
-            depth="5" 
-            color="#4CC3D9"
-          ></a-box>
-        )}
+        <a-box 
+          position="0 20 -30"  // O cubo está 20 metros para cima e 30 metros à frente
+          width="5" 
+          height="5" 
+          depth="5" 
+          color="#4CC3D9"
+        ></a-box>
       </a-scene>
       
-      {/* Mostrar a distância para debug */}
+      {/* Mostrar a distância em metros para debug */}
       <div style={{ position: 'absolute', top: '10px', left: '10px', color: '#fff' }}>
-        {distance !== null ? (
-          <p>Distância do cubo: {distance.toFixed(2)} km</p>
+        {distanceMeters !== null ? (
+          <p>Distância do cubo: {distanceMeters.toFixed(2)} metros</p>
         ) : (
           <p>Obtendo sua posição...</p>
         )}
