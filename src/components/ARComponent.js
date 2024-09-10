@@ -53,6 +53,8 @@ const ARComponent = () => {
           };
           setUserPosition(userPos);
 
+          console.log(`Sua latitude: ${userPos.latitude}, longitude: ${userPos.longitude}`);
+
           // Calcular a distância até a Prefeitura
           const distanceKm = haversineDistance(
             userPos.latitude,
@@ -65,11 +67,11 @@ const ARComponent = () => {
           const distanceMeters = distanceKm * 1000;
           setDistanceMeters(distanceMeters);
 
+          console.log(`Distância até a Prefeitura: ${distanceMeters.toFixed(2)} metros`);
+
           // Converter a posição da Prefeitura para coordenadas XYZ
           const cubePos = latLonToXYZ(prefeituraLatitude, prefeituraLongitude, distanceMeters);
           setCubePosition(cubePos);
-
-          console.log(`Distância até a Prefeitura: ${distanceMeters.toFixed(2)} metros`);
         });
       }
     }
@@ -97,7 +99,10 @@ const ARComponent = () => {
       {/* Mostrar a distância para debug */}
       <div style={{ position: 'absolute', top: '10px', left: '10px', color: '#fff' }}>
         {distanceMeters !== null ? (
-          <p>Distância até a Prefeitura: {distanceMeters.toFixed(2)} metros</p>
+          <>
+            <p>Sua posição: {userPosition?.latitude}, {userPosition?.longitude}</p>
+            <p>Distância até a Prefeitura: {distanceMeters.toFixed(2)} metros</p>
+          </>
         ) : (
           <p>Obtendo sua posição...</p>
         )}
