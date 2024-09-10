@@ -5,7 +5,7 @@ const GeoARComponent = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       require('aframe');
-      require('ar.js/aframe/build/aframe-ar.js');
+      require('mind-ar/dist/mindar-image-aframe.prod.js');
     }
   }, []);
 
