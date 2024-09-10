@@ -14,25 +14,27 @@ const ARComponent = () => {
         embedded
         style={{ width: '100%', height: '100vh' }}
         vr-mode-ui="enabled: false"
-        // Adiciona o componente AR
       >
-        {/* A câmera traseira é utilizada */}
-        <a-camera 
-          position="0 0 0" 
-          look-controls="enabled: false" 
-          // Configura a câmera traseira
+        {/* Configura a câmera traseira */}
+        <a-camera
+          position="0 0 0"
+          look-controls="enabled: false"
           video="facingMode: environment"
         ></a-camera>
 
-        {/* Cubo simples apontado para o norte */}
+        {/* Cubo muito grande */}
         <a-entity
           geometry="primitive: box"
           material="color: red;"
-          scale="10 10 10"
-          position="0 0 -5"  // Ajuste a posição para que o cubo seja visível
-          rotation="0 0 0"  // Cubo voltado para o norte
+          scale="50 50 50"  // Aumenta o tamanho do cubo
+          position="0 0 -20"  // Ajusta a posição para que o cubo fique visível
+          rotation="0 0 0"
         >
-          <a-text value="Cubo Norte" scale="5 5 5" position="0 0 0.5"></a-text>
+          <a-text
+            value="Cubo Norte"
+            scale="10 10 10"  // Aumenta o tamanho do texto
+            position="0 0 0"  // Ajusta a posição do texto no cubo
+          ></a-text>
         </a-entity>
       </a-scene>
     </div>
