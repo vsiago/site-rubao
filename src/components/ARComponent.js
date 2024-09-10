@@ -81,15 +81,17 @@ const ARComponent = () => {
             position="0 0 0"
             look-controls="enabled: false"
             mindar-camera="videoConstraints: { facingMode: { ideal: 'environment' } }"
+            // Garante que a câmera traseira seja usada
+            video="facingMode: environment"
           ></a-camera>
 
-          {/* Exemplo de imagem 20 */}
+          {/* Exemplo de imagem 20 centralizada ao mirar para o céu */}
           <a-entity mindar-image-target="targetIndex: 0">
-            <a-image src="/ar-rubao20.png" position="0 0 0" width="1" height="1"></a-image>
+            <a-image src="/ar-rubao20.png" position="0 5 0" rotation="-90 0 0" width="4" height="4"></a-image>
           </a-entity>
         </a-scene>
       ) : (
-        <p>Você precisa estar em Itaguaí e mirando na direção do Parque Muinicipal para visualizar a realidade aumentada.</p>
+        <p>Você precisa estar em Itaguaí e mirando para o céu na direção da Prefeitura para visualizar a realidade aumentada.</p>
       )}
     </div>
   );
