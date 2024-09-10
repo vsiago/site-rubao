@@ -46,10 +46,15 @@ const ARComponent = () => {
         prefeituraLongitude
       );
 
-      console.log('Distância:', distance); // Adicione este log para verificar a distância
+      console.log('Distância:', distance);
 
       const shouldShowImage = distance < 0.01;
       setShowImage(shouldShowImage);
+
+      // Alertar a coordenada da imagem
+      if (shouldShowImage) {
+        alert(`Imagem posicionada em: X: 0, Y: 1.5, Z: -3`);
+      }
 
       // Configurar intervalo para alertar a distância a cada 10 segundos
       const intervalId = setInterval(() => {
