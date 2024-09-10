@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 const ARComponent = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      // Importa 'aframe' somente no cliente
       require('aframe');
     }
   }, []);
@@ -15,7 +16,7 @@ const ARComponent = () => {
         style={{ width: '100%', height: '100vh' }}
         vr-mode-ui="enabled: false"
       >
-        {/* Configura a câmera traseira */}
+        {/* Configura a câmera */}
         <a-camera
           position="0 0 0"
           look-controls="enabled: false"
@@ -26,14 +27,14 @@ const ARComponent = () => {
         <a-entity
           geometry="primitive: box"
           material="color: red;"
-          scale="50 50 50"  // Tamanho grande do cubo
-          position="0 0 -10"  // Ajuste da posição do cubo
+          scale="10 10 10"  // Tamanho grande do cubo
+          position="0 0 -5"  // Ajuste da posição do cubo
           rotation="0 0 0"
         >
           <a-text
             value="Cubo Norte"
-            scale="10 10 10"  // Tamanho grande do texto
-            position="0 0 5"  // Ajuste da posição do texto no cubo
+            scale="5 5 5"  // Tamanho do texto
+            position="0 0 6"  // Ajuste da posição do texto
           ></a-text>
         </a-entity>
       </a-scene>
