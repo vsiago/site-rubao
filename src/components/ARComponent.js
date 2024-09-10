@@ -75,7 +75,7 @@ const ARComponent = () => {
           mindar="imageTargetSrc: /assets/target.mind; autoStart: true;"
           embedded
           vr-mode-ui="enabled: false"
-          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh' }}
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
         >
           <a-camera
             position="0 0 0"
@@ -87,7 +87,7 @@ const ARComponent = () => {
 
           {/* Exemplo de imagem 20 centralizada ao mirar para o céu */}
           <a-entity mindar-image-target="targetIndex: 0">
-            <a-image src="/ar-rubao20.png" position="0 5 0" rotation="-90 0 0" width="4" height="4"></a-image>
+            <a-image src="../../public/ar-rubao20.png" position="0 5 0" rotation="-90 0 0" width="4" height="4"></a-image>
           </a-entity>
         </a-scene>
       ) : (

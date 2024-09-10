@@ -17,7 +17,7 @@ const CameraView = () => {
     }
   }, []);
 
-  return <video id="video" style={{ width: '100%' }} autoPlay playsInline />;
+  return <video id="video" style={{ width: '100%', height: '100vh' }} autoPlay playsInline />;
 };
 
 export default CameraView;
