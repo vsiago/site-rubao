@@ -22,18 +22,18 @@ const ARComponent = () => {
           video="facingMode: environment"
         ></a-camera>
 
-        {/* Cubo muito grande */}
+        {/* Cubo grande */}
         <a-entity
           geometry="primitive: box"
           material="color: red;"
-          scale="50 50 50"  // Aumenta o tamanho do cubo
-          position="0 0 -20"  // Ajusta a posição para que o cubo fique visível
+          scale="50 50 50"  // Tamanho grande do cubo
+          position="0 0 -10"  // Ajuste da posição do cubo
           rotation="0 0 0"
         >
           <a-text
             value="Cubo Norte"
-            scale="10 10 10"  // Aumenta o tamanho do texto
-            position="0 0 0"  // Ajusta a posição do texto no cubo
+            scale="10 10 10"  // Tamanho grande do texto
+            position="0 0 5"  // Ajuste da posição do texto no cubo
           ></a-text>
         </a-entity>
       </a-scene>
