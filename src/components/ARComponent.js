@@ -75,7 +75,7 @@ const ARComponent = () => {
           mindar="imageTargetSrc: /assets/target.mind; autoStart: true;"
           embedded
           vr-mode-ui="enabled: false"
-          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '500px' }}
         >
           <a-camera
             position="0 0 0"
@@ -89,7 +89,7 @@ const ARComponent = () => {
           </a-entity>
         </a-scene>
       ) : (
-        <p>Você precisa estar em Itaguaí e mirando na direção da Prefeitura para visualizar a realidade aumentada.</p>
+        <p>Você precisa estar em Itaguaí e mirando na direção do Parque Muinicipal para visualizar a realidade aumentada.</p>
       )}
     </div>
   );
