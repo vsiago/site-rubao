@@ -75,7 +75,7 @@ const ARComponent = () => {
           mindar="imageTargetSrc: /assets/target.mind; autoStart: true;"
           embedded
           vr-mode-ui="enabled: false"
-          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '500px' }}
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh' }}
         >
           <a-camera
             position="0 0 0"
