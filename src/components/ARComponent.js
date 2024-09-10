@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
+import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 
 // Função para converter graus para radianos
 const toRad = (value) => (value * Math.PI) / 180;
@@ -12,10 +12,8 @@ const haversineDistance = (lat1, lon1, lat2, lon2) => {
 
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(toRad(lat1)) *
-      Math.cos(toRad(lat2)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
   return R * c; // Distância em km
@@ -23,98 +21,66 @@ const haversineDistance = (lat1, lon1, lat2, lon2) => {
 
 const ARComponent = () => {
   const [userPosition, setUserPosition] = useState(null);
-  const [cubePosition, setCubePosition] = useState(null); // Posição do cubo
   const [distanceMeters, setDistanceMeters] = useState(null);
 
+  // Latitude e Longitude da Prefeitura de Itaguaí
+  const prefeituraLatitude = -22.8641035;
+  const prefeituraLongitude = -43.7799832;
+
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      require("aframe");
+    if (typeof window !== 'undefined') {
+      require('aframe');
 
       // Obter a posição do usuário
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
+        navigator.geolocation.getCurrentPosition(position => {
           const userPos = {
             latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
+            longitude: position.coords.longitude
           };
           setUserPosition(userPos);
 
-          // Colocar o cubo a 50 metros de distância
-          const distInKm = 0.05; // 50 metros em km
-          const distInDegrees = distInKm / 111.32; // Aproximadamente 111.32 km por grau de latitude
+          // Calcular a distância até a Prefeitura
+          const distanceKm = haversineDistance(
+            userPos.latitude,
+            userPos.longitude,
+            prefeituraLatitude,
+            prefeituraLongitude
+          );
 
-          const cubeLat = userPos.latitude + distInDegrees; // 50 metros ao norte
-          const cubeLon = userPos.longitude; // Manter a mesma longitude
+          // Converter para metros
+          const distanceMeters = distanceKm * 1000;
+          setDistanceMeters(distanceMeters);
 
-          setCubePosition({ latitude: cubeLat, longitude: cubeLon });
+          console.log(`Distância até a Prefeitura: ${distanceMeters.toFixed(2)} metros`);
         });
       }
     }
   }, []);
-
-  useEffect(() => {
-    if (userPosition && cubePosition) {
-      const distanceKm = haversineDistance(
-        userPosition.latitude,
-        userPosition.longitude,
-        cubePosition.latitude,
-        cubePosition.longitude
-      );
-
-      // Converter para metros
-      const distanceMeters = distanceKm * 1000;
-      setDistanceMeters(distanceMeters);
-
-      console.log(`Distância: ${distanceMeters.toFixed(2)} metros`);
-
-      // Exibir a distância atual a cada 10 segundos
-      const intervalId = setInterval(() => {
-        alert(`Distância atual do cubo: ${distanceMeters.toFixed(2)} metros`);
-      }, 10000); // 10 segundos
-
-      return () => clearInterval(intervalId);
-    }
-  }, [userPosition, cubePosition]);
 
   return (
     <div>
       <a-scene
         embedded
         vr-mode-ui="enabled: false"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100vh",
-          zIndex: 1,
-        }}
+        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh', zIndex: 1 }}
       >
         <a-camera position="0 0 0"></a-camera>
-
-        {/* Mostrar o cubo apenas quando a posição for calculada */}
-        {cubePosition && (
-          <a-box
+        
+        {/* Mostrar o cubo fixo na posição da Prefeitura */}
+        <a-box
             position="0 0 -50" // 50 metros à frente e 20 metros acima do chão
             width="20" // Aumentando a largura para 20 metros
             height="50" // Aumentando a altura para 20 metros
             depth="20" // Aumentando a profundidade para 20 metros
             color="#4CC3D9"
           ></a-box>
-        )}
       </a-scene>
 
       {/* Mostrar a distância para debug */}
-      <div
-        style={{
-          position: "absolute",
-          top: "10px",
-          left: "10px",
-          color: "#fff",
-        }}
-      >
+      <div style={{ position: 'absolute', top: '10px', left: '10px', color: '#fff' }}>
         {distanceMeters !== null ? (
-          <p>Distância do cubo: {distanceMeters.toFixed(2)} metros</p>
+          <p>Distância até a Prefeitura: {distanceMeters.toFixed(2)} metros</p>
         ) : (
           <p>Obtendo sua posição...</p>
         )}
