@@ -32,5 +32,6 @@ const RealidadeAumentada = () => {
     </div>
   );
 };
+// teste
 
 export default RealidadeAumentada;
