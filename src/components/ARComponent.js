@@ -23,7 +23,7 @@ const ARComponent = () => {
           video="facingMode: environment"
         ></a-camera>
 
-        {/* Cubo grande */}
+        {/* Cubo grande e visível */}
         <a-entity
           geometry="primitive: box"
           material="color: red;"
@@ -33,8 +33,8 @@ const ARComponent = () => {
         >
           <a-text
             value="Cubo Norte"
-            scale="5 5 5"  // Tamanho do texto
-            position="0 0 6"  // Ajuste da posição do texto
+            scale="10 10 10"  // Tamanho do texto
+            position="0 0 5"  // Ajuste da posição do texto
           ></a-text>
         </a-entity>
       </a-scene>
