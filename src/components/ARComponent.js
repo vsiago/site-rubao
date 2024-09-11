@@ -1,34 +1,80 @@
-import React, { useEffect } from 'react';
-import dynamic from 'next/dynamic';
+"use client"
+import { useEffect, useState } from 'react';
 
-const ARComponent = () => {
+export default function RubaoInterativo() {
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // Verifique se estamos no navegador
     if (typeof window !== 'undefined') {
-      // Importar 'aframe' apenas no cliente
-      require('aframe');
+      setIsClient(true);
+
+      // Importar dinamicamente as bibliotecas para que sejam carregadas apenas no navegador
+      import('aframe');
+      import('mind-ar/dist/mindar-image-aframe.prod.js').then(() => {
+        const scene = document.querySelector('a-scene');
+
+        const handleMindARLoaded = () => {
+          const mindAR = scene?.systems?.mindar;
+          if (mindAR && typeof mindAR.start === 'function') {
+            mindAR.start(); // Iniciar o AR quando o sistema MindAR estiver disponível
+          } else {
+            console.error('MindAR system not found');
+          }
+        };
+
+        if (scene) {
+          scene.addEventListener('loaded', handleMindARLoaded);
+        }
+
+        // Limpeza do evento
+        return () => {
+          if (scene) {
+            scene.removeEventListener('loaded', handleMindARLoaded);
+          }
+        };
+      });
     }
   }, []);
+
+  // Renderize apenas no cliente
+  if (!isClient) {
+    return null; // Evita a renderização no lado do servidor
+  }
 
   return (
     <div>
       <a-scene
+        mindar-image="imageTargetSrc: /targets.mind"
         embedded
+        color-space="sRGB"
+        renderer="antialias: true; alpha: true"
         vr-mode-ui="enabled: false"
-        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh' }}
+        device-orientation-permission-ui="enabled: false"
       >
-        <a-camera position="0 0 0"></a-camera>
+        <a-assets>
+          {/* Carregar o arquivo .mind e a imagem PNG */}
+          <a-asset-item id="mindar-file" src="/targets.mind"></a-asset-item>
+          <img id="rubao-frame" src="/rubao-santinho-frame.png" alt="Rubão Santinho Frame" />
+        </a-assets>
 
-        {/* Imagem substituindo o texto */}
-        <a-image
-          src="/ar-rubao20.png"  // Caminho para a imagem
-          position="0 1.5 -3"  // Posiciona a imagem à frente da câmera
-          width="2"  // Largura da imagem
-          height="2"  // Altura da imagem
-        ></a-image>
+        {/* Adicionar MindAR sistema */}
+        <a-entity
+          mindar-image-target="targetIndex: 0"
+          position="0 0 0"
+          scale="1 1 1"
+        >
+          <a-image
+            src="#rubao-frame"
+            width="1"
+            height="1"
+            position="0 0 -1"
+            rotation="0 0 0"
+          ></a-image>
+        </a-entity>
+
+        <a-camera position="0 0 0"></a-camera>
       </a-scene>
     </div>
   );
-};
-
-export default dynamic(() => Promise.resolve(ARComponent), { ssr: false });
+}
