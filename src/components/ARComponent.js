@@ -1,16 +1,4 @@
-"use client"
 import { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
-
-// Carregar Aframe e MindAR dinamicamente e desabilitar SSR
-const ARComponent = dynamic(
-  () => {
-    return import('aframe').then(() => {
-      return import('mind-ar/dist/mindar-image-aframe.prod.js');
-    });
-  },
-  { ssr: false }
-);
 
 export default function RubaoInterativo() {
   const [isClient, setIsClient] = useState(false);
@@ -18,29 +6,35 @@ export default function RubaoInterativo() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setIsClient(true);
-
-      const scene = document.querySelector('a-scene');
-
-      const handleMindARLoaded = () => {
-        const mindAR = scene?.systems?.mindar;
-        if (mindAR && typeof mindAR.start === 'function') {
-          mindAR.start(); // Iniciar o AR quando o sistema MindAR estiver disponível
-        } else {
-          console.error('MindAR system not found');
-        }
-      };
-
-      if (scene) {
-        scene.addEventListener('loaded', handleMindARLoaded);
-      }
-
-      return () => {
-        if (scene) {
-          scene.removeEventListener('loaded', handleMindARLoaded);
-        }
-      };
     }
   }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      import('aframe').then(() => {
+        return import('mind-ar/dist/mindar-image-aframe.prod.js');
+      }).then(() => {
+        const scene = document.querySelector('a-scene');
+        
+        if (scene) {
+          const handleMindARLoaded = () => {
+            const mindAR = scene?.systems?.mindar;
+            if (mindAR && typeof mindAR.start === 'function') {
+              mindAR.start(); // Iniciar o AR quando o sistema MindAR estiver disponível
+            } else {
+              console.error('MindAR system not found');
+            }
+          };
+
+          scene.addEventListener('loaded', handleMindARLoaded);
+
+          return () => {
+            scene.removeEventListener('loaded', handleMindARLoaded);
+          };
+        }
+      }).catch(err => console.error('Failed to load Aframe or MindAR', err));
+    }
+  }, [isClient]);
 
   if (!isClient) {
     return <div>Carregando...</div>; // Mostra um texto temporário enquanto o cliente carrega
@@ -48,7 +42,7 @@ export default function RubaoInterativo() {
 
   return (
     <a-scene
-      mindar-image="imageTargetSrc: /targets.mind"
+      mindar-image="imageTargetSrc: /path/to/yourfile.mind"
       embedded
       color-space="sRGB"
       renderer="antialias: true; alpha: true"
@@ -56,8 +50,8 @@ export default function RubaoInterativo() {
       device-orientation-permission-ui="enabled: false"
     >
       <a-assets>
-        <a-asset-item id="mindar-file" src="/targets.mind"></a-asset-item>
-        <img id="rubao-frame" src="/rubao-santinho-frame.png" alt="Rubão Santinho Frame" />
+        <a-asset-item id="mindar-file" src="/path/to/yourfile.mind"></a-asset-item>
+        <img id="rubao-frame" src="/path/to/rubao-santinho-frame.png" alt="Rubão Santinho Frame" />
       </a-assets>
 
       <a-entity
