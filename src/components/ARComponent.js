@@ -11,11 +11,23 @@ export default function RubaoInterativo() {
 
   useEffect(() => {
     if (isClient) {
-      import('aframe').then(() => {
-        return import('mind-ar/dist/mindar-image-aframe.prod.js');
-      }).then(() => {
+      const loadScripts = async () => {
+        // Carregar Aframe e MindAR dinamicamente
+        await new Promise((resolve) => {
+          const script = document.createElement('script');
+          script.src = 'https://aframe.io/releases/1.2.0/aframe.min.js';
+          script.onload = () => resolve();
+          document.head.appendChild(script);
+        });
+
+        await new Promise((resolve) => {
+          const script = document.createElement('script');
+          script.src = 'https://unpkg.com/mind-ar/dist/mindar-image-aframe.prod.js';
+          script.onload = () => resolve();
+          document.head.appendChild(script);
+        });
+
         const scene = document.querySelector('a-scene');
-        
         if (scene) {
           const handleMindARLoaded = () => {
             const mindAR = scene?.systems?.mindar;
@@ -32,7 +44,9 @@ export default function RubaoInterativo() {
             scene.removeEventListener('loaded', handleMindARLoaded);
           };
         }
-      }).catch(err => console.error('Failed to load Aframe or MindAR', err));
+      };
+
+      loadScripts().catch(err => console.error('Failed to load scripts', err));
     }
   }, [isClient]);
 
