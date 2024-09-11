@@ -51,6 +51,7 @@ export default function RubaoInterativo() {
         renderer="antialias: true; alpha: true"
         vr-mode-ui="enabled: false"
         device-orientation-permission-ui="enabled: false"
+        
       >
         <a-assets>
           {/* Carregar o arquivo .mind e a imagem PNG */}
