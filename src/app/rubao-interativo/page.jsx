@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useEffect, useState } from 'react';
 
 export default function RubaoInterativo() {
@@ -37,6 +37,20 @@ export default function RubaoInterativo() {
     }
   }, []);
 
+  // Função para entrar em modo Fullscreen
+  const enterFullscreen = () => {
+    const elem = document.documentElement; // Seleciona o elemento raiz do documento
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) { // Firefox
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, Opera
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { // IE/Edge
+      elem.msRequestFullscreen();
+    }
+  };
+
   // Renderize apenas no cliente
   if (!isClient) {
     return null; // Evita a renderização no lado do servidor
@@ -51,7 +65,6 @@ export default function RubaoInterativo() {
         renderer="antialias: true; alpha: true"
         vr-mode-ui="enabled: false"
         device-orientation-permission-ui="enabled: false"
-        
       >
         <a-assets>
           {/* Carregar o arquivo .mind e a imagem PNG */}
@@ -76,6 +89,25 @@ export default function RubaoInterativo() {
 
         <a-camera position="0 0 0"></a-camera>
       </a-scene>
+
+      {/* Botão para entrar em modo Tela Cheia */}
+      <button onClick={enterFullscreen} className="fullscreen-btn">
+        Entrar em Tela Cheia
+      </button>
+
+      <style jsx>{`
+        .fullscreen-btn {
+          position: fixed;
+          bottom: 10px;
+          right: 10px;
+          padding: 10px 20px;
+          background-color: #0070f3;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      `}</style>
     </div>
   );
 }
