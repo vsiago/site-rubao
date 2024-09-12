@@ -106,6 +106,7 @@ export default function RubaoInterativo() {
           border: none;
           border-radius: 5px;
           cursor: pointer;
+          z-index: 2000;
         }
       `}</style>
     </div>
