@@ -66,7 +66,7 @@ const ARPage = () => {
       {!isFullscreen && (
         <button
           onClick={enterFullscreen}
-          className='p-3 px-6 bg-sky-500 text-lg font-semibold text-white rounded absolute bottom-16 left-2 z-50'
+          className='p-3 px-6 bg-sky-500 text-lg font-semibold text-white rounded absolute bottom-16 right-2 z-50'
         >
           Entrar em tela cheia
         </button>
