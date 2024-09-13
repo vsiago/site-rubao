@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 const ARPage = () => {
   const [scriptsLoaded, setScriptsLoaded] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     const loadScripts = () => {
@@ -32,6 +33,18 @@ const ARPage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
   const enterFullscreen = () => {
     if (document.documentElement.requestFullscreen) {
       document.documentElement.requestFullscreen();
@@ -50,12 +63,14 @@ const ARPage = () => {
 
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-       <button
-        onClick={enterFullscreen}
-        className='p-3 px-6 bg-sky-500 text-lg font-semibold text-white rounded absolute bottom-16 left-2 z-50'
-      >
-        Entrar em tela cheia
-      </button>
+      {!isFullscreen && (
+        <button
+          onClick={enterFullscreen}
+          className='p-3 px-6 bg-sky-500 text-lg font-semibold text-white rounded absolute bottom-16 left-2 z-50'
+        >
+          Entrar em tela cheia
+        </button>
+      )}
       <a-scene
         mindar-image="imageTargetSrc: /targets.mind;" // Atualize para o caminho do seu arquivo targets.mind
         color-space="sRGB"
@@ -97,8 +112,6 @@ const ARPage = () => {
           ></a-gltf-model>
         </a-entity>
       </a-scene>
-
-     
     </div>
   );
 };
