@@ -52,7 +52,7 @@ const ARPage = () => {
     <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
        <button
         onClick={enterFullscreen}
-        className='p-3 px-6 bg-sky-500 text-lg font-semibold text-white rounded absolute bottom-8 left-2'
+        className='p-3 px-6 bg-sky-500 text-lg font-semibold text-white rounded absolute bottom-8 left-2 z-50'
       >
         Entrar em tela cheia
       </button>
