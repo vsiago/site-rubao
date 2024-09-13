@@ -26,6 +26,8 @@ const ARPage = () => {
     };
   }, []);
 
+  // Teste
+
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
       <a-scene
