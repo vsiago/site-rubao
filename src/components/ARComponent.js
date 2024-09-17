@@ -7,6 +7,16 @@ const ARComponent = () => {
     if (typeof window !== 'undefined') {
       // Importar 'aframe' apenas no cliente
       require('aframe');
+
+      // Adiciona o script 'aframe-gps-camera-component' via CDN
+      const script = document.createElement('script');
+      script.src = "https://unpkg.com/aframe-gps-camera-component/dist/aframe-gps-camera-component.min.js";
+      script.async = true;
+      document.body.appendChild(script);
+
+      return () => {
+        document.body.removeChild(script);
+      };
     }
   }, []);
 
@@ -17,14 +27,15 @@ const ARComponent = () => {
         vr-mode-ui="enabled: false"
         style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh' }}
       >
-        <a-camera position="0 0 0"></a-camera>
+        <a-camera gps-camera></a-camera>
 
-        {/* Imagem substituindo o texto */}
+        {/* Imagem renderizada com base em latitude e longitude */}
         <a-image
-          src="/path/to/ar-rubao20.png"  // Caminho para a imagem
-          position="0 1.5 -3"  // Posiciona a imagem à frente da câmera
-          width="2"  // Largura da imagem
-          height="2"  // Altura da imagem
+          src="/ar-rubao20.png"  // Caminho para a imagem
+          gps-entity-place="latitude: -22.8708854; longitude: -43.7859875;" // Substitua pelas coordenadas desejadas
+          width="20"  // Largura em metros
+          height="20"  // Altura em metros
+          scale="50 50 50"
         ></a-image>
       </a-scene>
     </div>
