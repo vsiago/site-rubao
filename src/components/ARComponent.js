@@ -1,11 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
+// Função para calcular a nova posição com base na distância
+const calculateNewPosition = (latitude, longitude, distance) => {
+  const earthRadius = 6378137; // Raio da Terra em metros
+  const dLat = distance / earthRadius;
+  const dLon = distance / (earthRadius * Math.cos((Math.PI * latitude) / 180));
+  
+  const newLatitude = latitude + (dLat * 180) / Math.PI;
+  const newLongitude = longitude + (dLon * 180) / Math.PI;
+  
+  return { latitude: newLatitude, longitude: newLongitude };
+};
+
 const ARComponent = () => {
   const [coords, setCoords] = useState({ latitude: null, longitude: null });
   const [imageSize, setImageSize] = useState({ width: 5.5, height: 5 }); // Tamanho em metros
   const [distance, setDistance] = useState(3); // Distância inicial da imagem em metros
   const [checkInCoords, setCheckInCoords] = useState(null); // Coordenadas de check-in
+  const [currentCoords, setCurrentCoords] = useState({ latitude: null, longitude: null });
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -19,12 +32,11 @@ const ARComponent = () => {
       document.body.appendChild(script);
 
       // Obter a localização do usuário
-      navigator.geolocation.getCurrentPosition(
+      navigator.geolocation.watchPosition(
         (position) => {
-          setCoords({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          });
+          const { latitude, longitude } = position.coords;
+          setCoords({ latitude, longitude });
+          setCurrentCoords({ latitude, longitude });
         },
         (error) => {
           console.error("Erro ao obter a localização:", error);
@@ -37,7 +49,6 @@ const ARComponent = () => {
     }
   }, []);
 
-  // Função para registrar a posição de check-in
   const handleCheckIn = () => {
     setCheckInCoords({
       latitude: coords.latitude,
@@ -46,9 +57,9 @@ const ARComponent = () => {
   };
 
   // Calcular a nova posição da imagem com base nas coordenadas de check-in e na distância ajustada
-  const imagePosition = checkInCoords
-    ? `0 1.5 -${distance}`  // Ajuste conforme necessário para a sua cena
-    : '0 1.5 -3'; // Posição padrão se ainda não houver check-in
+  const newPosition = checkInCoords
+    ? calculateNewPosition(checkInCoords.latitude, checkInCoords.longitude, distance)
+    : { latitude: null, longitude: null };
 
   return (
     <div style={{ position: 'relative', height: '100vh' }}>
@@ -90,11 +101,10 @@ const ARComponent = () => {
         {checkInCoords && (
           <a-image
             src="/ar-rubao20.png"  // Caminho para a imagem no diretório público
-            gps-entity-place={`latitude: ${checkInCoords.latitude}; longitude: ${checkInCoords.longitude};`} // Coordenadas de check-in
+            gps-entity-place={`latitude: ${newPosition.latitude}; longitude: ${newPosition.longitude};`} // Coordenadas ajustadas
             width={imageSize.width}  // Largura em metros
             height={imageSize.height}  // Altura em metros
             scale="5 5 5"  // Ajuste a escala conforme necessário
-            position={imagePosition}  // Atualiza a posição da imagem com base na distância ajustada
           ></a-image>
         )}
 
@@ -103,7 +113,7 @@ const ARComponent = () => {
           value="Este conteúdo sempre estará virado para você."
           look-at="[gps-camera]"
           scale="5 5 5"  // Ajuste a escala conforme necessário
-          gps-entity-place={checkInCoords ? `latitude: ${checkInCoords.latitude}; longitude: ${checkInCoords.longitude};` : ''} // Coordenadas de check-in
+          gps-entity-place={checkInCoords ? `latitude: ${newPosition.latitude}; longitude: ${newPosition.longitude};` : ''} // Coordenadas ajustadas
         ></a-text>
       </a-scene>
     </div>
