@@ -71,7 +71,7 @@ const ARComponent = () => {
         {/* Imagem renderizada com base na localização atual */}
         <a-image
           src="/ar-rubao20.png"  // Caminho para a imagem no diretório público
-          gps-entity-place={`latitude: ${coords.latitude}; longitude: ${coords.longitude};`} // Coordenadas atuais
+          gps-entity-place={`latitude: -22.8709369; longitude: -43.7862696;`} // Coordenadas atuais
           width={imageSize.width}  // Largura em metros
           height={imageSize.height}  // Altura em metros
           scale="5 5 5"  // Ajuste a escala conforme necessário
