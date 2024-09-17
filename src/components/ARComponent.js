@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 
 const ARComponent = () => {
   const [coords, setCoords] = useState({ latitude: null, longitude: null });
-  const [imageSize, setImageSize] = useState({ width: 10, height: 5 }); // Tamanho em metros
+  const [imageSize, setImageSize] = useState({ width: 5, height: 2 }); // Tamanho em metros
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -57,18 +57,19 @@ const ARComponent = () => {
 
         {/* Imagem renderizada com base na localização atual */}
         <a-image
-          src="/ar-rubao20.png"  // Caminho para a imagem
+          src="/ar-rubao20.png"  // Caminho para a imagem no diretório público
           gps-entity-place={`latitude: ${coords.latitude}; longitude: ${coords.longitude};`} // Coordenadas atuais
           width={imageSize.width}  // Largura em metros
           height={imageSize.height}  // Altura em metros
-          scale="10 10 10"
+          scale="5 5 5"  // Ajuste a escala conforme necessário
+          position="0 1.5 -3"  // Ajuste a posição para garantir que a imagem esteja visível
         ></a-image>
 
         {/* Texto que sempre olha para a câmera */}
         <a-text
           value="Este conteúdo sempre estará virado para você."
           look-at="[gps-camera]"
-          scale="10 10 10"
+          scale="5 5 5"  // Ajuste a escala conforme necessário
           gps-entity-place={`latitude: ${coords.latitude}; longitude: ${coords.longitude};`} // Coordenadas atuais
         ></a-text>
       </a-scene>
