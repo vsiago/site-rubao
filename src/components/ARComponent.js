@@ -3,7 +3,8 @@ import dynamic from 'next/dynamic';
 
 const ARComponent = () => {
   const [coords, setCoords] = useState({ latitude: null, longitude: null });
-  const [imageSize, setImageSize] = useState({ width: 5, height: 2 }); // Tamanho em metros
+  const [imageSize, setImageSize] = useState({ width: 5.5, height:5 }); // Tamanho em metros
+  const [distance, setDistance] = useState(3); // Distância inicial da imagem em metros
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -39,12 +40,24 @@ const ARComponent = () => {
     return <div>Obtendo localização...</div>;
   }
 
+  // Calcular a nova posição da imagem com base na distância ajustada
+  const imagePosition = `0 1.5 -${distance}`;
+
   return (
     <div style={{ position: 'relative', height: '100vh' }}>
       <div style={{ position: 'absolute', top: 10, left: 10, color: 'white', zIndex: 1 }}>
         <p>Latitude: {coords.latitude}</p>
         <p>Longitude: {coords.longitude}</p>
         <p>Imagem Tamanho: {imageSize.width}m x {imageSize.height}m</p>
+        <p>Distância da Imagem: {distance}m</p>
+          <input
+            type="range"
+            min="1"
+            max="20"
+            step="0.1"
+            value={distance}
+            onChange={(e) => setDistance(parseFloat(e.target.value))}
+          />
       </div>
 
       <a-scene
@@ -62,7 +75,7 @@ const ARComponent = () => {
           width={imageSize.width}  // Largura em metros
           height={imageSize.height}  // Altura em metros
           scale="5 5 5"  // Ajuste a escala conforme necessário
-          position="0 1.5 -3"  // Ajuste a posição para garantir que a imagem esteja visível
+          position={imagePosition}  // Atualiza a posição da imagem com base na distância ajustada
         ></a-image>
 
         {/* Texto que sempre olha para a câmera */}
